@@ -85,21 +85,24 @@ class UserSpec extends ObjectBehavior
     public function it_should_active_an_account()
     {
         $this->activate();
-
         $this->isActive()->shouldReturn(true);
+    }
+
+    public function it_should_unactive_an_account()
+    {
+        $this->disable();
+        $this->isActive()->shouldReturn(false);
     }
 
     public function it_should_lock_an_account()
     {
         $this->lock();
-
         $this->isLocked()->shouldReturn(true);
     }
 
     public function it_should_unlock_an_account()
     {
         $this->unlock();
-
         $this->isLocked()->shouldReturn(false);
     }
 
