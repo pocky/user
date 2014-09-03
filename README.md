@@ -3,6 +3,7 @@ User
 
 User Library for Black Projects.
 
+<!--
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eb624518-0c1e-47a6-a91b-73edf2244e2e/big.png)](https://insight.sensiolabs.com/projects/eb624518-0c1e-47a6-a91b-73edf2244e2e)
 
 Installation
@@ -20,6 +21,7 @@ The recommended way to install User is through [Composer][2]:
 
 __Protip:__ You should browse the [`black/user`][7] user to choose a stable version to use, avoid the `@stable` meta
 constraint.
+-->
 
 Usage
 -----
