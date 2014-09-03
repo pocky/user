@@ -72,13 +72,6 @@ class User implements Entity
     protected $registeredAt;
 
     /**
-     * This password should not be persisted (because he is in plaintext)
-     *
-     * @var string
-     */
-    protected $rawPassword;
-
-    /**
      * The salt is the random key usef for encoding raw password to password
      *
      * @var string
@@ -177,42 +170,14 @@ class User implements Entity
     /**
      * This method will register the user but do not active the account
      *
-     * @param $rawPassword
+     * @param $password
      */
-    public function register($rawPassword)
+    public function register($password)
     {
-        if (null !== $rawPassword) {
-            $this->rawPassword = $rawPassword;
-            $this->password    = $this->encodePassword();
-
-            $this->eraseCredentials();
-        }
-
+        $this->password     = $password;
         $this->active       = false;
         $this->locked       = false;
         $this->registeredAt = new \DateTime();
-
-    }
-
-    /**
-     * This method will erase the sensitive data
-     */
-    public function eraseCredentials()
-    {
-        $this->rawPassword = null;
-    }
-
-    /**
-     * This metod will encode the raw password to a secure one
-     *
-     * @return string
-     */
-    protected function encodePassword()
-    {
-        $this->salt = sha1(uniqid() . microtime() . rand(0, 9999999));
-        $password   = sha1($this->salt . $this->rawPassword);
-
-        return $password;
     }
 
     /**
@@ -313,14 +278,11 @@ class User implements Entity
     }
 
     /**
-     * @param $rawPassword
+     * @param $password
      */
-    public function updatePassword($rawPassword)
+    public function updatePassword($password)
     {
-        $this->rawPassword = $rawPassword;
-        $this->password    = $this->encodePassword();
-
-        $this->eraseCredentials();
+        $this->password  = $password;
         $this->updatedAt = new \DateTime();
     }
 }

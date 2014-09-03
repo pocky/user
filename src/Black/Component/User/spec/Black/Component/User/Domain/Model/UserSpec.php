@@ -13,20 +13,6 @@ class UserSpec extends ObjectBehavior
 
     protected $email;
 
-    protected $password;
-
-    protected $groups;
-
-    protected $roles;
-
-    protected $active;
-
-    protected $locked;
-
-    protected $rawPassword;
-
-    protected $registeredAt;
-
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Domain\Model\User');
@@ -72,9 +58,7 @@ class UserSpec extends ObjectBehavior
 
     public function it_should_register_an_user()
     {
-        $this->rawPassword  = 'password';
-
-        $this->register($this->rawPassword);
+        $this->register('password');
 
         $this->isActive()->shouldReturn(false);
         $this->isLocked()->shouldReturn(false);
@@ -88,7 +72,7 @@ class UserSpec extends ObjectBehavior
         $this->isActive()->shouldReturn(true);
     }
 
-    public function it_should_unactive_an_account()
+    public function it_should_disable_an_account()
     {
         $this->disable();
         $this->isActive()->shouldReturn(false);
