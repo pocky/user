@@ -185,7 +185,7 @@ class User implements Entity
      */
     public function isActive()
     {
-        return $this->active;
+        return (boolean) $this->active;
     }
 
     /**
@@ -193,7 +193,7 @@ class User implements Entity
      */
     public function isLocked()
     {
-        return $this->locked;
+        return (boolean) $this->locked;
     }
 
     /**

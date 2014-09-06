@@ -20,7 +20,7 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class UpdateUserCommand implements Command
+final class UpdateUserCommand implements Command
 {
 
     /**

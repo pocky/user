@@ -98,9 +98,9 @@ class UserSpec extends ObjectBehavior
         $this->getLastConnection()->shouldImplement('\DateTime');
     }
 
-    public function it_should_update_an_account()
+    public function it_should_update_an_account($newPass = 'newPass')
     {
-        $this->updatePassword('newPass');
+        $this->updatePassword($newPass);
         $this->getUpdatedAt()->shouldImplement('\DateTime');
     }
 }
