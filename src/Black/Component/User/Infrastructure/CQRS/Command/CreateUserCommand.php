@@ -30,7 +30,7 @@ final class CreateUserCommand implements Command
     /**
      * @var string
      */
-    protected $username;
+    protected $name;
 
     /**
      * @var string
@@ -39,13 +39,13 @@ final class CreateUserCommand implements Command
 
     /**
      * @param UserId $userId
-     * @param string $username
+     * @param string $name
      * @param string $password
      */
-    public function __construct(UserId $userId, $username, $password)
+    public function __construct(UserId $userId, $name, $password)
     {
         $this->userId   = $userId;
-        $this->username = (string) $username;
+        $this->name = (string) $name;
         $this->password = (string) $password;
     }
 
@@ -60,9 +60,9 @@ final class CreateUserCommand implements Command
     /**
      * @return string
      */
-    public function getUsername()
+    public function getName()
     {
-        return $this->username;
+        return $this->name;
     }
 
     /**

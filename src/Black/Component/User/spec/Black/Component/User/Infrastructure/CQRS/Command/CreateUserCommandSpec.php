@@ -4,45 +4,44 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 
 use Black\Component\User\Domain\Model\UserId;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class CreateUserCommandSpec extends ObjectBehavior
 {
     protected $userId;
 
-    protected $username;
+    protected $name;
 
     protected $password;
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\CreateUserCommand');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
-    function let()
+    public function let()
     {
         $this->userId   = new UserId('1234');
-        $this->username = 'username';
+        $this->name = 'name';
         $this->password = 'password';
 
-        $this->beConstructedWith($this->userId, $this->username, $this->password);
+        $this->beConstructedWith($this->userId, $this->name, $this->password);
     }
 
-    function it_should_return_a_userId()
+    public function it_should_return_a_userId()
     {
         $this->getUserId()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\UserId');
         $this->getUserId()->getValue()->shouldBeString();
         $this->getUserId()->getValue()->shouldReturn('1234');
     }
 
-    function it_should_return_a_username()
+    public function it_should_return_a_name()
     {
-        $this->getUsername()->shouldBeString();
-        $this->getUsername()->shouldReturn('username');
+        $this->getName()->shouldBeString();
+        $this->getName()->shouldReturn('name');
     }
 
-    function it_should_return_a_password()
+    public function it_should_return_a_password()
     {
         $this->getPassword()->shouldBeString();
         $this->getPassword()->shouldReturn('password');

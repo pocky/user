@@ -30,11 +30,11 @@ class User implements Entity
     protected $userId;
 
     /**
-     * The username (use it for the authentification)
+     * The name (use it for the authentification)
      *
      * @var
      */
-    protected $username;
+    protected $name;
 
     /**
      * The email (use it for the authentification and contact)
@@ -115,16 +115,16 @@ class User implements Entity
 
     /**
      * @param UserId $userId
-     * @param string $username
+     * @param string $name
      * @param string $email
      */
-    public function __construct(UserId $userId, $username, $email)
+    public function __construct(UserId $userId, $name, $email)
     {
-        $this->userId   = $userId;
-        $this->username = $username;
-        $this->email    = $email;
-        $this->groups   = new ArrayCollection();
-        $this->roles    = new ArrayCollection();
+        $this->userId = $userId;
+        $this->name   = $name;
+        $this->email  = $email;
+        $this->groups = new ArrayCollection();
+        $this->roles  = new ArrayCollection();
     }
 
     /**
@@ -154,9 +154,9 @@ class User implements Entity
     /**
      * @return string
      */
-    public function getUsername()
+    public function getName()
     {
-        return (string) $this->username;
+        return (string) $this->name;
     }
 
     /**

@@ -9,7 +9,7 @@ class UserSpec extends ObjectBehavior
 {
     protected $userId;
 
-    protected $username;
+    protected $name;
 
     protected $email;
 
@@ -21,11 +21,11 @@ class UserSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->userId   = new UserId(1);
-        $this->username = 'test';
-        $this->email    = 'test@test.com';
+        $this->userId = new UserId(1);
+        $this->name   = 'test';
+        $this->email  = 'test@test.com';
 
-        $this->beConstructedWith($this->userId, $this->username, $this->email);
+        $this->beConstructedWith($this->userId, $this->name, $this->email);
         $this->getGroups()->shouldBeAnInstanceOf('Doctrine\Common\Collections\ArrayCollection');
         $this->getRoles()->shouldBeAnInstanceOf('Doctrine\Common\Collections\ArrayCollection');
     }
@@ -36,9 +36,9 @@ class UserSpec extends ObjectBehavior
         $this->getUserId()->getValue()->shouldReturn("1");
     }
 
-    public function it_should_have_a_username()
+    public function it_should_have_a_name()
     {
-        $this->getUsername()->shouldReturn('test');
+        $this->getName()->shouldReturn('test');
     }
 
     public function it_should_have_an_email()
