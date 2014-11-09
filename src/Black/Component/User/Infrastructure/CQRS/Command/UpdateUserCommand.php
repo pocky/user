@@ -22,7 +22,6 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
  */
 final class UpdateUserCommand implements Command
 {
-
     /**
      * @var UserId
      */
