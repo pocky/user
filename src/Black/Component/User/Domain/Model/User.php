@@ -22,9 +22,9 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class User implements Entity
 {
-
     /**
-     * The UsierId of the current User (a Value Object)
+     * The UserId of the current User (a Value Object)
+     *
      * @var UserId
      */
     protected $userId;
@@ -42,20 +42,6 @@ class User implements Entity
      * @var
      */
     protected $email;
-
-    /**
-     * The groups for the user
-     *
-     * @var ArrayCollection
-     */
-    protected $groups;
-
-    /**
-     * The roles for the user. It's an array of ROLE_* or FEATURE_*
-     *
-     * @var ArrayCollection
-     */
-    protected $roles;
 
     /**
      * The encoded password. If you are able to reverse the password. There is a problem.
@@ -123,24 +109,6 @@ class User implements Entity
         $this->userId = $userId;
         $this->name   = $name;
         $this->email  = $email;
-        $this->groups = new ArrayCollection();
-        $this->roles  = new ArrayCollection();
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getGroups()
-    {
-        return $this->groups;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getRoles()
-    {
-        return $this->roles;
     }
 
     /**
@@ -171,10 +139,12 @@ class User implements Entity
      * This method will register the user but do not active the account
      *
      * @param $password
+     * @param $salt
      */
-    public function register($password)
+    public function register($password, $salt)
     {
         $this->password     = $password;
+        $this->salt         = $salt;
         $this->active       = false;
         $this->locked       = false;
         $this->registeredAt = new \DateTime();
@@ -250,7 +220,7 @@ class User implements Entity
     public function connect()
     {
         $this->numberOfConnection = $this->getNumberOfConnection() + 1;
-        $this->lastConnection     = new \DateTime();
+        $this->lastConnection = new \DateTime();
     }
 
     /**
@@ -284,5 +254,13 @@ class User implements Entity
     {
         $this->password  = $password;
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 }

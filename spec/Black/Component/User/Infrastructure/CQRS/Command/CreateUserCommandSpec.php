@@ -7,12 +7,6 @@ use PhpSpec\ObjectBehavior;
 
 class CreateUserCommandSpec extends ObjectBehavior
 {
-    protected $userId;
-
-    protected $name;
-
-    protected $password;
-
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\CreateUserCommand');
@@ -21,11 +15,8 @@ class CreateUserCommandSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->userId   = new UserId('1234');
-        $this->name = 'name';
-        $this->password = 'password';
-
-        $this->beConstructedWith($this->userId, $this->name, $this->password);
+        $userId = new UserId('1234');
+        $this->beConstructedWith($userId, "name", "password");
     }
 
     public function it_should_return_a_userId()

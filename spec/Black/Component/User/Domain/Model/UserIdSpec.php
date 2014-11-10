@@ -7,8 +7,6 @@ use PhpSpec\ObjectBehavior;
 
 class UserIdSpec extends ObjectBehavior
 {
-    protected $userId;
-
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Domain\Model\UserId');
@@ -17,8 +15,7 @@ class UserIdSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->userId = 1;
-        $this->beConstructedWith($this->userId);
+        $this->beConstructedWith(1);
     }
 
     public function it_should_have_a_value()

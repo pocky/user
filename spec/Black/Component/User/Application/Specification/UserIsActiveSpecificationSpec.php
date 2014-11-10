@@ -8,24 +8,17 @@ use PhpSpec\ObjectBehavior;
 
 class UserIsActiveSpecificationSpec extends ObjectBehavior
 {
-    protected $user;
-
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Application\Specification\UserIsActiveSpecification');
         $this->shouldImplement('Black\DDD\DDDinPHP\Application\Specification\Specification');
     }
 
-    public function let()
-    {
-        $this->user = new User(new UserId(1234), 'test', 'password');
-
-    }
-
     public function it_should_satisfies_a_specification()
     {
-        $this->user->activate();
+        $user = new User(new UserId(1234), 'test', 'password');
+        $user->activate();
 
-        $this->isSatisfiedBy($this->user)->shouldReturn(true);
+        $this->isSatisfiedBy($user)->shouldReturn(true);
     }
 }

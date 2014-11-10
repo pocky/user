@@ -7,12 +7,6 @@ use PhpSpec\ObjectBehavior;
 
 class UserSpec extends ObjectBehavior
 {
-    protected $userId;
-
-    protected $name;
-
-    protected $email;
-
     public function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Domain\Model\User');
@@ -21,13 +15,9 @@ class UserSpec extends ObjectBehavior
 
     public function let()
     {
-        $this->userId = new UserId(1);
-        $this->name   = 'test';
-        $this->email  = 'test@test.com';
+        $userId = new UserId(1);
 
-        $this->beConstructedWith($this->userId, $this->name, $this->email);
-        $this->getGroups()->shouldBeAnInstanceOf('Doctrine\Common\Collections\ArrayCollection');
-        $this->getRoles()->shouldBeAnInstanceOf('Doctrine\Common\Collections\ArrayCollection');
+        $this->beConstructedWith($userId, 'test', 'test@test.com');
     }
 
     public function it_should_have_a_userId()
@@ -46,24 +36,18 @@ class UserSpec extends ObjectBehavior
         $this->getEmail()->shouldReturn('test@test.com');
     }
 
-    public function it_should_not_have_a_group()
-    {
-        $this->getGroups()->isEmpty()->shouldReturn(true);
-    }
-
-    public function it_should_not_have_a_role()
-    {
-        $this->getRoles()->isEmpty()->shouldReturn(true);
-    }
-
     public function it_should_register_an_user()
     {
-        $this->register('password');
+        $this->register('password', 'salt');
 
         $this->isActive()->shouldReturn(false);
         $this->isLocked()->shouldReturn(false);
         $this->getPassword()->shouldBeString();
+        $this->getSalt()->shouldBeString();
         $this->getRegisteredAt()->shouldImplement('\DateTime');
+
+        $this->getPassword()->shouldReturn('password');
+        $this->getSalt()->shouldReturn('salt');
     }
 
     public function it_should_active_an_account()

@@ -5,18 +5,17 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 use Black\Component\User\Domain\Model\UserId;
 use PhpSpec\ObjectBehavior;
 
-class ConnectUserCommandSpec extends ObjectBehavior
+class ActiveUserCommandSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\ConnectUserCommand');
+        $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
     public function let()
     {
         $userId = new UserId(1234);
-
         $this->beConstructedWith($userId);
     }
 
