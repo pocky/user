@@ -109,6 +109,8 @@ class User implements Entity
         $this->userId = $userId;
         $this->name   = $name;
         $this->email  = $email;
+        $this->active = false;
+        $this->locked = false;
     }
 
     /**
@@ -145,8 +147,6 @@ class User implements Entity
     {
         $this->password     = $password;
         $this->salt         = $salt;
-        $this->active       = false;
-        $this->locked       = false;
         $this->registeredAt = new \DateTime();
     }
 

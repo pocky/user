@@ -53,7 +53,7 @@ class UserManager extends CommonManager
     /**
      * @return array
      */
-    public function findAl()
+    public function findAll()
     {
         return $this->repository->findAll();
     }

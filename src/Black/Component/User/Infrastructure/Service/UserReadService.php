@@ -58,4 +58,9 @@ class UserReadService implements InfrastructureService
 
         return $user;
     }
+
+    public function findAll()
+    {
+        return $this->manager->findAll();
+    }
 }

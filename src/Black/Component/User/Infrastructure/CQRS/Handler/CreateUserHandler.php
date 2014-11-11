@@ -52,7 +52,6 @@ class CreateUserHandler implements CommandHandler
     public function handle(CreateUserCommand $command)
     {
         $user = $this->service->create($command->getUserId(), $command->getName(), $command->getEmail());
-        $user->addRole('ROLE_USER');
 
         if ($user) {
             $this->service->register($user, $command->getPassword());
