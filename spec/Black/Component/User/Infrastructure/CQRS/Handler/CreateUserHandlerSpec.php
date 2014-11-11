@@ -5,6 +5,7 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Handler;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Command\CreateUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Infrastructure\Service\RegisterService;
 use PhpSpec\ObjectBehavior;
 
 class CreateUserHandlerSpec extends ObjectBehavior
@@ -15,14 +16,14 @@ class CreateUserHandlerSpec extends ObjectBehavior
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler');
     }
 
-    public function let(UserManager $userManager)
+    public function let(UserManager $userManager, RegisterService $service)
     {
-        $this->beConstructedWith($userManager);
+        $this->beConstructedWith($userManager, $service);
     }
 
     public function it_should_handle_a_command()
     {
-        $command = new CreateUserCommand(new UserId('1'), 'test', 'password');
+        $command = new CreateUserCommand(new UserId('1'), 'test', 'email', 'password');
 
         $this->handle($command);
     }

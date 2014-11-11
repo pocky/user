@@ -19,40 +19,6 @@ class UserWriteService extends UserService
 {
     /**
      * @param UserId $userId
-     * @param        $username
-     * @param        $email
-     *
-     * @return mixed
-     */
-    public function create(UserId $userId, $username, $email)
-    {
-        $user = $this->manager->createUser($userId, $username, $email);
-        $this->manager->add($user);
-
-        return $user;
-    }
-
-    /**
-     * @param UserId $userId
-     * @param        $password
-     *
-     * @return mixed
-     */
-    public function register(UserId $userId, $password)
-    {
-        $user = $this->findUser($userId);
-        $salt = mcrypt_create_iv(22, MCRYPT_DEV_URANDOM);
-
-        $password = Encoder::encode($password, $salt);
-
-        $user->register($password, $salt);
-        $this->update($user);
-
-        return $user;
-    }
-
-    /**
-     * @param UserId $userId
      *
      * @return mixed
      */

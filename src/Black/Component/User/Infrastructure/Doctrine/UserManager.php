@@ -26,8 +26,7 @@ class UserManager extends CommonManager
      */
     public function createUser(UserId $id, $username, $email)
     {
-        $class = new $this->getClass();
-        $user  = new $class($id, $username, $email);
+        $user  = new $this->class($id, $username, $email);
 
         return $user;
     }
