@@ -15,12 +15,12 @@ use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
- * Class CreateUserCommand
+ * Class RegisterUserCommand
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class CreateUserCommand implements Command
+final class RegisterUserCommand implements Command
 {
     /**
      * @var UserId
@@ -46,12 +46,14 @@ final class CreateUserCommand implements Command
      * @param UserId $userId
      * @param $name
      * @param $email
+     * @param $password
      */
-    public function __construct(UserId $userId, $name, $email)
+    public function __construct(UserId $userId, $name, $email, $password)
     {
         $this->userId   = $userId;
         $this->name     = (string) $name;
         $this->email    = (string) $email;
+        $this->password = (string) $password;
     }
 
     /**
@@ -76,5 +78,13 @@ final class CreateUserCommand implements Command
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 }

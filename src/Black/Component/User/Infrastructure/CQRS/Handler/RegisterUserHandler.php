@@ -11,18 +11,18 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
-use Black\Component\User\Infrastructure\CQRS\Command\CreateUserCommand;
+use Black\Component\User\Infrastructure\CQRS\Command\RegisterUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
 use Black\Component\User\Infrastructure\Service\RegisterService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 
 /**
- * Class CreateUserHandler
+ * Class RegisterUserHandler
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class CreateUserHandler implements CommandHandler
+class RegisterUserHandler implements CommandHandler
 {
     /**
      * @var UserManager
@@ -47,11 +47,15 @@ class CreateUserHandler implements CommandHandler
     }
 
     /**
-     * @param CreateUserCommand $command
+     * @param RegisterUserCommand $command
      */
-    public function handle(CreateUserCommand $command)
+    public function handle(RegisterUserCommand $command)
     {
-        $this->service->create($command->getUserId(), $command->getName(), $command->getEmail());
+        $user = $this->service->create($command->getUserId(), $command->getName(), $command->getEmail());
+
+        if ($user) {
+            $this->service->register($user, $command->getPassword());
+        }
 
         $this->manager->flush();
     }
