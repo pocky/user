@@ -11,17 +11,16 @@
 namespace Black\Component\User\Application\Controller;
 
 use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\CQRS\Handler\CreateUserHandler;
-use Black\Component\User\Infrastructure\Service\RegisterService;
+use Black\Component\User\Infrastructure\CQRS\Handler\ActiveUserHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
 /**
- * Class CreateController
+ * Class ActiveController
  *
  * @author Alexandre Balmes <${COPYRIGHT_NAME}>
  * @license ${COPYRIGHT_LICENCE}
  */
-class CreateController
+class ActiveController
 {
     /**
      * @var
@@ -40,15 +39,14 @@ class CreateController
 
     /**
      * @param Bus $bus
-     * @param CreateUserHandler $handler
+     * @param ActiveUserHandler $handler
      * @param $commandName
      */
     public function __construct(
         Bus $bus,
-        CreateUserHandler $handler,
+        ActiveUserHandler $handler,
         $commandName
-    )
-    {
+    ) {
         $this->bus         = $bus;
         $this->handler     = $handler;
         $this->commandName = $commandName;
@@ -56,12 +54,10 @@ class CreateController
 
     /**
      * @param UserId $id
-     * @param $name
-     * @param $email
      */
-    public function createUserAction(UserId $id, $name, $email)
+    public function activeUserAction(UserId $id)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id, $name, $email));
+        $this->bus->handle(new $this->commandName($id));
     }
 } 

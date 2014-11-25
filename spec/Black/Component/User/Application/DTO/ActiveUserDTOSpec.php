@@ -1,0 +1,33 @@
+<?php
+namespace spec\Black\Component\User\Application\DTO;
+
+use PhpSpec\ObjectBehavior;
+
+class ActiveUserDTOSpec extends ObjectBehavior
+{
+    protected $id;
+
+    public function let()
+    {
+        $this->beConstructedWith(1);
+    }
+
+    public function it_is_initializable()
+    {
+        $this->shouldHaveType('Black\Component\User\Application\DTO\ActiveUserDTO');
+        $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\DTO');
+    }
+
+    public function it_should_return_id()
+    {
+        $this->getId()->shouldReturn(1);
+    }
+
+    public function it_should_unserialize()
+    {
+        $serialized = $this->serialize();
+
+        $object = $this->unserialize($serialized);
+        $object->shouldBeArray();
+    }
+}

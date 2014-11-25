@@ -16,7 +16,7 @@ class CreateUserCommandSpec extends ObjectBehavior
     public function let()
     {
         $userId = new UserId('1234');
-        $this->beConstructedWith($userId, "name", "email", "password");
+        $this->beConstructedWith($userId, "name", "email");
     }
 
     public function it_should_have_a_userId()
@@ -36,11 +36,5 @@ class CreateUserCommandSpec extends ObjectBehavior
     {
         $this->getEmail()->shouldBeString();
         $this->getEmail()->shouldReturn('email');
-    }
-
-    public function it_should_have_a_password()
-    {
-        $this->getPassword()->shouldBestring();
-        $this->getPassword()->shouldReturn("password");
     }
 }

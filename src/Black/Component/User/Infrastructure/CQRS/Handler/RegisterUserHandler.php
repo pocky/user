@@ -55,8 +55,7 @@ class RegisterUserHandler implements CommandHandler
 
         if ($user) {
             $this->service->register($user, $command->getPassword());
+            $this->manager->flush();
         }
-
-        $this->manager->flush();
     }
 }

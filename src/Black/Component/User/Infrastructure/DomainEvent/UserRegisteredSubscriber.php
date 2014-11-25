@@ -9,6 +9,7 @@
  */
 namespace Black\Component\User\Infrastructure\DomainEvent;
 
+use Black\Component\User\UserEvents;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -43,17 +44,19 @@ class UserRegisteredSubscriber implements EventSubscriberInterface
         $this->logger = $logger;
         $this->session = $session;
     }
+
     /**
      * @return array
      */
     public static function getSubscribedEvents()
     {
         return [
-            'user.registered' => [
+            UserEvents::USER_REGISTERED => [
                 'onUserRegistered', 0
             ]
         ];
     }
+
     /**
      * @param UserRegisteredEvent $event
      */

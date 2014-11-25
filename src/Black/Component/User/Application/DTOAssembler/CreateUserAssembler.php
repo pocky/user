@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Black\Component\User\Application\DTO;
+namespace Black\Component\User\Application\DTOAssembler;
 
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\Password\Encoder;

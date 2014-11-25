@@ -9,6 +9,7 @@
  */
 namespace Black\Component\User\Infrastructure\DomainEvent;
 
+use Black\Component\User\UserEvents;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -38,22 +39,23 @@ class UserRemovedSubscriber implements EventSubscriberInterface
     public function __construct(
         Logger $logger,
         Session $session
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->session = $session;
     }
+
     /**
      * @return array
      */
     public static function getSubscribedEvents()
     {
         return [
-            'user.removed' => [
+            UserEvents::USER_REMOVED => [
                 'onUserRemoved', 0
             ]
         ];
     }
+
     /**
      * @param UserRemovedEvent $event
      */

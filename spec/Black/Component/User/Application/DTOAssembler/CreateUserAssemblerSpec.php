@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Black\Component\User\Application\DTO;
+namespace spec\Black\Component\User\Application\DTOAssembler;
 
 use Black\Component\User\Domain\Model\UserId;
 use PhpSpec\ObjectBehavior;

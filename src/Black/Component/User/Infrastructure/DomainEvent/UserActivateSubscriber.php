@@ -15,12 +15,12 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
- * Class UserCreatedSubscriber
+ * Class UserActivateSubscriber
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class UserCreatedSubscriber implements EventSubscriberInterface
+class UserActivateSubscriber implements EventSubscriberInterface
 {
     /**
      * @var Logger
@@ -39,8 +39,7 @@ class UserCreatedSubscriber implements EventSubscriberInterface
     public function __construct(
         Logger $logger,
         Session $session
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->session = $session;
     }
@@ -51,18 +50,18 @@ class UserCreatedSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            UserEvents::USER_CREATED => [
-                'onUserCreated', 0
+            UserEvents::USER_ACTIVATE => [
+                'onUserActivate', 0
             ]
         ];
     }
 
     /**
-     * @param UserCreatedEvent $event
+     * @param UserActivateEvent $event
      */
-    public function onUserCreated(UserCreatedEvent $event)
+    public function onUserActivate(UserActivateEvent $event)
     {
         $this->logger->info($event->execute());
-        $this->session->getFlashBag()->add('success', sprintf('The user %s is successfully created', $event->getName()));
+        $this->session->getFlashBag()->add('success', sprintf('The user %s is successfully activate', $event->getName()));
     }
 }
