@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Black\\Bundle\\GeneratorBundle\\": ""
+            "Black\\Component\\User\\": "src/Black/Component/User/"
         }
     }
 }
