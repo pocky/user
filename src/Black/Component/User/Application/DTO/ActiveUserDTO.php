@@ -9,7 +9,6 @@
  */
 namespace Black\Component\User\Application\DTO;
 
-use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 
 /**
@@ -28,7 +27,7 @@ final class ActiveUserDTO implements DTO
     /**
      * @param $id
      */
-    public function __construct(UserId $id)
+    public function __construct($id)
     {
         $this->id = $id;
     }

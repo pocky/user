@@ -25,7 +25,7 @@ final class ActiveUserCommand implements Command
     /**
      * @var UserId
      */
-    protected $userId;
+    private $userId;
 
     /**
      * @param UserId $userId

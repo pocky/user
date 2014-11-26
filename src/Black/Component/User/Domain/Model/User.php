@@ -193,14 +193,6 @@ class User implements Entity
     /**
      *
      */
-    public function disable()
-    {
-        $this->active = false;
-    }
-
-    /**
-     *
-     */
     public function lock()
     {
         $this->locked = true;

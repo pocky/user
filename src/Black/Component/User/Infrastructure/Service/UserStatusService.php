@@ -53,21 +53,6 @@ class UserStatusService extends UserService
      *
      * @return mixed
      */
-    public function disable(UserId $userId)
-    {
-        $user = $this->findUser($userId);
-
-        $user->disable();
-        $this->writeService->update($user);
-
-        return $user;
-    }
-
-    /**
-     * @param UserId $userId
-     *
-     * @return mixed
-     */
     public function lock(UserId $userId)
     {
         $user = $this->findUser($userId);

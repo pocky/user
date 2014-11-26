@@ -53,7 +53,7 @@ class CreateUserAssembler implements Assembler
         $this->verify($user, $this->entityClass);
 
         $dto = new $this->dtoClass(
-            $user->getUserId()->getValue(),
+            $user->getUserId(),
             $user->getName(),
             $user->getEmail()
         );

@@ -11,6 +11,7 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
+use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
 use Black\Component\User\Infrastructure\DomainEvent\UserActivateEvent;
@@ -18,7 +19,7 @@ use Black\Component\User\Infrastructure\DomainEvent\UserActivateSubscriber;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
 use Black\Component\User\UserEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
-use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
 
 /**
  * Class ActiveUserHandler
@@ -71,7 +72,7 @@ class ActiveUserHandler implements CommandHandler
      */
     public function handle(ActiveUserCommand $command)
     {
-        $user = $this->service->activate($command->getUserId());
+        $user = $this->service->activate(new UserId($command->getUserId()));
 
         if ($user) {
             $this->manager->flush();
