@@ -1,8 +1,8 @@
 <?php
 /*
- * This file is part of the ${FILE_HEADER_PACKAGE} package.
+ * This file is part of the Black package.
  *
- * ${FILE_HEADER_COPYRIGHT}
+ * (c) Alexandre Balmes <alexandre@lablackroom.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,8 +19,8 @@ use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
 /**
  * Class CreateUserAssembler
  *
- * @author Alexandre Balmes <${COPYRIGHT_NAME}>
- * @license ${COPYRIGHT_LICENCE}
+ * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
+ * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class CreateUserAssembler implements Assembler
 {
