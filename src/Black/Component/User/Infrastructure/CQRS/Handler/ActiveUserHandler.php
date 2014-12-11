@@ -19,7 +19,7 @@ use Black\Component\User\Infrastructure\DomainEvent\UserActivateSubscriber;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
 use Black\Component\User\UserEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Class ActiveUserHandler
@@ -40,7 +40,7 @@ class ActiveUserHandler implements CommandHandler
     protected $service;
 
     /**
-     * @var TraceableEventDispatcher
+     * @var EventDispatcher
      */
     protected $dispatcher;
 
@@ -52,13 +52,13 @@ class ActiveUserHandler implements CommandHandler
     /**
      * @param UserManager $userManager
      * @param UserStatusService $service
-     * @param TraceableEventDispatcher $dispatcher
+     * @param EventDispatcher $dispatcher
      * @param UserActivateSubscriber $subscriber
      */
     public function __construct(
         UserManager $userManager,
         UserStatusService $service,
-        TraceableEventDispatcher $dispatcher,
+        EventDispatcher $dispatcher,
         UserActivateSubscriber $subscriber
     ) {
         $this->manager    = $userManager;

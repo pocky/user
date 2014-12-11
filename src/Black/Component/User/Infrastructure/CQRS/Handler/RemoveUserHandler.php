@@ -17,7 +17,7 @@ use Black\Component\User\Infrastructure\DomainEvent\UserRemovedEvent;
 use Black\Component\User\Infrastructure\DomainEvent\UserRemovedSubscriber;
 use Black\Component\User\UserEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Class RemoveUserHandler
@@ -33,7 +33,7 @@ class RemoveUserHandler implements CommandHandler
     protected $manager;
 
     /**
-     * @var TraceableEventDispatcher
+     * @var EventDispatcher
      */
     protected $dispatcher;
 
@@ -47,7 +47,7 @@ class RemoveUserHandler implements CommandHandler
      */
     public function __construct(
         UserManager $userManager,
-        TraceableEventDispatcher $dispatcher,
+        EventDispatcher $dispatcher,
         UserRemovedSubscriber $subscriber
     ) {
         $this->manager = $userManager;
