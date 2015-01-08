@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Black\Component\User\Infrastructure\DomainEvent;
+namespace Black\Component\User\Domain\Event;
 
 use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\Event;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class UserActivateEvent extends Event implements DomainEvent
+final class UserActivatedEvent extends Event implements DomainEvent
 {
     /**
      * @var
@@ -38,7 +38,7 @@ final class UserActivateEvent extends Event implements DomainEvent
      */
     public function execute()
     {
-        return sprintf('The user %s is active.', $this->userId);
+        return sprintf('The user %s is now activated.', $this->userId);
     }
 
     /**

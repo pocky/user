@@ -17,12 +17,11 @@ namespace Black\Component\User;
  */
 final class UserEvents
 {
-    const USER_CREATED = 'black.user.created';
+    const USER_DOMAIN_CREATED = 'black.user.domain.created';
 
-    const USER_REGISTERED = 'black.user.registered';
+    const USER_DOMAIN_REGISTERED = 'black.user.domain.registered';
 
-    const USER_REMOVED = 'black.user.removed';
+    const USER_DOMAIN_REMOVED = 'black.user.domain.removed';
 
-    const USER_ACTIVATE = 'black.user.activate';
-
+    const USER_DOMAIN_ACTIVATED = 'black.user.domain.activate';
 } 
