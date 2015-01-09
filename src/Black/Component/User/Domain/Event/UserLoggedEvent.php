@@ -13,12 +13,12 @@ use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserActivateEvent
+ * Class UserLoggedEvent
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class UserActivatedEvent extends Event implements DomainEvent
+final class UserLoggedEvent extends Event implements DomainEvent
 {
     /**
      * @var
@@ -26,11 +26,17 @@ final class UserActivatedEvent extends Event implements DomainEvent
     private $userId;
 
     /**
+     * @var
+     */
+    private $name;
+
+    /**
      * @param $userId
      */
-    public function __construct($userId)
+    public function __construct($userId, $name)
     {
         $this->userId = $userId;
+        $this->name   = $name;
     }
 
     /**
@@ -38,14 +44,6 @@ final class UserActivatedEvent extends Event implements DomainEvent
      */
     public function execute()
     {
-        return sprintf('The user %s is now activated.', $this->userId);
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserId()
-    {
-        return $this->userId;
+        return "The user {$this->name} ({$this->userId}) is now logged in.";
     }
 }

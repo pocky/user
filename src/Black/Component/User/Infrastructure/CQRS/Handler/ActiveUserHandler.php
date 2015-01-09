@@ -14,12 +14,11 @@ namespace Black\Component\User\Infrastructure\CQRS\Handler;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\Component\User\Infrastructure\DomainEvent\UserActivateEvent;
-use Black\Component\User\Infrastructure\DomainEvent\UserActivateSubscriber;
+use Black\Component\User\Domain\Event\UserActivatedEvent;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
-use Black\Component\User\UserEvents;
+use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
-use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class ActiveUserHandler
@@ -40,31 +39,23 @@ class ActiveUserHandler implements CommandHandler
     protected $service;
 
     /**
-     * @var EventDispatcher
+     * @var EventDispatcherInterface
      */
     protected $dispatcher;
 
     /**
-     * @var UserActivateSubscriber
-     */
-    protected $subscriber;
-
-    /**
      * @param UserManager $userManager
      * @param UserStatusService $service
-     * @param EventDispatcher $dispatcher
-     * @param UserActivateSubscriber $subscriber
+     * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         UserManager $userManager,
         UserStatusService $service,
-        EventDispatcher $dispatcher,
-        UserActivateSubscriber $subscriber
+        EventDispatcherInterface $dispatcher
     ) {
         $this->manager    = $userManager;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
-        $this->subscriber = $subscriber;
     }
 
     /**
@@ -77,9 +68,8 @@ class ActiveUserHandler implements CommandHandler
         if ($user) {
             $this->manager->flush();
 
-            $event = new UserActivateEvent($user->getUserId()->getValue(), $user->getName());
-            $this->dispatcher->addSubscriber($this->subscriber);
-            $this->dispatcher->dispatch(UserEvents::USER_ACTIVATE, $event);
+            $event = new UserActivatedEvent($user->getUserId()->getValue(), $user->getName());
+            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);
         }
     }
 }

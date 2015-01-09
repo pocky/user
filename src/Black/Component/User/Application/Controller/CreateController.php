@@ -12,8 +12,8 @@ namespace Black\Component\User\Application\Controller;
 
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Handler\CreateUserHandler;
-use Black\Component\User\Infrastructure\Service\RegisterService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
+use Email\EmailAddress;
 
 /**
  * Class CreateController
@@ -57,9 +57,9 @@ class CreateController
     /**
      * @param UserId $id
      * @param $name
-     * @param $email
+     * @param EmailAddress $email
      */
-    public function createUserAction(UserId $id, $name, $email)
+    public function createUserAction(UserId $id, $name, EmailAddress $email)
     {
         $this->bus->register($this->commandName, $this->handler);
         $this->bus->handle(new $this->commandName($id, $name, $email));

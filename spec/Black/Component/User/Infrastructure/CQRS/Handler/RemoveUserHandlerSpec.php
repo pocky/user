@@ -5,9 +5,9 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Handler;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Command\RemoveUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\Component\User\Infrastructure\DomainEvent\UserRemovedSubscriber;
+use Black\Component\User\Domain\Event\UserRemovedSubscriber;
 use PhpSpec\ObjectBehavior;
-use Symfony\Component\HttpKernel\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class RemoveUserHandlerSpec extends ObjectBehavior
 {
@@ -19,10 +19,9 @@ class RemoveUserHandlerSpec extends ObjectBehavior
 
     public function let(
         UserManager $userManager,
-        TraceableEventDispatcher $dispatcher,
-        UserRemovedSubscriber $subscriber
+        EventDispatcher $dispatcher
     ) {
-        $this->beConstructedWith($userManager, $dispatcher, $subscriber);
+        $this->beConstructedWith($userManager, $dispatcher);
     }
 
     public function it_should_handle_a_command()

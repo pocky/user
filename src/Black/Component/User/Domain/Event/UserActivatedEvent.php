@@ -26,11 +26,17 @@ final class UserActivatedEvent extends Event implements DomainEvent
     private $userId;
 
     /**
+     * @var
+     */
+    private $name;
+
+    /**
      * @param $userId
      */
-    public function __construct($userId)
+    public function __construct($userId, $name)
     {
         $this->userId = $userId;
+        $this->name   = $name;
     }
 
     /**
@@ -38,14 +44,6 @@ final class UserActivatedEvent extends Event implements DomainEvent
      */
     public function execute()
     {
-        return sprintf('The user %s is now activated.', $this->userId);
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserId()
-    {
-        return $this->userId;
+        return "The user {$this->name} ({$this->userId}) is now activated.";
     }
 }

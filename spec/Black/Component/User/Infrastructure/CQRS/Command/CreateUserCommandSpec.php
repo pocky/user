@@ -3,6 +3,7 @@
 namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 
 use Black\Component\User\Domain\Model\UserId;
+use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
 class CreateUserCommandSpec extends ObjectBehavior
@@ -16,7 +17,9 @@ class CreateUserCommandSpec extends ObjectBehavior
     public function let()
     {
         $userId = new UserId('1234');
-        $this->beConstructedWith($userId, "name", "email");
+        $email = new EmailAddress("email@domain.tld");
+
+        $this->beConstructedWith($userId, "name", $email);
     }
 
     public function it_should_have_a_userId()
@@ -29,12 +32,13 @@ class CreateUserCommandSpec extends ObjectBehavior
     public function it_should_have_a_name()
     {
         $this->getName()->shouldBeString();
-        $this->getName()->shouldReturn('name');
+        $this->getName()->shouldReturn("name");
     }
 
     public function it_should_have_an_email()
     {
-        $this->getEmail()->shouldBeString();
-        $this->getEmail()->shouldReturn('email');
+        $this->getEmail()->shouldBeAnInstanceOf('Email\EmailAddress');
+        $this->getEmail()->getValue()->shouldBeString();
+        $this->getEmail()->getValue()->shouldReturn("email@domain.tld");
     }
 }

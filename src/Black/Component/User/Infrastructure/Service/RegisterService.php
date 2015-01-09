@@ -5,6 +5,7 @@ namespace Black\Component\User\Infrastructure\Service;
 use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\Password\Encoder;
+use Email\EmailAddress;
 
 /**
  * Class RegisterService
@@ -21,7 +22,7 @@ class RegisterService extends UserService
      *
      * @return mixed
      */
-    public function create(UserId $userId, $username, $email)
+    public function create(UserId $userId, $username, EmailAddress $email)
     {
         $user = $this->manager->createUser($userId, $username, $email);
         $this->manager->add($user);

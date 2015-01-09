@@ -14,17 +14,18 @@ namespace Black\Component\User\Infrastructure\Doctrine;
 use Black\Component\Common\Infrastructure\Doctrine\CommonManager;
 use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
+use Email\EmailAddress;
 
 class UserManager extends CommonManager
 {
     /**
      * @param UserId $id
      * @param string $username
-     * @param string $email
+     * @param EmailAddress $email
      *
      * @return mixed
      */
-    public function createUser(UserId $id, $username, $email)
+    public function createUser(UserId $id, $username, EmailAddress $email)
     {
         $user  = new $this->class($id, $username, $email);
 

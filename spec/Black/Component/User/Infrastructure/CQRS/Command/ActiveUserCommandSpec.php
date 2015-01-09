@@ -13,9 +13,9 @@ class ActiveUserCommandSpec extends ObjectBehavior
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
-    public function let()
+    public function let(UserId $userId)
     {
-        $userId = new UserId(1234);
+        $userId->getValue()->willReturn("1234");
         $this->beConstructedWith($userId);
     }
 

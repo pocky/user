@@ -10,13 +10,15 @@
 namespace Black\Component\User;
 
 /**
- * Class UserEvents
+ * Class UserDomainEvents
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class UserEvents
+final class UserDomainEvents
 {
+    const USER_DOMAIN_LOGGED = 'black.user.domain.logged';
+
     const USER_DOMAIN_CREATED = 'black.user.domain.created';
 
     const USER_DOMAIN_REGISTERED = 'black.user.domain.registered';

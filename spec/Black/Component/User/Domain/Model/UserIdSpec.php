@@ -28,15 +28,15 @@ class UserIdSpec extends ObjectBehavior
         $this->__toString()->shouldBeEqualTo("1");
     }
 
-    public function it_should_be_equal()
+    public function it_should_be_equal(UserId $userId)
     {
-        $object = new UserId(1);
-        $this->isEqualTo($object)->shouldReturn(true);
+        $userId->getValue()->willReturn("1");
+        $this->isEqualTo($userId)->shouldReturn(true);
     }
 
-    public function it_should_not_be_equal()
+    public function it_should_not_be_equal(UserId $userId)
     {
-        $object = new UserId(12);
-        $this->isEqualTo($object)->shouldReturn(false);
+        $userId->getValue()->willReturn("12");
+        $this->isEqualTo($userId)->shouldReturn(false);
     }
 }

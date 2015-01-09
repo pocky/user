@@ -3,6 +3,7 @@
 namespace spec\Black\Component\User\Application\DTOAssembler;
 
 use Black\Component\User\Domain\Model\UserId;
+use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
 class CreateUserAssemblerSpec extends ObjectBehavior
@@ -26,7 +27,7 @@ class CreateUserAssemblerSpec extends ObjectBehavior
 
     public function it_should_transform()
     {
-        $entity = new $this->entityClass(new UserId(1), 'test', 'test@test.com');
+        $entity = new $this->entityClass(new UserId(1), 'test', new EmailAddress('test@test.com'));
         $this->transform($entity)->shouldReturnAnInstanceOf($this->dtoClass);
     }
 

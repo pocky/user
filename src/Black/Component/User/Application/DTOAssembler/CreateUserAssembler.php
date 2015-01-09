@@ -14,6 +14,7 @@ use Black\Component\User\Infrastructure\Password\Encoder;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 use Black\DDD\DDDinPHP\Application\DTO\Assembler;
 use Black\DDD\DDDinPHP\Domain\Model\Entity;
+use Email\EmailAddress;
 use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
 
 /**
@@ -71,11 +72,12 @@ class CreateUserAssembler implements Assembler
         $this->verify($createUserDTO, $this->dtoClass);
 
         $userDTO = new UserId($createUserDTO->getId());
+        $email = new EmailAddress($createUserDTO->getEmail());
 
         $user = new $this->entityClass(
             $userDTO,
             $createUserDTO->getName(),
-            $createUserDTO->getEmail()
+            $email
         );
 
         return $user;

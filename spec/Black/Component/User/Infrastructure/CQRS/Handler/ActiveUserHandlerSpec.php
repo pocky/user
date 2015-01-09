@@ -5,10 +5,10 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Handler;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\Component\User\Infrastructure\DomainEvent\UserActivateSubscriber;
+use Black\Component\User\Domain\Event\UserActivateSubscriber;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
 use PhpSpec\ObjectBehavior;
-use Symfony\Component\EventDispatcher\Debug\TraceableEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ActiveUserHandlerSpec extends ObjectBehavior
 {
@@ -21,10 +21,9 @@ class ActiveUserHandlerSpec extends ObjectBehavior
     public function let(
         UserManager $userManager,
         UserStatusService $service,
-        TraceableEventDispatcher $dispatcher,
-        UserActivateSubscriber $subscriber
+        EventDispatcher $dispatcher
     ) {
-        $this->beConstructedWith($userManager, $service, $dispatcher, $subscriber);
+        $this->beConstructedWith($userManager, $service, $dispatcher);
     }
 
     public function it_should_handle_a_command()

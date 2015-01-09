@@ -13,6 +13,7 @@ namespace Black\Component\User\Infrastructure\CQRS\Command;
 
 use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
+use Email\EmailAddress;
 
 /**
  * Class CreateUserCommand
@@ -45,13 +46,13 @@ final class CreateUserCommand implements Command
     /**
      * @param UserId $userId
      * @param $name
-     * @param $email
+     * @param EmailAddress $email
      */
-    public function __construct(UserId $userId, $name, $email)
+    public function __construct(UserId $userId, $name, EmailAddress $email)
     {
         $this->userId   = $userId;
         $this->name     = (string) $name;
-        $this->email    = (string) $email;
+        $this->email    = $email;
     }
 
     /**

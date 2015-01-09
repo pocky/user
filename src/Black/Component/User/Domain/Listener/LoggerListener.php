@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Black\Component\User\Infrastructure\DomainListener;
+namespace Black\Component\User\Domain\Listener;
 
 use Black\Component\User\UserDomainEvents;
 use Psr\Log\LoggerInterface;
@@ -38,6 +38,7 @@ class LoggerListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
+            UserDomainEvents::USER_DOMAIN_LOGGED => "addInfoLog",
             UserDomainEvents::USER_DOMAIN_ACTIVATED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_CREATED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_REGISTERED => 'addInfoLog',

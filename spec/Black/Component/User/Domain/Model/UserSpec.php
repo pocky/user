@@ -3,6 +3,7 @@
 namespace spec\Black\Component\User\Domain\Model;
 
 use Black\Component\User\Domain\Model\UserId;
+use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
 class UserSpec extends ObjectBehavior
@@ -16,8 +17,9 @@ class UserSpec extends ObjectBehavior
     public function let()
     {
         $userId = new UserId(1);
+        $email = new EmailAddress('test@test.com');
 
-        $this->beConstructedWith($userId, 'test', 'test@test.com');
+        $this->beConstructedWith($userId, 'test', $email);
     }
 
     public function it_should_have_a_userId()
@@ -33,7 +35,8 @@ class UserSpec extends ObjectBehavior
 
     public function it_should_have_an_email()
     {
-        $this->getEmail()->shouldReturn('test@test.com');
+        $this->getEmail()->shouldBeAnInstanceOf('Email\EmailAddress');
+        $this->getEmail()->getValue()->shouldReturn('test@test.com');
     }
 
     public function it_should_register_an_user()

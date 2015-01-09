@@ -11,7 +11,6 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Command;
 
-use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
@@ -23,23 +22,23 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 final class ConnectUserCommand implements Command
 {
     /**
-     * @var UserId
+     * @var
      */
-    protected $userId;
+    protected $username;
 
     /**
-     * @param UserId $userId
+     * @param $username
      */
-    public function __construct(UserId $userId)
+    public function __construct($username)
     {
-        $this->userId = $userId;
+        $this->username = $username;
     }
 
     /**
-     * @return UserId
+     * @return mixed
      */
-    public function getUserId()
+    public function getUsername()
     {
-        return $this->userId;
+        return $this->username;
     }
 }

@@ -13,6 +13,7 @@ namespace Black\Component\User\Domain\Model;
 
 use Black\DDD\DDDinPHP\Domain\Model\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
+use Email\EmailAddress;
 
 /**
  * Class User
@@ -30,14 +31,14 @@ class User implements Entity
     protected $userId;
 
     /**
-     * The name (use it for the authentification)
+     * The name (use it for the authentication)
      *
      * @var
      */
     protected $name;
 
     /**
-     * The email (use it for the authentification and contact)
+     * The email (use it for the authentication and contact)
      *
      * @var
      */
@@ -72,7 +73,7 @@ class User implements Entity
     protected $active;
 
     /**
-     * After errors on authentification or problems with the user, use it for disable the account
+     * After errors on authentication or problems with the user, use it for disable the account
      *
      * @var string
      */
@@ -101,10 +102,10 @@ class User implements Entity
 
     /**
      * @param UserId $userId
-     * @param string $name
-     * @param string $email
+     * @param $name
+     * @param EmailAddress $email
      */
-    public function __construct(UserId $userId, $name, $email)
+    public function __construct(UserId $userId, $name, EmailAddress $email)
     {
         $this->userId = $userId;
         $this->name   = $name;
@@ -134,7 +135,7 @@ class User implements Entity
      */
     public function getEmail()
     {
-        return (string) $this->email;
+        return $this->email;
     }
 
     /**

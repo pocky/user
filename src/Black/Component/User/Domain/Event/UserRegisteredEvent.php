@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Black\Component\User\Infrastructure\DomainEvent;
+namespace Black\Component\User\Domain\Event;
 
 use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
@@ -52,7 +52,7 @@ final class UserRegisteredEvent extends Event implements DomainEvent
      */
     public function execute()
     {
-        return sprintf('The user %s (%s) with %s identifier is registerd.', $this->name, $this->email, $this->userId);
+        return sprintf('The user %s (%s) with %s identifier is registered.', $this->name, $this->email, $this->userId);
     }
 
     /**
