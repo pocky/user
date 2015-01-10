@@ -11,17 +11,16 @@
 namespace Black\Component\User\Application\Controller;
 
 use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\CQRS\Handler\CreateUserHandler;
+use Black\Component\User\Infrastructure\CQRS\Handler\LockUserHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
-use Email\EmailAddress;
 
 /**
- * Class CreateController
+ * Class LockUserController
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class CreateController
+class LockUserController
 {
     /**
      * @var
@@ -40,15 +39,14 @@ class CreateController
 
     /**
      * @param Bus $bus
-     * @param CreateUserHandler $handler
+     * @param LockUserHandler $handler
      * @param $commandName
      */
     public function __construct(
         Bus $bus,
-        CreateUserHandler $handler,
+        LockUserHandler $handler,
         $commandName
-    )
-    {
+    ) {
         $this->bus         = $bus;
         $this->handler     = $handler;
         $this->commandName = $commandName;
@@ -56,12 +54,10 @@ class CreateController
 
     /**
      * @param UserId $id
-     * @param $name
-     * @param EmailAddress $email
      */
-    public function createUserAction(UserId $id, $name, EmailAddress $email)
+    public function lockUserAction(UserId $id)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id, $name, $email));
+        $this->bus->handle(new $this->commandName($id));
     }
 } 

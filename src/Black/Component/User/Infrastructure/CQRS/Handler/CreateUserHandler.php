@@ -68,7 +68,7 @@ class CreateUserHandler implements CommandHandler
         if ($user) {
             $this->manager->flush();
 
-            $event = new UserCreatedEvent($user->getUserId(), $user->getName(), $user->getEmail());
+            $event = new UserCreatedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_CREATED, $event);
         }
     }

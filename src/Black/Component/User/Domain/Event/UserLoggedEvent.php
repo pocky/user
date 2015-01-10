@@ -9,6 +9,7 @@
  */
 namespace Black\Component\User\Domain\Event;
 
+use Black\Component\User\Domain\Model\User;
 use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -23,27 +24,29 @@ final class UserLoggedEvent extends Event implements DomainEvent
     /**
      * @var
      */
-    private $userId;
+    private $user;
 
     /**
-     * @var
+     * @param User $user
      */
-    private $name;
-
-    /**
-     * @param $userId
-     */
-    public function __construct($userId, $name)
+    public function __construct(User $user)
     {
-        $this->userId = $userId;
-        $this->name   = $name;
+        $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return "The user {$this->name} ({$this->userId}) is now logged in.";
+        return "The user {$this->user->getName()} ({$this->user->getUserId()}) is now logged in.";
     }
 }

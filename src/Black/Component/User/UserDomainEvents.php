@@ -26,4 +26,7 @@ final class UserDomainEvents
     const USER_DOMAIN_REMOVED = 'black.user.domain.removed';
 
     const USER_DOMAIN_ACTIVATED = 'black.user.domain.activate';
+
+    const USER_DOMAIN_LOCKED = 'black.user.domain.locked';
+
 } 

@@ -14,12 +14,12 @@ use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserRegisteredEvent
+ * Class UserUnlockedEvent
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class UserRegisteredEvent extends Event implements DomainEvent
+final class UserUnlockedEvent extends Event implements DomainEvent
 {
     /**
      * @var
@@ -47,6 +47,6 @@ final class UserRegisteredEvent extends Event implements DomainEvent
      */
     public function message()
     {
-        return "The user {$this->user->getName()} ({$this->user->getEmail()}) with {$this->user->getUserId()} identifier is registered.";
+        return "The user {$this->user->getName()} ({$this->user->getUserId()}) is now unlocked.";
     }
 }

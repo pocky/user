@@ -11,9 +11,13 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
+use Black\Component\User\Domain\Event\UserUnlockedEvent;
 use Black\Component\User\Infrastructure\CQRS\Command\UnlockUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Infrastructure\Service\UserStatusService;
+use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class UnlockUserHandler
@@ -29,12 +33,28 @@ class UnlockUserHandler implements CommandHandler
     protected $manager;
 
     /**
-     * @param UserManager $userManager
+     * @var UserStatusService
+     */
+    protected $service;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    protected $dispatcher;
+
+    /**
+     * @param UserManager $manager
+     * @param UserStatusService $service
+     * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $userManager
+        UserManager $manager,
+        UserStatusService $service,
+        EventDispatcherInterface $dispatcher
     ) {
-        $this->manager = $userManager;
+        $this->manager    = $manager;
+        $this->service    = $service;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -42,6 +62,13 @@ class UnlockUserHandler implements CommandHandler
      */
     public function handle(UnlockUserCommand $command)
     {
-        // TODO: write logic here
+        $user = $this->service->unlock($command->getUserId());
+
+        if ($user) {
+            $this->manager->flush();
+
+            $event = new UserUnlockedEvent($user);
+            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_LOCKED, $event);
+        }
     }
 }

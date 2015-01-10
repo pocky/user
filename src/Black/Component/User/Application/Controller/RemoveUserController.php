@@ -16,12 +16,12 @@ use Black\Component\User\Infrastructure\Service\UserReadService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
 /**
- * Class RemoveController
+ * Class RemoveUserController
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class RemoveController
+class RemoveUserController
 {
     /**
      * @var Bus

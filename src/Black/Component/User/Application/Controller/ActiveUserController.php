@@ -15,12 +15,12 @@ use Black\Component\User\Infrastructure\CQRS\Handler\ActiveUserHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
 /**
- * Class ActiveController
+ * Class ActiveUserController
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class ActiveController
+class ActiveUserController
 {
     /**
      * @var

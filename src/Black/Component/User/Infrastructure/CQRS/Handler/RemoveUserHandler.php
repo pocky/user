@@ -59,7 +59,7 @@ class RemoveUserHandler implements CommandHandler
             $this->manager->remove($user);
             $this->manager->flush();
 
-            $event = new UserRemovedEvent($user->getUserId()->getValue(), $user->getName());
+            $event = new UserRemovedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_REMOVED, $event);
         }
     }

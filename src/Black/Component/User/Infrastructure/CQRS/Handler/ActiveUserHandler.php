@@ -44,16 +44,16 @@ class ActiveUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $userManager
+     * @param UserManager $manager
      * @param UserStatusService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $userManager,
+        UserManager $manager,
         UserStatusService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager    = $userManager;
+        $this->manager    = $manager;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
@@ -68,7 +68,7 @@ class ActiveUserHandler implements CommandHandler
         if ($user) {
             $this->manager->flush();
 
-            $event = new UserActivatedEvent($user->getUserId()->getValue(), $user->getName());
+            $event = new UserActivatedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);
         }
     }

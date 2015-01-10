@@ -9,6 +9,7 @@
  */
 namespace Black\Component\User\Domain\Event;
 
+use Black\Component\User\Domain\Model\User;
 use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -23,36 +24,30 @@ final class UserRemovedEvent extends Event implements DomainEvent
     /**
      * @var
      */
-    private $userId;
-
-    /**
-     * @var
-     */
-    private $name;
+    private $user;
 
     /**
      * @param $userId
      * @param $name
      */
-    public function __construct($userId, $name)
+    public function __construct(User $user)
     {
-        $this->userId = $userId;
-        $this->name   = $name;
+        $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return sprintf('The user %s with %s identifier is terminated.', $this->name, $this->userId);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
+        return "The user {$this->user->getName()} with {$this->user->getUserId()} identifier is terminated.";
     }
 }

@@ -40,6 +40,7 @@ class LoggerListener implements EventSubscriberInterface
         return [
             UserDomainEvents::USER_DOMAIN_LOGGED => "addInfoLog",
             UserDomainEvents::USER_DOMAIN_ACTIVATED => 'addInfoLog',
+            UserDomainEvents::USER_DOMAIN_LOCKED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_CREATED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_REGISTERED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_REMOVED => 'addInfoLog'
@@ -51,6 +52,6 @@ class LoggerListener implements EventSubscriberInterface
      */
     public function addInfoLog(Event $event)
     {
-        $this->logger->info($event->execute());
+        $this->logger->info($event->message());
     }
 }

@@ -13,12 +13,12 @@ namespace Black\Component\User\Application\Controller;
 use Black\Component\User\Infrastructure\Service\UserReadService;
 
 /**
- * Class ListController
+ * Class ListUsersController
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class ListController
+class ListUsersController
 {
     /**
      * @var UserReadService

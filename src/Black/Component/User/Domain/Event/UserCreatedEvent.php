@@ -10,6 +10,7 @@
 namespace Black\Component\User\Domain\Event;
 
 use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
+use Domain\Model\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -23,51 +24,29 @@ final class UserCreatedEvent extends Event implements DomainEvent
     /**
      * @var
      */
-    private $userId;
+    private $user;
 
     /**
-     * @var
+     * @param User $user
      */
-    private $name;
-
-    /**
-     * @var
-     */
-    private $email;
-
-    /**
-     * @param $userId
-     * @param $name
-     * @param $email
-     */
-    public function __construct($userId, $name, $email)
+    public function __construct(User $user)
     {
-        $this->userId = $userId;
-        $this->name   = $name;
-        $this->email  = $email;
+        $this->user = $user;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
      * @return string
      */
-    public function execute()
+    public function message()
     {
-        return sprintf('The user %s (%s) with %s identifier is created.', $this->name, $this->email, $this->userId);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
+        return "The user {$this->user->getName()} ({$this->user->getEmail()}) with {$this->user->getUserId()} identifier is created.";
     }
 }

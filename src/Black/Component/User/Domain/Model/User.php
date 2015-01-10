@@ -189,6 +189,7 @@ class User implements Entity
     public function activate()
     {
         $this->active = true;
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -197,6 +198,7 @@ class User implements Entity
     public function lock()
     {
         $this->locked = true;
+        $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -205,6 +207,7 @@ class User implements Entity
     public function unlock()
     {
         $this->locked = false;
+        $this->updatedAt = new \DateTime();
     }
 
     /**
