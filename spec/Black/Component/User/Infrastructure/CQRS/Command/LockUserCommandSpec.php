@@ -7,20 +7,20 @@ use PhpSpec\ObjectBehavior;
 
 class LockUserCommandSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\LockUserCommand');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
-    public function let()
+    function let()
     {
         $userId = new UserId(1234);
 
         $this->beConstructedWith($userId);
     }
 
-    public function it_should_return_a_userId()
+    function it_should_return_a_userId()
     {
         $this->getUserId()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\UserId');
         $this->getUserId()->getValue()->shouldBeString();

@@ -11,13 +11,13 @@ class RegisterServiceSpec extends ObjectBehavior
 {
     protected $manager;
 
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\Service\RegisterService');
         $this->shouldImplement('Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService');
     }
 
-    public function let(UserManager $manager)
+    function let(UserManager $manager)
     {
         $this->manager = $manager;
 

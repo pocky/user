@@ -5,24 +5,26 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Handler;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Infrastructure\CQRS\Command\LockUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Infrastructure\Service\UserStatusService;
 use PhpSpec\ObjectBehavior;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class LockUserHandlerSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Handler\LockUserHandler');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler');
     }
 
-    public function let(UserManager $userManager)
+    function let(UserManager $userManager, UserStatusService $statusService, EventDispatcher $dispatcher)
     {
-        $this->beConstructedWith($userManager);
+        $this->beConstructedWith($userManager, $statusService, $dispatcher);
     }
 
-    public function it_should_handle_a_command()
+    function it_should_handle_a_command()
     {
-        $command  = new LockUserCommand(new UserId('1'));
+        $command = new LockUserCommand(new UserId("1"));
 
         $this->handle($command);
     }

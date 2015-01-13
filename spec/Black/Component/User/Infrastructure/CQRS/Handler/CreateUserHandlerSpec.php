@@ -13,13 +13,13 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class CreateUserHandlerSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Handler\CreateUserHandler');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler');
     }
 
-    public function let(
+    function let(
         UserManager $userManager,
         RegisterService $service,
         EventDispatcher $dispatcher
@@ -27,7 +27,7 @@ class CreateUserHandlerSpec extends ObjectBehavior
         $this->beConstructedWith($userManager, $service, $dispatcher);
     }
 
-    public function it_should_handle_a_command()
+    function it_should_handle_a_command()
     {
         $command = new CreateUserCommand(new UserId('1'), 'test', new EmailAddress("email@domain.tld"), 'password');
 

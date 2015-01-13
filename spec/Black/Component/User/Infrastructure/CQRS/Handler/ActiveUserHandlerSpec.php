@@ -12,13 +12,13 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class ActiveUserHandlerSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Handler\ActiveUserHandler');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler');
     }
 
-    public function let(
+    function let(
         UserManager $userManager,
         UserStatusService $service,
         EventDispatcher $dispatcher
@@ -26,7 +26,7 @@ class ActiveUserHandlerSpec extends ObjectBehavior
         $this->beConstructedWith($userManager, $service, $dispatcher);
     }
 
-    public function it_should_handle_a_command()
+    function it_should_handle_a_command()
     {
         $command = new ActiveUserCommand(new UserId('1'));
 

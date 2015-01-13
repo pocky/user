@@ -7,13 +7,13 @@ use PhpSpec\ObjectBehavior;
 
 class UpdateUserCommandSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\UpdateUserCommand');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
-    public function let()
+    function let()
     {
         $userId   = new UserId(1234);
         $password = "newPassword";
@@ -21,14 +21,14 @@ class UpdateUserCommandSpec extends ObjectBehavior
         $this->beConstructedWith($userId, $password);
     }
 
-    public function it_should_return_a_userId()
+    function it_should_return_a_userId()
     {
         $this->getUserId()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\UserId');
         $this->getUserId()->getValue()->shouldBeString();
         $this->getUserId()->getValue()->shouldReturn("1234");
     }
 
-    public function it_should_return_a_password()
+    function it_should_return_a_password()
     {
         $this->getPassword()->shouldBeString();
         $this->getPassword()->shouldReturn("newPassword");

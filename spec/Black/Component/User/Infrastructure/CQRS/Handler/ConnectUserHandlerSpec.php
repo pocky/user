@@ -9,18 +9,18 @@ use PhpSpec\ObjectBehavior;
 
 class ConnectUserHandlerSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Handler\ConnectUserHandler');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler');
     }
 
-    public function let(UserManager $userManager)
+    function let(UserManager $userManager)
     {
         $this->beConstructedWith($userManager);
     }
 
-    public function it_should_handle_a_command()
+    function it_should_handle_a_command()
     {
         $command = new ConnectUserCommand(new UserId('1'));
 

@@ -9,13 +9,13 @@ use PhpSpec\ObjectBehavior;
 
 class UserIsActiveSpecificationSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Application\Specification\UserIsActiveSpecification');
         $this->shouldImplement('Black\DDD\DDDinPHP\Application\Specification\Specification');
     }
 
-    public function it_should_satisfies_a_specification()
+    function it_should_satisfies_a_specification()
     {
         $user = new User(new UserId(1234), 'test', new EmailAddress("email@domain.tld"));
         $user->activate();

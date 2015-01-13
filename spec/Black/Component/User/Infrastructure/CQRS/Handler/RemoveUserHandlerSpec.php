@@ -11,20 +11,20 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class RemoveUserHandlerSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Handler\RemoveUserHandler');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler');
     }
 
-    public function let(
+    function let(
         UserManager $userManager,
         EventDispatcher $dispatcher
     ) {
         $this->beConstructedWith($userManager, $dispatcher);
     }
 
-    public function it_should_handle_a_command()
+    function it_should_handle_a_command()
     {
         $command  = new RemoveUserCommand(new UserId('1'));
 

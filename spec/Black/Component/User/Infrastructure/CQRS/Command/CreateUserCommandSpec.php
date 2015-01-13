@@ -8,13 +8,13 @@ use PhpSpec\ObjectBehavior;
 
 class CreateUserCommandSpec extends ObjectBehavior
 {
-    public function it_is_initializable()
+    function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\CreateUserCommand');
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
-    public function let()
+    function let()
     {
         $userId = new UserId('1234');
         $email = new EmailAddress("email@domain.tld");
@@ -22,20 +22,20 @@ class CreateUserCommandSpec extends ObjectBehavior
         $this->beConstructedWith($userId, "name", $email);
     }
 
-    public function it_should_have_a_userId()
+    function it_should_have_a_userId()
     {
         $this->getUserId()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\UserId');
         $this->getUserId()->getValue()->shouldBeString();
         $this->getUserId()->getValue()->shouldReturn('1234');
     }
 
-    public function it_should_have_a_name()
+    function it_should_have_a_name()
     {
         $this->getName()->shouldBeString();
         $this->getName()->shouldReturn("name");
     }
 
-    public function it_should_have_an_email()
+    function it_should_have_an_email()
     {
         $this->getEmail()->shouldBeAnInstanceOf('Email\EmailAddress');
         $this->getEmail()->getValue()->shouldBeString();
