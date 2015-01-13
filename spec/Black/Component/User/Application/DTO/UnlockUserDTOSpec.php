@@ -4,17 +4,18 @@ namespace spec\Black\Component\User\Application\DTO;
 use Black\Component\User\Domain\Model\UserId;
 use PhpSpec\ObjectBehavior;
 
-class ActiveUserDTOSpec extends ObjectBehavior
+class UnlockUserDTOSpec extends ObjectBehavior
 {
     public function it_is_initializable()
     {
-        $this->shouldHaveType('Black\Component\User\Application\DTO\ActiveUserDTO');
+        $this->shouldHaveType('Black\Component\User\Application\DTO\UnlockUserDTO');
         $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\DTO');
     }
 
     public function let(UserId $id)
     {
         $id->getValue()->willReturn("1");
+
         $this->beConstructedWith($id);
     }
 

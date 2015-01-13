@@ -1,19 +1,18 @@
 <?php
 namespace spec\Black\Component\User\Application\DTO;
 
+use Black\Component\User\Domain\Model\UserId;
+use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
 class CreateUserDTOSpec extends ObjectBehavior
 {
-    protected $id;
-
-    protected $name;
-
-    protected $email;
-
-    public function let()
+    public function let(UserId $id)
     {
-        $this->beConstructedWith(1, 'test', 'test@test.com');
+        $id->getValue()->willReturn("1");
+        $email = new EmailAddress("test@test.com");
+
+        $this->beConstructedWith($id, 'test', $email);
     }
 
     public function it_is_initializable()
@@ -24,7 +23,7 @@ class CreateUserDTOSpec extends ObjectBehavior
 
     public function it_should_return_id()
     {
-        $this->getId()->shouldReturn(1);
+        $this->getId()->getValue()->shouldReturn("1");
     }
 
     public function it_should_return_name()
@@ -34,7 +33,7 @@ class CreateUserDTOSpec extends ObjectBehavior
 
     public function it_should_return_email()
     {
-        $this->getEmail()->shouldReturn('test@test.com');
+        $this->getEmail()->getValue()->shouldReturn("test@test.com");
     }
 
     public function it_should_serialize()

@@ -79,9 +79,21 @@ class UserSpec extends ObjectBehavior
         $this->getLastConnection()->shouldImplement('\DateTime');
     }
 
-    public function it_should_update_an_account($newPass = 'newPass')
+    public function it_should_update_a_password()
     {
-        $this->updatePassword($newPass);
+        $this->updatePassword('newPass');
         $this->getUpdatedAt()->shouldImplement('\DateTime');
+    }
+
+    public function it_should_update_an_account()
+    {
+        $previousName = $this->getName();
+        $previousMail = $this->getEmail();
+
+        $address = new EmailAddress('test2@test.com');
+        $this->updateAccount('testUser', $address);
+
+        $this->getName()->shouldNotReturn($previousName);
+        $this->getEmail()->shouldNotReturn($previousMail);
     }
 }
