@@ -2,16 +2,21 @@
     "name": "black/user",
     "type": "library",
     "description": "User component for Black projects",
-    "keywords": ["libary", "Black"],
+    "keywords": ["library", "black-poject", "user"],
     "homepage": "http://www.lablackroom.com",
     "license": "MIT",
     "authors": [
         {
             "name": "Alexandre Balmes",
-            "email": "abalmes@gmail.com"
+            "email": "alexandre@lablackroom.com",
+            "homepage": "http://www.lablackroom.com"
         }
     ],
-    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Black\\Component\\User\\": "src/Black/Component/User/"
+        }
+    },
     "require": {
         "php":                      ">=5.4.0",
         "monolog/monolog":          "~1.10",
@@ -21,9 +26,12 @@
         "black/common":             "1.*",
         "black/email":              "1.*"
     },
-    "autoload": {
-        "psr-4": {
-            "Black\\Component\\User\\": "src/Black/Component/User/"
-        }
+    "require-dev": {
+        "phpspec/phpspec": "~2.0",
+        "henrikbjorn/phpspec-code-coverage": "~1.0.0"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
+
 }
