@@ -18,12 +18,12 @@ use Email\EmailAddress;
 use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
 
 /**
- * Class CreateUserAssembler
+ * Class AccountUserAssembler
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class CreateUserAssembler implements Assembler
+class AccountUserAssembler implements Assembler
 {
     /**
      * @var

@@ -259,4 +259,15 @@ class User implements Entity
     {
         return $this->salt;
     }
+
+    /**
+     * @param $name
+     * @param EmailAddress $address
+     */
+    public function updateAccount($name, EmailAddress $address)
+    {
+        $this->name      = $name;
+        $this->email     = $address;
+        $this->updatedAt = new \DateTime();
+    }
 }

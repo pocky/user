@@ -12,12 +12,12 @@ namespace Black\Component\User\Application\DTO;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 
 /**
- * Class CreateUserDTO
+ * Class AccountUserDTO
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-final class CreateUserDTO implements DTO
+final class AccountUserDTO implements DTO
 {
     /**
      * @var
