@@ -33,15 +33,13 @@ class UserWriteService extends UserService
     }
 
     /**
-     * @param UserId $userId
-     * @param        $password
+     * @param User $user
+     * @param $password
      *
-     * @return mixed
+     * @return User
      */
-    public function updatePassword(UserId $userId, $password)
+    public function updatePassword(User $user, $password)
     {
-        $user = $this->findUser($userId);
-
         $user->updatePassword($password);
         $this->update($user);
 
