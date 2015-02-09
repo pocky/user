@@ -96,4 +96,10 @@ class UserSpec extends ObjectBehavior
         $this->getName()->shouldNotReturn($previousName);
         $this->getEmail()->shouldNotReturn($previousMail);
     }
+
+    function it_should_deactivate_an_account()
+    {
+        $this->deactivate();
+        $this->isActive()->shouldReturn(false);
+    }
 }

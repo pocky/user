@@ -270,4 +270,13 @@ class User implements Entity
         $this->email     = $address;
         $this->updatedAt = new \DateTime();
     }
+
+    /**
+     *
+     */
+    public function deactivate()
+    {
+        $this->active = false;
+        $this->updatedAt = new \DateTime();
+    }
 }

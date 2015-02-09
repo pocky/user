@@ -11,21 +11,22 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
-use Black\Component\User\Domain\Event\UserUnlockedEvent;
-use Black\Component\User\Infrastructure\CQRS\Command\UnlockUserCommand;
+use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Infrastructure\CQRS\Command\DeactiveUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Event\UserDeactivatedEvent;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class UnlockUserHandler
+ * Class DeactiveUserHandler
  *
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class UnlockUserHandler implements CommandHandler
+class DeactiveUserHandler implements CommandHandler
 {
     /**
      * @var UserManager
@@ -58,17 +59,17 @@ class UnlockUserHandler implements CommandHandler
     }
 
     /**
-     * @param UnlockUserCommand $command
+     * @param DeactiveUserCommand $command
      */
-    public function handle(UnlockUserCommand $command)
+    public function handle(DeactiveUserCommand $command)
     {
-        $user = $this->service->unlock($command->getUserId());
+        $user = $this->service->deactivate(new UserId($command->getUserId()));
 
         if ($user) {
             $this->manager->flush();
 
-            $event = new UserUnlockedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UNLOCKED, $event);
+            $event = new UserDeactivatedEvent($user);
+            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_DEACTIVATED, $event);
         }
     }
 }
