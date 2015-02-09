@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Black\Component\User\Infrastructure\Persistence;
+namespace Black\Component\User\Domain\Model;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\DDD\DDDinPHP\Domain\Model\Repository;
 
 /**
  * Interface UserRepository
@@ -20,7 +20,10 @@ use Black\Component\User\Domain\Model\UserId;
  * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
  * @license http://opensource.org/licenses/mit-license.php MIT
  */
-interface UserRepository
+interface UserRepository extends Repository
 {
     public function findUserByUserId(UserId $userId);
+
+    public function loadUser($username);
+
 }

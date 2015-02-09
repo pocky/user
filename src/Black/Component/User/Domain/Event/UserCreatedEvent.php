@@ -9,7 +9,7 @@
  */
 namespace Black\Component\User\Domain\Event;
 
-use Black\DDD\DDDinPHP\Infrastructure\DomainEvent\DomainEvent;
+use Black\DDD\DDDinPHP\Domain\Event\DomainEvent;
 use Domain\Model\User;
 use Symfony\Component\EventDispatcher\Event;
 
