@@ -59,13 +59,6 @@ class User implements Entity
     protected $registeredAt;
 
     /**
-     * The salt is the random key usef for encoding raw password to password
-     *
-     * @var string
-     */
-    protected $salt;
-
-    /**
      * The activity status of the user
      *
      * @var string
@@ -142,12 +135,10 @@ class User implements Entity
      * This method will register the user but do not active the account
      *
      * @param $password
-     * @param $salt
      */
-    public function register($password, $salt)
+    public function register($password)
     {
         $this->password     = $password;
-        $this->salt         = $salt;
         $this->registeredAt = new \DateTime();
     }
 
@@ -257,7 +248,7 @@ class User implements Entity
      */
     public function getSalt()
     {
-        return $this->salt;
+        return null;
     }
 
     /**

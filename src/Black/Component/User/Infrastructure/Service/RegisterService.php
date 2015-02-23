@@ -38,10 +38,9 @@ class RegisterService extends UserService
      */
     public function register(User $user, $password)
     {
-        $salt = sha1(uniqid().microtime().rand(0, 9999999));
-        $password = Encoder::encode($password, $salt);
+        $password = Encoder::encode($password);
 
-        $user->register($password, $salt);
+        $user->register($password);
         $this->update($user);
 
         return $user;

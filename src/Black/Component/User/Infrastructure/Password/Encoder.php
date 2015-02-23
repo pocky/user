@@ -12,15 +12,13 @@ final class Encoder
 {
     /**
      * @param $password
-     * @param $salt
      *
      * @return bool|string
      */
-    public static function encode($password, $salt)
+    public static function encode($password)
     {
         $password = password_hash($password, PASSWORD_BCRYPT, [
             'cost' => 13,
-            'salt' => $salt,
         ]);
 
         return $password;
