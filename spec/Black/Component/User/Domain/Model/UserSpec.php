@@ -41,16 +41,14 @@ class UserSpec extends ObjectBehavior
 
     function it_should_register_an_user()
     {
-        $this->register('password', 'salt');
+        $this->register('password');
 
         $this->isActive()->shouldReturn(false);
         $this->isLocked()->shouldReturn(false);
         $this->getPassword()->shouldBeString();
-        $this->getSalt()->shouldBeString();
         $this->getRegisteredAt()->shouldImplement('\DateTime');
 
         $this->getPassword()->shouldReturn('password');
-        $this->getSalt()->shouldReturn('salt');
     }
 
     function it_should_active_an_account()
