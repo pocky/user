@@ -17,9 +17,6 @@ use Email\EmailAddress;
 
 /**
  * Class CreateUserCommand
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 final class CreateUserCommand implements Command
 {
@@ -37,11 +34,6 @@ final class CreateUserCommand implements Command
      * @var string
      */
     protected $email;
-
-    /**
-     * @var string
-     */
-    protected $password;
 
     /**
      * @param UserId $userId

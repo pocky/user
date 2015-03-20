@@ -10,9 +10,6 @@ use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
 
 /**
  * Class UserStatusService
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class UserStatusService extends UserService
 {

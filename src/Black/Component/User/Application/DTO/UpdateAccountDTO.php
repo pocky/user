@@ -12,17 +12,14 @@ namespace Black\Component\User\Application\DTO;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 
 /**
- * Class AccountUserDTO
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
+ * Class UpdateAccountDTO
  */
-final class AccountUserDTO implements DTO
+final class UpdateAccountDTO implements DTO
 {
     /**
      * @var
      */
-    private $id;
+    protected $id;
 
     /**
      * @var
@@ -35,15 +32,14 @@ final class AccountUserDTO implements DTO
     private $email;
 
     /**
-     * @param $id
      * @param $name
      * @param $email
      */
     public function __construct($id, $name, $email)
     {
-        $this->id       = $id;
-        $this->name     = $name;
-        $this->email    = $email;
+        $this->id    = $id;
+        $this->name  = $name;
+        $this->email = $email;
     }
 
     /**
@@ -76,7 +72,6 @@ final class AccountUserDTO implements DTO
     public function serialize()
     {
         return json_encode([
-                $this->id,
                 $this->name,
                 $this->email,
             ]);
@@ -88,7 +83,6 @@ final class AccountUserDTO implements DTO
     public function unserialize($serialized)
     {
         return list(
-            $this->id,
             $this->name,
             $this->email
         ) = json_decode($serialized);

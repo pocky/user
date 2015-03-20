@@ -16,6 +16,9 @@ use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
 use Email\EmailAddress;
 
+/**
+ * Class UserManager
+ */
 class UserManager extends CommonManager
 {
     /**

@@ -1,20 +1,14 @@
 <?php
-/*
- * This file is part of the Black package.
- *
- * (c) Alexandre Balmes <alexandre@lablackroom.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+
 namespace Black\Component\User\Application\DTO;
 
+use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 
 /**
- * Class DeactiveUserDTO
+ * Class UpdatePasswordDTO
  */
-final class DeactiveUserDTO implements DTO
+final class UpdatePasswordDTO implements DTO
 {
     /**
      * @var
@@ -22,19 +16,34 @@ final class DeactiveUserDTO implements DTO
     private $id;
 
     /**
-     * @param $id
+     * @var
      */
-    public function __construct($id)
+    private $password;
+
+    /**
+     * @param $id
+     * @param $password
+     */
+    public function __construct($id, $password)
     {
-        $this->id = $id;
+        $this->id       = $id;
+        $this->password = (string) $password;
     }
 
     /**
-     * @return mixed
+     * @return UserId
      */
     public function getId()
     {
-        return $this->id;
+       return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
     }
 
     /**
@@ -44,16 +53,19 @@ final class DeactiveUserDTO implements DTO
     {
         return json_encode([
             $this->id,
+            $this->password,
         ]);
     }
 
     /**
      * @param string $serialized
+     * @return mixed
      */
     public function unserialize($serialized)
     {
         return list(
             $this->id,
+            $this->password,
         ) = json_decode($serialized);
     }
-} 
+}

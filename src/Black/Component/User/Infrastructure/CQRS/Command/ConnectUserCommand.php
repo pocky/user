@@ -15,9 +15,6 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
  * Class ConnectUserCommand
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 final class ConnectUserCommand implements Command
 {

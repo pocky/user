@@ -9,14 +9,14 @@
  */
 namespace Black\Component\User\Domain\Event;
 
-use Black\Component\User\Domain\Model\User;
 use Black\DDD\DDDinPHP\Domain\Event\DomainEvent;
+use Domain\Model\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserUnlockedEvent
+ * Class UserUpdatedEvent
  */
-final class UserUnlockedEvent extends Event implements DomainEvent
+final class UserUpdatedEvent extends Event implements DomainEvent
 {
     /**
      * @var
@@ -44,6 +44,6 @@ final class UserUnlockedEvent extends Event implements DomainEvent
      */
     public function message()
     {
-        return "The user {$this->user->getName()} ({$this->user->getUserId()}) is now unlocked.";
+        return "The user {$this->user->getName()} ({$this->user->getEmail()}) with {$this->user->getUserId()} identifier is updated.";
     }
 }

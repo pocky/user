@@ -16,14 +16,10 @@ use Black\DDD\DDDinPHP\Domain\Model\Repository;
 
 /**
  * Interface UserRepository
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 interface UserRepository extends Repository
 {
     public function findUserByUserId(UserId $userId);
 
     public function loadUser($username);
-
 }

@@ -17,9 +17,6 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 
 /**
  * Class ConnectUserHandler
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class ConnectUserHandler implements CommandHandler
 {

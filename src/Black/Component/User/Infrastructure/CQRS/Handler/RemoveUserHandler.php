@@ -14,16 +14,12 @@ namespace Black\Component\User\Infrastructure\CQRS\Handler;
 use Black\Component\User\Infrastructure\CQRS\Command\RemoveUserCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
 use Black\Component\User\Domain\Event\UserRemovedEvent;
-use Black\Component\User\Domain\Event\UserRemovedSubscriber;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class RemoveUserHandler
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class RemoveUserHandler implements CommandHandler
 {
@@ -39,6 +35,7 @@ class RemoveUserHandler implements CommandHandler
 
     /**
      * @param UserManager $userManager
+     * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         UserManager $userManager,

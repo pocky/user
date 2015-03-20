@@ -14,10 +14,7 @@ use Black\DDD\DDDinPHP\Domain\Event\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserDeactivateEvent
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
+ * Class UserDeactivatedEvent
  */
 final class UserDeactivatedEvent extends Event implements DomainEvent
 {

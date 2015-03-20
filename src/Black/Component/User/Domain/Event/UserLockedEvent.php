@@ -15,9 +15,6 @@ use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Class UserLockedEvent
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 final class UserLockedEvent extends Event implements DomainEvent
 {

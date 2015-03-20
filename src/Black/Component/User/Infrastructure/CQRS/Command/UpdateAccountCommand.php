@@ -13,17 +13,18 @@ namespace Black\Component\User\Infrastructure\CQRS\Command;
 
 use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
+use Domain\Model\User;
 use Email\EmailAddress;
 
 /**
- * Class RegisterUserCommand
+ * Class UpdateAccountCommand
  */
-final class RegisterUserCommand implements Command
+final class UpdateAccountCommand implements Command
 {
     /**
-     * @var UserId
+     * @var
      */
-    protected $userId;
+    protected $user;
 
     /**
      * @var string
@@ -36,30 +37,23 @@ final class RegisterUserCommand implements Command
     protected $email;
 
     /**
-     * @var string
-     */
-    protected $password;
-
-    /**
-     * @param UserId $userId
+     * @param User $user
      * @param $name
      * @param EmailAddress $email
-     * @param $password
      */
-    public function __construct(UserId $userId, $name, EmailAddress $email, $password)
+    public function __construct(User $user, $name, EmailAddress $email)
     {
-        $this->userId   = $userId;
-        $this->name     = (string) $name;
-        $this->email    = $email;
-        $this->password = (string) $password;
+        $this->user  = $user;
+        $this->name  = (string) $name;
+        $this->email = $email;
     }
 
     /**
      * @return UserId
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
@@ -76,13 +70,5 @@ final class RegisterUserCommand implements Command
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
     }
 }

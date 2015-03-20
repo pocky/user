@@ -15,9 +15,6 @@ use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Class UserRegisteredEvent
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 final class UserRegisteredEvent extends Event implements DomainEvent
 {

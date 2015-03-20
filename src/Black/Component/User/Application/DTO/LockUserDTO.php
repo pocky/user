@@ -13,9 +13,6 @@ use Black\DDD\DDDinPHP\Application\DTO\DTO;
 
 /**
  * Class LockUserDTO
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 final class LockUserDTO implements DTO
 {

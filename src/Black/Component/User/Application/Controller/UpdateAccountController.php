@@ -10,14 +10,15 @@
 
 namespace Black\Component\User\Application\Controller;
 
-use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\CQRS\Handler\ActiveUserHandler;
+use Black\Component\User\Domain\Model\User;
+use Black\Component\User\Infrastructure\CQRS\Handler\UpdateAccountHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
+use Email\EmailAddress;
 
 /**
- * Class ActiveUserController
+ * Class UpdateAccountController
  */
-class ActiveUserController
+class UpdateAccountController
 {
     /**
      * @var
@@ -36,25 +37,28 @@ class ActiveUserController
 
     /**
      * @param Bus $bus
-     * @param ActiveUserHandler $handler
+     * @param UpdateAccountHandler $handler
      * @param $commandName
      */
     public function __construct(
         Bus $bus,
-        ActiveUserHandler $handler,
+        UpdateAccountHandler $handler,
         $commandName
-    ) {
+    )
+    {
         $this->bus         = $bus;
         $this->handler     = $handler;
         $this->commandName = $commandName;
     }
 
     /**
-     * @param UserId $id
+     * @param User $user
+     * @param $name
+     * @param EmailAddress $email
      */
-    public function activeUserAction(UserId $id)
+    public function updateAccountAction(User $user, $name, EmailAddress $email)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id));
+        $this->bus->handle(new $this->commandName($user, $name, $email));
     }
 } 

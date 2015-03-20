@@ -11,19 +11,19 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
-use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand;
+use Black\Component\User\Infrastructure\CQRS\Command\UpdateAccountCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\Component\User\Domain\Event\UserActivatedEvent;
-use Black\Component\User\Infrastructure\Service\UserStatusService;
+use Black\Component\User\Domain\Event\UserUpdatedEvent;
+use Black\Component\User\Infrastructure\Service\RegisterService;
+use Black\Component\User\Infrastructure\Service\UserWriteService;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class ActiveUserHandler
+ * Class UpdateAccountHandler
  */
-class ActiveUserHandler implements CommandHandler
+class UpdateAccountHandler implements CommandHandler
 {
     /**
      * @var UserManager
@@ -31,7 +31,7 @@ class ActiveUserHandler implements CommandHandler
     protected $manager;
 
     /**
-     * @var UserStatusService
+     * @var RegisterService
      */
     protected $service;
 
@@ -42,12 +42,12 @@ class ActiveUserHandler implements CommandHandler
 
     /**
      * @param UserManager $manager
-     * @param UserStatusService $service
+     * @param UserWriteService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
         UserManager $manager,
-        UserStatusService $service,
+        UserWriteService $service,
         EventDispatcherInterface $dispatcher
     ) {
         $this->manager    = $manager;
@@ -56,17 +56,14 @@ class ActiveUserHandler implements CommandHandler
     }
 
     /**
-     * @param ActiveUserCommand $command
+     * @param UpdateAccountCommand $command
      */
-    public function handle(ActiveUserCommand $command)
+    public function handle(UpdateAccountCommand $command)
     {
-        $user = $this->service->activate(new UserId($command->getUserId()));
+        $user = $this->service->updateAccount($command->getUser(), $command->getName(), $command->getEmail());
+        $this->manager->flush();
 
-        if ($user) {
-            $this->manager->flush();
-
-            $event = new UserActivatedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);
-        }
+        $event = new UserUpdatedEvent($user);
+        $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UPDATED, $event);
     }
 }

@@ -10,14 +10,14 @@
 
 namespace Black\Component\User\Application\Controller;
 
-use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\CQRS\Handler\ActiveUserHandler;
+use Black\Component\User\Domain\Model\User;
+use Black\Component\User\Infrastructure\CQRS\Handler\UpdatePasswordHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
 /**
- * Class ActiveUserController
+ * Class UpdatePasswordController
  */
-class ActiveUserController
+class UpdatePasswordController
 {
     /**
      * @var
@@ -36,25 +36,27 @@ class ActiveUserController
 
     /**
      * @param Bus $bus
-     * @param ActiveUserHandler $handler
+     * @param UpdatePasswordHandler $handler
      * @param $commandName
      */
     public function __construct(
         Bus $bus,
-        ActiveUserHandler $handler,
+        UpdatePasswordHandler $handler,
         $commandName
-    ) {
+    )
+    {
         $this->bus         = $bus;
         $this->handler     = $handler;
         $this->commandName = $commandName;
     }
 
     /**
-     * @param UserId $id
+     * @param User $user
+     * @param $password
      */
-    public function activeUserAction(UserId $id)
+    public function updatePasswordAction(User $user, $password)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id));
+        $this->bus->handle(new $this->commandName($user, $password));
     }
 } 

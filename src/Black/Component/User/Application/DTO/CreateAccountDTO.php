@@ -12,29 +12,44 @@ namespace Black\Component\User\Application\DTO;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 
 /**
- * Class DeactiveUserDTO
+ * Class CreateAccountDTO
  */
-final class DeactiveUserDTO implements DTO
+final class CreateAccountDTO implements DTO
 {
     /**
      * @var
      */
-    private $id;
+    private $name;
 
     /**
-     * @param $id
+     * @var
      */
-    public function __construct($id)
+    private $email;
+
+    /**
+     * @param $name
+     * @param $email
+     */
+    public function __construct($name, $email)
     {
-        $this->id = $id;
+        $this->name     = $name;
+        $this->email    = $email;
     }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getName()
     {
-        return $this->id;
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     /**
@@ -43,8 +58,9 @@ final class DeactiveUserDTO implements DTO
     public function serialize()
     {
         return json_encode([
-            $this->id,
-        ]);
+                $this->name,
+                $this->email,
+            ]);
     }
 
     /**
@@ -53,7 +69,8 @@ final class DeactiveUserDTO implements DTO
     public function unserialize($serialized)
     {
         return list(
-            $this->id,
+            $this->name,
+            $this->email
         ) = json_decode($serialized);
     }
-} 
+}

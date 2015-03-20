@@ -9,21 +9,15 @@
  */
 namespace Black\Component\User\Application\DTOAssembler;
 
-use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\Password\Encoder;
 use Black\DDD\DDDinPHP\Application\DTO\DTO;
 use Black\DDD\DDDinPHP\Application\DTO\Assembler;
 use Black\DDD\DDDinPHP\Domain\Model\Entity;
 use Email\EmailAddress;
-use Symfony\Component\Security\Core\Tests\Encoder\PasswordEncoder;
 
 /**
- * Class AccountUserAssembler
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
+ * Class CreateAccountAssembler
  */
-class AccountUserAssembler implements Assembler
+class CreateAccountAssembler implements Assembler
 {
     /**
      * @var
@@ -54,7 +48,6 @@ class AccountUserAssembler implements Assembler
         $this->verify($user, $this->entityClass);
 
         $dto = new $this->dtoClass(
-            $user->getUserId(),
             $user->getName(),
             $user->getEmail()
         );
@@ -63,20 +56,18 @@ class AccountUserAssembler implements Assembler
     }
 
     /**
-     * @param DTO $createUserDTO
+     * @param DTO $dto
      * @return mixed
      * @throws \Exception
      */
-    public function reverseTransform(DTO $createUserDTO)
+    public function reverseTransform(DTO $dto)
     {
-        $this->verify($createUserDTO, $this->dtoClass);
+        $this->verify($dto, $this->dtoClass);
 
-        $userDTO = new UserId($createUserDTO->getId());
-        $email = new EmailAddress($createUserDTO->getEmail());
+        $email = new EmailAddress($dto->getEmail());
 
         $user = new $this->entityClass(
-            $userDTO,
-            $createUserDTO->getName(),
+            $dto->getName(),
             $email
         );
 

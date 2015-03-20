@@ -11,19 +11,21 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
-use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand;
+use Black\Component\User\Domain\Event\UserUpdatedEvent;
+use Black\Component\User\Infrastructure\CQRS\Command\UpdatePasswordCommand;
 use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\Component\User\Domain\Event\UserActivatedEvent;
-use Black\Component\User\Infrastructure\Service\UserStatusService;
+use Black\Component\User\Infrastructure\Service\UserWriteService;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class ActiveUserHandler
+ * Class UpdatePasswordHandler
+ *
+ * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
+ * @license http://opensource.org/licenses/mit-license.php MIT
  */
-class ActiveUserHandler implements CommandHandler
+class UpdatePasswordHandler implements CommandHandler
 {
     /**
      * @var UserManager
@@ -31,7 +33,7 @@ class ActiveUserHandler implements CommandHandler
     protected $manager;
 
     /**
-     * @var UserStatusService
+     * @var UserWriteService
      */
     protected $service;
 
@@ -41,32 +43,29 @@ class ActiveUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $manager
-     * @param UserStatusService $service
+     * @param UserManager $userManager
+     * @param UserWriteService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $manager,
-        UserStatusService $service,
+        UserManager $userManager,
+        UserWriteService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager    = $manager;
+        $this->manager    = $userManager;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
 
     /**
-     * @param ActiveUserCommand $command
+     * @param UpdatePasswordCommand $command
      */
-    public function handle(ActiveUserCommand $command)
+    public function handle(UpdatePasswordCommand $command)
     {
-        $user = $this->service->activate(new UserId($command->getUserId()));
+        $user = $this->service->updatePassword($command->getUser(), $command->getPassword());
+        $this->manager->flush();
 
-        if ($user) {
-            $this->manager->flush();
-
-            $event = new UserActivatedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);
-        }
+        $event = new UserUpdatedEvent($user);
+        $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UPDATED, $event);
     }
 }

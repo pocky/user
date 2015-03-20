@@ -18,9 +18,6 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 
 /**
  * Class RegisterUserHandler
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class RegisterUserHandler implements CommandHandler
 {

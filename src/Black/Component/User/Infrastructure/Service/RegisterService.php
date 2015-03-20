@@ -9,9 +9,6 @@ use Email\EmailAddress;
 
 /**
  * Class RegisterService
- *
- * @author Alexandre Balmes <${COPYRIGHT_NAME}>
- * @license ${COPYRIGHT_LICENCE}
  */
 class RegisterService extends UserService
 {

@@ -15,9 +15,6 @@ use Black\DDD\DDDinPHP\Domain\Model\ValueObject;
 
 /**
  * Class UserId
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class UserId implements ValueObject
 {

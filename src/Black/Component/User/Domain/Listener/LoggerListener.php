@@ -44,6 +44,7 @@ class LoggerListener implements EventSubscriberInterface
             UserDomainEvents::USER_DOMAIN_LOCKED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_UNLOCKED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_CREATED => 'addInfoLog',
+            UserDomainEvents::USER_DOMAIN_UPDATED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_REGISTERED => 'addInfoLog',
             UserDomainEvents::USER_DOMAIN_REMOVED => 'addInfoLog'
         ];

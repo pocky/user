@@ -9,9 +9,6 @@ use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
 
 /**
  * Class UserReadService
- *
- * @author Alexandre Balmes <${COPYRIGHT_NAME}>
- * @license ${COPYRIGHT_LICENCE}
  */
 class UserReadService implements InfrastructureService
 {

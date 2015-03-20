@@ -10,9 +10,6 @@ use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
 
 /**
  * Class UserService
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 abstract class UserService implements InfrastructureService
 {

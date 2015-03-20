@@ -11,21 +11,19 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Command;
 
+use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
- * Class UpdateUserCommand
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
+ * Class UpdatePasswordCommand
  */
-final class UpdateUserCommand implements Command
+final class UpdatePasswordCommand implements Command
 {
     /**
-     * @var UserId
+     * @var User
      */
-    protected $userId;
+    protected $user;
 
     /**
      * @var string
@@ -33,21 +31,21 @@ final class UpdateUserCommand implements Command
     protected $password;
 
     /**
-     * @param UserId $userId
+     * @param User   $user
      * @param string $password
      */
-    public function __construct(UserId $userId, $password)
+    public function __construct(User $user, $password)
     {
-        $this->userId   = $userId;
+        $this->user     = $user;
         $this->password = (string) $password;
     }
 
     /**
      * @return UserId
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 
     /**
