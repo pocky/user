@@ -12,6 +12,7 @@ namespace Black\Component\User\Application\Controller;
 
 use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Infrastructure\CQRS\Handler\UpdatePasswordHandler;
+use Black\Component\User\Infrastructure\Password\Encoder;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
 /**
@@ -56,6 +57,8 @@ class UpdatePasswordController
      */
     public function updatePasswordAction(User $user, $password)
     {
+        $password = Encoder::encode($password);
+
         $this->bus->register($this->commandName, $this->handler);
         $this->bus->handle(new $this->commandName($user, $password));
     }
