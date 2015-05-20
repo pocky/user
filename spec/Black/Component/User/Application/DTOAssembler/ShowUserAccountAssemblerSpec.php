@@ -6,7 +6,7 @@ use Black\Component\User\Domain\Model\UserId;
 use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
-class AccountUserAssemblerSpec extends ObjectBehavior
+class ShowUserAccountAssemblerSpec extends ObjectBehavior
 {
     protected $entityClass;
 
@@ -20,7 +20,7 @@ class AccountUserAssemblerSpec extends ObjectBehavior
     function let()
     {
         $this->entityClass = 'Black\Component\User\Domain\Model\User';
-        $this->dtoClass    = 'Black\Component\User\Application\DTO\AccountUserDTO';
+        $this->dtoClass    = 'Black\Component\User\Application\DTO\ShowUserAccountDTO';
 
         $this->beConstructedWith($this->entityClass, $this->dtoClass);
     }

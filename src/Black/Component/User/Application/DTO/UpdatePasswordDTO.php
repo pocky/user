@@ -13,7 +13,7 @@ final class UpdatePasswordDTO implements DTO
     /**
      * @var
      */
-    private $id;
+    private $userId;
 
     /**
      * @var
@@ -21,21 +21,21 @@ final class UpdatePasswordDTO implements DTO
     private $password;
 
     /**
-     * @param $id
+     * @param $userId
      * @param $password
      */
-    public function __construct($id, $password)
+    public function __construct($userId, $password)
     {
-        $this->id       = $id;
+        $this->userId   = $userId;
         $this->password = (string) $password;
     }
 
     /**
      * @return UserId
      */
-    public function getId()
+    public function getUserId()
     {
-       return $this->id;
+       return $this->userId;
     }
 
     /**
@@ -52,7 +52,7 @@ final class UpdatePasswordDTO implements DTO
     public function serialize()
     {
         return json_encode([
-            $this->id,
+            $this->userId,
             $this->password,
         ]);
     }
@@ -64,7 +64,7 @@ final class UpdatePasswordDTO implements DTO
     public function unserialize($serialized)
     {
         return list(
-            $this->id,
+            $this->userId,
             $this->password,
         ) = json_decode($serialized);
     }

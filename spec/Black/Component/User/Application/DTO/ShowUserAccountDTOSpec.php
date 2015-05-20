@@ -5,11 +5,11 @@ use Black\Component\User\Domain\Model\UserId;
 use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
-class AccountUserDTOSpec extends ObjectBehavior
+class ShowUserAccountDTOSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Black\Component\User\Application\DTO\AccountUserDTO');
+        $this->shouldHaveType('Black\Component\User\Application\DTO\ShowUserAccountDTO');
         $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\DTO');
     }
     
