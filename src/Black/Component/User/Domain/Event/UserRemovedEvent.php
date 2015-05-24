@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * Class UserRemovedEvent
  */
-final class UserRemovedEvent extends Event implements DomainEvent
+class UserRemovedEvent extends Event implements DomainEvent
 {
     /**
      * @var

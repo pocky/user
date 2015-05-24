@@ -14,7 +14,7 @@ use Black\DDD\DDDinPHP\Application\DTO\DTO;
 /**
  * Class ActiveUserDTO
  */
-final class ActiveUserDTO implements DTO
+class ActiveUserDTO implements DTO
 {
     /**
      * @var

@@ -2,8 +2,7 @@
 
 namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 
-use Black\Component\User\Domain\Model\UserId;
-use Documents\User;
+use Black\Component\User\Domain\Model\User;
 use PhpSpec\ObjectBehavior;
 
 class ConnectUserCommandSpec extends ObjectBehavior
@@ -14,13 +13,13 @@ class ConnectUserCommandSpec extends ObjectBehavior
         $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
     }
 
-    function let()
+    function let(User $user)
     {
-        $this->beConstructedWith("username");
+        $this->beConstructedWith($user);
     }
 
-    function it_should_return_a_userId()
+    function it_should_return_an_user()
     {
-        $this->getUsername()->shouldReturn("username");
+        $this->getUser()->shouldImplement('Black\Component\User\Domain\Model\User');
     }
 }

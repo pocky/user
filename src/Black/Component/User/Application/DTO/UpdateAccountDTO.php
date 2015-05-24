@@ -32,6 +32,7 @@ final class UpdateAccountDTO implements DTO
     private $email;
 
     /**
+     * @param $id
      * @param $name
      * @param $email
      */

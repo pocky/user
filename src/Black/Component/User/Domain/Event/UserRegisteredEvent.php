@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * Class UserRegisteredEvent
  */
-final class UserRegisteredEvent extends Event implements DomainEvent
+class UserRegisteredEvent extends Event implements DomainEvent
 {
     /**
      * @var
