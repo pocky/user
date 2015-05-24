@@ -21,7 +21,6 @@ The recommended way to install User is through [Composer][2]:
 
 __Protip:__ You should browse the [`black/user`][7] user to choose a stable version to use, avoid the `@stable` meta
 constraint.
--->
 
 Usage
 -----

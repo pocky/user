@@ -28,7 +28,8 @@
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",
-        "henrikbjorn/phpspec-code-coverage": "~1.0.0"
+        "henrikbjorn/phpspec-code-coverage": "~1.0.0",
+        "memio/spec-gen": "~0.1"
     },
     "config": {
         "bin-dir": "bin"
