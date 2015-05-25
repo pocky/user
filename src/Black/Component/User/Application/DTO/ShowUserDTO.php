@@ -82,11 +82,9 @@ class ShowUserDTO implements DTO
      */
     public function unserialize($serialized)
     {
-        $user = json_decode($serialized)->{'user'};
-
-        $this->id       = $user->{'id'};
-        $this->username = $user->{'username'};
-        $this->email    = $user->{'email'};
+        foreach (json_decode($serialized)->{'user'} as $key => $value) {
+            $this->{$key} = $value;
+        }
 
         return $this;
     }
