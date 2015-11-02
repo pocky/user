@@ -10,13 +10,12 @@
 namespace Black\Component\User\Domain\Event;
 
 use Black\Component\User\Domain\Model\User;
-use Black\DDD\DDDinPHP\Domain\Event\DomainEvent;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Class UserActivatedEvent
  */
-class UserActivatedEvent extends Event implements DomainEvent
+class UserActivatedEvent extends Event
 {
     /**
      * @var

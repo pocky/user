@@ -10,7 +10,7 @@ class ConnectUserCommandSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\ConnectUserCommand');
-        $this->shouldImplement('Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command');
+
     }
 
     function let(User $user)

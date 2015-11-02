@@ -10,7 +10,6 @@ class UserIdSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Domain\Model\UserId');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Domain\Model\ValueObject');
     }
 
     function let()

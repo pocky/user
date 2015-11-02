@@ -3,12 +3,12 @@
 namespace Black\Component\User\Application\DTO;
 
 use Black\Component\User\Domain\Model\UserId;
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
+
 
 /**
  * Class UpdatePasswordDTO
  */
-final class UpdatePasswordDTO implements DTO
+final class UpdatePasswordDTO
 {
     /**
      * @var

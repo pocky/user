@@ -3,13 +3,13 @@
 namespace Black\Component\User\Application\DTO;
 
 use Black\Component\User\Domain\Model\UserId;
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
+
 use Email\EmailAddress;
 
 /**
  * Class ShowUserDTO
  */
-class ShowUserDTO implements DTO
+class ShowUserDTO
 {
     /**
      * @var UserId

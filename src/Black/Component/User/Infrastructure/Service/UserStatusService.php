@@ -3,31 +3,31 @@
 namespace Black\Component\User\Infrastructure\Service;
 
 use Black\Component\User\Domain\Exception\UserNotFoundException;
-use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 
 /**
  * Class UserStatusService
  */
-class UserStatusService extends UserService
+class UserStatusService
 {
     /**
      * @var
      */
-    protected $writeService;
+    protected $repository;
 
     /**
-     * @param UserManager     $manager
-     * @param UserWriteService $userWriteService
+     * @var
      */
-    public function __construct(
-        UserManager $manager,
-        UserWriteService $userWriteService
-    ) {
-        parent::__construct($manager);
-        $this->writeService = $userWriteService;
+    protected $class;
+
+    /**
+     * @param UserWriteRepository $repository
+     */
+    public function __construct(UserWriteRepository $repository)
+    {
+        $this->repository = $repository;
+        $this->class = $repository->getClassName();
     }
 
     /**
@@ -40,7 +40,7 @@ class UserStatusService extends UserService
         $user = $this->findUser($userId);
 
         $user->activate();
-        $this->writeService->update($user);
+        $this->repository->add($user);
 
         return $user;
     }
@@ -55,7 +55,7 @@ class UserStatusService extends UserService
         $user = $this->findUser($userId);
 
         $user->deactivate();
-        $this->writeService->update($user);
+        $this->repository->add($user);
 
         return $user;
     }
@@ -70,7 +70,7 @@ class UserStatusService extends UserService
         $user = $this->findUser($userId);
 
         $user->lock();
-        $this->writeService->update($user);
+        $this->repository->add($user);
 
         return $user;
     }
@@ -85,7 +85,7 @@ class UserStatusService extends UserService
         $user = $this->findUser($userId);
 
         $user->unlock();
-        $this->writeService->update($user);
+        $this->repository->add($user);
 
         return $user;
     }
@@ -100,7 +100,23 @@ class UserStatusService extends UserService
         $user = $this->findUser($userId);
 
         $user->connect();
-        $this->writeService->update($user);
+        $this->repository->add($user);
+
+        return $user;
+    }
+
+    /**
+     * @param UserId $userId
+     *
+     * @return mixed
+     */
+    protected function findUser(UserId $userId)
+    {
+        $user = $this->repository->find($userId);
+
+        if (null === $user) {
+            throw new UserNotFoundException();
+        }
 
         return $user;
     }

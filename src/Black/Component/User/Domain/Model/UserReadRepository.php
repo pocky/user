@@ -12,14 +12,16 @@
 
 namespace Black\Component\User\Domain\Model;
 
-use Black\DDD\DDDinPHP\Domain\Model\Repository;
-
 /**
- * Interface UserRepository
+ * Interface UserReadRepository
  */
-interface UserRepository extends Repository
+interface UserReadRepository
 {
-    public function findUserByUserId(UserId $userId);
-
     public function loadUser($username);
+
+    public function findAll();
+
+    public function find(UserId $id);
+
+    public function findBySlug($slug);
 }

@@ -11,8 +11,9 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
+use Black\Component\User\Domain\Model\UserReadRepository;
 use Black\Component\User\Infrastructure\CQRS\Command\RemoveUserCommand;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Domain\Event\UserRemovedEvent;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -24,9 +25,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class RemoveUserHandler implements CommandHandler
 {
     /**
-     * @var UserManager
+     * @var UserWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
      * @var EventDispatcherInterface
@@ -34,14 +35,16 @@ class RemoveUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $userManager
+     * @param UserWriteRepository $userManager
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $userManager,
+        UserReadRepository $readRepository,
+        UserWriteRepository $writeRepository,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager = $userManager;
+        $this->readRepository = $readRepository;
+        $this->writeRepository = $writeRepository;
         $this->dispatcher = $dispatcher;
     }
 
@@ -50,11 +53,11 @@ class RemoveUserHandler implements CommandHandler
      */
     public function handle(RemoveUserCommand $command)
     {
-        $user = $this->manager->find($command->getUserId());
+        $user = $this->readRepository->find($command->getUserId());
 
         if ($user) {
-            $this->manager->remove($user);
-            $this->manager->flush();
+            $this->writeRepository->remove($user);
+            $this->writeRepository->flush();
 
             $event = new UserRemovedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_REMOVED, $event);

@@ -12,7 +12,7 @@
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
 use Black\Component\User\Infrastructure\CQRS\Command\CreateUserCommand;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Domain\Event\UserCreatedEvent;
 use Black\Component\User\Domain\Event\UserCreatedSubscriber;
 use Black\Component\User\Infrastructure\Service\RegisterService;
@@ -26,9 +26,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class CreateUserHandler implements CommandHandler
 {
     /**
-     * @var UserManager
+     * @var UserWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
      * @var RegisterService
@@ -41,16 +41,16 @@ class CreateUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $manager
+     * @param UserWriteRepository $repository
      * @param RegisterService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $manager,
+        UserWriteRepository $repository,
         RegisterService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager = $manager;
+        $this->repository = $repository;
         $this->service = $service;
         $this->dispatcher = $dispatcher;
     }
@@ -63,7 +63,7 @@ class CreateUserHandler implements CommandHandler
         $user = $this->service->create($command->getUserId(), $command->getName(), $command->getEmail());
 
         if ($user) {
-            $this->manager->flush();
+            $this->repository->flush();
 
             $event = new UserCreatedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_CREATED, $event);

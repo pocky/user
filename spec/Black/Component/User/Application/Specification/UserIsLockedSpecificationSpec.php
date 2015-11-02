@@ -12,7 +12,6 @@ class UserIsLockedSpecificationSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Application\Specification\UserIsLockedSpecification');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Application\Specification\Specification');
     }
 
     function it_should_satisfy_the_specification()

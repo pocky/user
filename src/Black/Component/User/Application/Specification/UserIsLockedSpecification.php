@@ -11,12 +11,11 @@
 namespace Black\Component\User\Application\Specification;
 
 use Black\Component\User\Domain\Model\User;
-use Black\DDD\DDDinPHP\Application\Specification\Specification;
 
 /**
  * Class UserIsLockedSpecification
  */
-class UserIsLockedSpecification implements Specification
+class UserIsLockedSpecification
 {
     /**
      * @param User $user

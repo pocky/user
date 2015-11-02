@@ -13,7 +13,7 @@ namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
 use Black\Component\User\Domain\Event\UserLockedEvent;
 use Black\Component\User\Infrastructure\CQRS\Command\LockUserCommand;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -25,9 +25,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class LockUserHandler implements CommandHandler
 {
     /**
-     * @var UserManager
+     * @var UserWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
      * @var UserStatusService
@@ -40,16 +40,16 @@ class LockUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $manager
+     * @param UserWriteRepository $repository
      * @param UserStatusService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $manager,
+        UserWriteRepository $repository,
         UserStatusService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager    = $manager;
+        $this->repository    = $repository;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
@@ -62,7 +62,7 @@ class LockUserHandler implements CommandHandler
         $user = $this->service->lock($command->getUserId());
 
         if ($user) {
-            $this->manager->flush();
+            $this->repository->flush();
 
             $event = new UserLockedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_LOCKED, $event);

@@ -11,12 +11,10 @@
 
 namespace Black\Component\User\Domain\Model;
 
-use Black\DDD\DDDinPHP\Domain\Model\ValueObject;
-
 /**
  * Class UserId
  */
-class UserId implements ValueObject
+class UserId
 {
     /**
      * @var

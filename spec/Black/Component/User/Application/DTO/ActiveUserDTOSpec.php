@@ -9,7 +9,7 @@ class ActiveUserDTOSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Application\DTO\ActiveUserDTO');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Application\DTO\DTO');
+
     }
 
     function let(UserId $id)

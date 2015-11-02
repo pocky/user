@@ -9,12 +9,12 @@
  */
 namespace Black\Component\User\Application\DTO;
 
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
+
 
 /**
  * Class UpdateAccountDTO
  */
-final class UpdateAccountDTO implements DTO
+final class UpdateAccountDTO
 {
     /**
      * @var

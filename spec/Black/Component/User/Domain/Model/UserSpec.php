@@ -11,7 +11,6 @@ class UserSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Domain\Model\User');
-        $this->shouldBeAnInstanceOf('Black\DDD\DDDinPHP\Domain\Model\Entity');
     }
 
     function let()

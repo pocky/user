@@ -11,14 +11,13 @@
 
 namespace Black\Component\User\Domain\Model;
 
-use Black\DDD\DDDinPHP\Domain\Model\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Email\EmailAddress;
 
 /**
  * Class User
  */
-class User implements Entity
+class User
 {
     /**
      * The UserId of the current User (a Value Object)

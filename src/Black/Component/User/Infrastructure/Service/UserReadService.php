@@ -4,25 +4,30 @@ namespace Black\Component\User\Infrastructure\Service;
 
 use Black\Component\User\Domain\Exception\UserNotFoundException;
 use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 
 /**
  * Class UserReadService
  */
-class UserReadService implements InfrastructureService
+class UserReadService
 {
     /**
-     * @var UserManager
+     * @var
      */
-    protected $manager;
+    protected $repository;
 
     /**
-     * @param UserManager $manager
+     * @var
      */
-    public function __construct(UserManager $manager)
+    protected $class;
+
+    /**
+     * @param UserWriteRepository $repository
+     */
+    public function __construct(UserWriteRepository $repository)
     {
-        $this->manager = $manager;
+        $this->repository = $repository;
+        $this->class = $repository->getClassName();
     }
 
     /**
@@ -32,7 +37,7 @@ class UserReadService implements InfrastructureService
      */
     public function find(UserId $userId)
     {
-        $user = $this->manager->find($userId);
+        $user = $this->repository->find($userId);
 
         if (null === $user) {
             throw new UserNotFoundException();
@@ -47,7 +52,7 @@ class UserReadService implements InfrastructureService
      */
     public function loadUser($username)
     {
-        $user = $this->manager->loadUser($username);
+        $user = $this->repository->loadUser($username);
 
         if (null === $user) {
             throw new UserNotFoundException();
@@ -56,8 +61,11 @@ class UserReadService implements InfrastructureService
         return $user;
     }
 
+    /**
+     * @return mixed
+     */
     public function findAll()
     {
-        return $this->manager->findAll();
+        return $this->repository->findAll();
     }
 }

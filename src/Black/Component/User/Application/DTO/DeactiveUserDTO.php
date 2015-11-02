@@ -9,12 +9,12 @@
  */
 namespace Black\Component\User\Application\DTO;
 
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
+
 
 /**
  * Class DeactiveUserDTO
  */
-final class DeactiveUserDTO implements DTO
+final class DeactiveUserDTO
 {
     /**
      * @var

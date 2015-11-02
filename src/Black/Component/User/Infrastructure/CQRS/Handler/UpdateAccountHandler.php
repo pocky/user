@@ -12,7 +12,7 @@
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
 use Black\Component\User\Infrastructure\CQRS\Command\UpdateAccountCommand;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Domain\Event\UserUpdatedEvent;
 use Black\Component\User\Infrastructure\Service\RegisterService;
 use Black\Component\User\Infrastructure\Service\UserWriteService;
@@ -26,9 +26,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class UpdateAccountHandler implements CommandHandler
 {
     /**
-     * @var UserManager
+     * @var UserWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
      * @var RegisterService
@@ -41,16 +41,16 @@ class UpdateAccountHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $manager
+     * @param UserWriteRepository $repository
      * @param UserWriteService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $manager,
+        UserWriteRepository $repository,
         UserWriteService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager    = $manager;
+        $this->repository    = $repository;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
@@ -61,7 +61,7 @@ class UpdateAccountHandler implements CommandHandler
     public function handle(UpdateAccountCommand $command)
     {
         $user = $this->service->updateAccount($command->getUser(), $command->getName(), $command->getEmail());
-        $this->manager->flush();
+        $this->repository->flush();
 
         $event = new UserUpdatedEvent($user);
         $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UPDATED, $event);

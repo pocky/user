@@ -9,12 +9,10 @@
  */
 namespace Black\Component\User\Application\DTO;
 
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
-
 /**
  * Class ActiveUserDTO
  */
-class ActiveUserDTO implements DTO
+class ActiveUserDTO
 {
     /**
      * @var

@@ -18,17 +18,16 @@
         }
     },
     "require": {
-        "php":                      ">=5.4.0",
-        "monolog/monolog":          "~1.10",
+        "php": ">=5.4.0",
+        "monolog/monolog": "~1.10",
         "symfony/event-dispatcher": "~2.5",
-        "symfony/http-kernel":      "~2.5",
-        "symfony/http-foundation":  "~2.5",
-        "black/common":             "1.*",
-        "black/email":              "1.*"
+        "symfony/http-kernel": "~2.5",
+        "symfony/http-foundation": "~2.5",
+        "black/common": "~2.0.0",
+        "black/email": "~1.0"
     },
     "require-dev": {
         "phpspec/phpspec": "~2.0",
-        "henrikbjorn/phpspec-code-coverage": "~1.0.0",
         "memio/spec-gen": "~0.1"
     },
     "config": {

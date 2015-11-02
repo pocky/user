@@ -13,7 +13,7 @@ namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
 use Black\Component\User\Domain\Event\UserUpdatedEvent;
 use Black\Component\User\Infrastructure\CQRS\Command\UpdatePasswordCommand;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Infrastructure\Service\UserWriteService;
 use Black\Component\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -28,9 +28,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class UpdatePasswordHandler implements CommandHandler
 {
     /**
-     * @var UserManager
+     * @var UserWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
      * @var UserWriteService
@@ -43,16 +43,16 @@ class UpdatePasswordHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserManager $userManager
+     * @param UserWriteRepository $userManager
      * @param UserWriteService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserManager $userManager,
+        UserWriteRepository $userManager,
         UserWriteService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->manager    = $userManager;
+        $this->repository    = $userManager;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
@@ -63,7 +63,7 @@ class UpdatePasswordHandler implements CommandHandler
     public function handle(UpdatePasswordCommand $command)
     {
         $user = $this->service->updatePassword($command->getUser(), $command->getPassword());
-        $this->manager->flush();
+        $this->repository->flush();
 
         $event = new UserUpdatedEvent($user);
         $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UPDATED, $event);

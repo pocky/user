@@ -5,16 +5,33 @@ namespace Black\Component\User\Infrastructure\Service;
 use Black\Component\User\Domain\Exception\UserNotFoundException;
 use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
-use Black\Component\User\Infrastructure\Password\Encoder;
-use Black\DDD\DDDinPHP\Infrastructure\Service\InfrastructureService;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Email\EmailAddress;
 
 /**
  * Class UserWriteService
  */
-class UserWriteService extends UserService
+class UserWriteService
 {
+    /**
+     * @var
+     */
+    protected $repository;
+
+    /**
+     * @var
+     */
+    protected $class;
+
+    /**
+     * @param UserWriteRepository $repository
+     */
+    public function __construct(UserWriteRepository $repository)
+    {
+        $this->repository = $repository;
+        $this->class = $repository->getClassName();
+    }
+
     /**
      * @param UserId $userId
      *
@@ -25,7 +42,7 @@ class UserWriteService extends UserService
         $user = $this->findUser($userId);
 
         $user->connect();
-        $this->update($user);
+        $this->repository->add($user);
 
         return $user;
     }
@@ -39,7 +56,7 @@ class UserWriteService extends UserService
     public function updatePassword(User $user, $password)
     {
         $user->updatePassword($password);
-        $this->update($user);
+        $this->repository->add($user);
 
         return $user;
     }
@@ -53,7 +70,23 @@ class UserWriteService extends UserService
     public function updateAccount(User $user, $name, EmailAddress $address)
     {
         $user->updateAccount($name, $address);
-        $this->update($user);
+        $this->repository->add($user);
+
+        return $user;
+    }
+
+    /**
+     * @param UserId $userId
+     * @return mixed
+     * @throws UserNotFoundException
+     */
+    protected function findUser(UserId $userId)
+    {
+        $user = $this->repository->find($userId);
+
+        if (null === $user) {
+            throw new UserNotFoundException();
+        }
 
         return $user;
     }

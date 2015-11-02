@@ -9,12 +9,12 @@
  */
 namespace Black\Component\User\Application\DTO;
 
-use Black\DDD\DDDinPHP\Application\DTO\DTO;
+
 
 /**
  * Class UnlockUserDTO
  */
-final class UnlockUserDTO implements DTO
+final class UnlockUserDTO
 {
     /**
      * @var

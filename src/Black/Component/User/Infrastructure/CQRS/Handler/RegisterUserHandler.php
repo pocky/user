@@ -12,7 +12,7 @@
 namespace Black\Component\User\Infrastructure\CQRS\Handler;
 
 use Black\Component\User\Infrastructure\CQRS\Command\RegisterUserCommand;
-use Black\Component\User\Infrastructure\Doctrine\UserManager;
+use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Infrastructure\Service\RegisterService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 
@@ -22,9 +22,9 @@ use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
 class RegisterUserHandler implements CommandHandler
 {
     /**
-     * @var UserManager
+     * @var UserWriteRepository
      */
-    protected $manager;
+    protected $repository;
 
     /**
      * @var RegisterService
@@ -32,14 +32,14 @@ class RegisterUserHandler implements CommandHandler
     protected $service;
 
     /**
-     * @param UserManager $manager
+     * @param UserWriteRepository $repository
      * @param RegisterService $service
      */
     public function __construct(
-        UserManager $manager,
+        UserWriteRepository $repository,
         RegisterService $service
     ) {
-        $this->manager = $manager;
+        $this->repository = $repository;
         $this->service = $service;
     }
 
@@ -52,7 +52,7 @@ class RegisterUserHandler implements CommandHandler
 
         if ($user) {
             $this->service->register($user, $command->getPassword());
-            $this->manager->flush();
+            $this->repository->flush();
         }
     }
 }

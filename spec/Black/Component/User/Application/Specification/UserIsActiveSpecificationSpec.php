@@ -12,7 +12,6 @@ class UserIsActiveSpecificationSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Application\Specification\UserIsActiveSpecification');
-        $this->shouldImplement('Black\DDD\DDDinPHP\Application\Specification\Specification');
     }
 
     function it_should_satisfies_a_specification()
