@@ -41,16 +41,16 @@ class ConnectUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $userManager
+     * @param UserWriteRepository $repository
      * @param UserStatusService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserWriteRepository $userManager,
+        UserWriteRepository $repository,
         UserStatusService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->repository    = $userManager;
+        $this->repository    = $repository;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
