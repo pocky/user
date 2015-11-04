@@ -60,13 +60,10 @@ class DeactiveUserHandler implements CommandHandler
      */
     public function handle(DeactiveUserCommand $command)
     {
-        $user = $this->service->deactivate(new UserId($command->getUserId()));
+        $user = $this->service->deactivate($command->getUser());
+        $this->repository->flush();
 
-        if ($user) {
-            $this->repository->flush();
-
-            $event = new UserDeactivatedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_DEACTIVATED, $event);
-        }
+        $event = new UserDeactivatedEvent($user);
+        $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_DEACTIVATED, $event);
     }
 }

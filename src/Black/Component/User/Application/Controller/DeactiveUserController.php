@@ -10,7 +10,7 @@
 
 namespace Black\Component\User\Application\Controller;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Infrastructure\CQRS\Handler\DeactiveUserHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
@@ -50,11 +50,11 @@ class DeactiveUserController
     }
 
     /**
-     * @param UserId $id
+     * @param User $user
      */
-    public function deactiveUserAction(UserId $id)
+    public function deactiveUserAction(User $user)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id));
+        $this->bus->handle(new $this->commandName($user));
     }
 } 

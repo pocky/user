@@ -11,32 +11,32 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Command;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Model\User;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
  * Class LockUserCommand
  */
-final class LockUserCommand implements Command
+class LockUserCommand implements Command
 {
     /**
-     * @var UserId
+     * @var User
      */
-    protected $userId;
+    protected $user;
 
     /**
-     * @param UserId $userId
+     * @param User $user
      */
-    public function __construct(UserId $userId)
+    public function __construct(User $user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
     }
 
     /**
-     * @return UserId
+     * @return User
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 }

@@ -33,14 +33,11 @@ class UserWriteService
     }
 
     /**
-     * @param UserId $userId
-     *
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function connect(UserId $userId)
+    public function connect(User $user)
     {
-        $user = $this->findUser($userId);
-
         $user->connect();
         $this->repository->add($user);
 

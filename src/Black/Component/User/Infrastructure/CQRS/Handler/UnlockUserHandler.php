@@ -52,7 +52,7 @@ class UnlockUserHandler implements CommandHandler
         UserStatusService $service,
         EventDispatcherInterface $dispatcher
     ) {
-        $this->repository    = $repository;
+        $this->repository = $repository;
         $this->service    = $service;
         $this->dispatcher = $dispatcher;
     }
@@ -62,13 +62,10 @@ class UnlockUserHandler implements CommandHandler
      */
     public function handle(UnlockUserCommand $command)
     {
-        $user = $this->service->unlock($command->getUserId());
+        $user = $this->service->unlock($command->getUser());
+        $this->repository->flush();
 
-        if ($user) {
-            $this->repository->flush();
-
-            $event = new UserUnlockedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UNLOCKED, $event);
-        }
+        $event = new UserUnlockedEvent($user);
+        $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UNLOCKED, $event);
     }
 }

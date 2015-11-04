@@ -59,13 +59,10 @@ class LockUserHandler implements CommandHandler
      */
     public function handle(LockUserCommand $command)
     {
-        $user = $this->service->lock($command->getUserId());
+        $user = $this->service->lock($command->getUser());
+        $this->repository->flush();
 
-        if ($user) {
-            $this->repository->flush();
-
-            $event = new UserLockedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_LOCKED, $event);
-        }
+        $event = new UserLockedEvent($user);
+        $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_LOCKED, $event);
     }
 }

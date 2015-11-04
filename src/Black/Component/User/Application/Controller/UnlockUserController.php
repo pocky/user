@@ -10,7 +10,7 @@
 
 namespace Black\Component\User\Application\Controller;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Infrastructure\CQRS\Handler\UnlockUserHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
@@ -50,11 +50,11 @@ class UnlockUserController
     }
 
     /**
-     * @param UserId $id
+     * @param User $user
      */
-    public function unlockUserAction(UserId $id)
+    public function unlockUserAction(User $user)
     {
         $this->bus->register($this->commandName, $this->handler);
-        $this->bus->handle(new $this->commandName($id));
+        $this->bus->handle(new $this->commandName($user));
     }
 } 

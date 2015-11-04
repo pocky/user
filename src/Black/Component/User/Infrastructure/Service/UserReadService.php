@@ -4,7 +4,7 @@ namespace Black\Component\User\Infrastructure\Service;
 
 use Black\Component\User\Domain\Exception\UserNotFoundException;
 use Black\Component\User\Domain\Model\UserId;
-use Black\Component\User\Domain\Model\UserWriteRepository;
+use Black\Component\User\Domain\Model\UserReadRepository;
 
 /**
  * Class UserReadService
@@ -22,9 +22,9 @@ class UserReadService
     protected $class;
 
     /**
-     * @param UserWriteRepository $repository
+     * @param UserReadRepository $repository
      */
-    public function __construct(UserWriteRepository $repository)
+    public function __construct(UserReadRepository $repository)
     {
         $this->repository = $repository;
         $this->class = $repository->getClassName();

@@ -2,7 +2,7 @@
 
 namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Model\User;
 use PhpSpec\ObjectBehavior;
 
 class LockUserCommandSpec extends ObjectBehavior
@@ -13,17 +13,13 @@ class LockUserCommandSpec extends ObjectBehavior
 
     }
 
-    function let()
+    function let(User $user)
     {
-        $userId = new UserId(1234);
-
-        $this->beConstructedWith($userId);
+        $this->beConstructedWith($user);
     }
 
     function it_should_return_a_userId()
     {
-        $this->getUserId()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\UserId');
-        $this->getUserId()->getValue()->shouldBeString();
-        $this->getUserId()->getValue()->shouldReturn("1234");
+        $this->getUser()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\User');
     }
 }

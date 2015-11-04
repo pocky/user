@@ -3,6 +3,7 @@
 namespace Black\Component\User\Infrastructure\Service;
 
 use Black\Component\User\Domain\Exception\UserNotFoundException;
+use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Domain\Model\UserId;
 use Black\Component\User\Domain\Model\UserWriteRepository;
 
@@ -31,14 +32,11 @@ class UserStatusService
     }
 
     /**
-     * @param UserId $userId
-     *
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function activate(UserId $userId)
+    public function activate(User $user)
     {
-        $user = $this->findUser($userId);
-
         $user->activate();
         $this->repository->add($user);
 
@@ -46,14 +44,11 @@ class UserStatusService
     }
 
     /**
-     * @param UserId $userId
-     *
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function deactivate(UserId $userId)
+    public function deactivate(User $user)
     {
-        $user = $this->findUser($userId);
-
         $user->deactivate();
         $this->repository->add($user);
 
@@ -61,14 +56,11 @@ class UserStatusService
     }
 
     /**
-     * @param UserId $userId
-     *
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function lock(UserId $userId)
+    public function lock(User $user)
     {
-        $user = $this->findUser($userId);
-
         $user->lock();
         $this->repository->add($user);
 
@@ -76,14 +68,11 @@ class UserStatusService
     }
 
     /**
-     * @param UserId $userId
-     *
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function unlock(UserId $userId)
+    public function unlock(User $user)
     {
-        $user = $this->findUser($userId);
-
         $user->unlock();
         $this->repository->add($user);
 
@@ -91,32 +80,13 @@ class UserStatusService
     }
 
     /**
-     * @param UserId $userId
-     *
-     * @return mixed
+     * @param User $user
+     * @return User
      */
-    public function connect(UserId $userId)
+    public function connect(User $user)
     {
-        $user = $this->findUser($userId);
-
         $user->connect();
         $this->repository->add($user);
-
-        return $user;
-    }
-
-    /**
-     * @param UserId $userId
-     *
-     * @return mixed
-     */
-    protected function findUser(UserId $userId)
-    {
-        $user = $this->repository->find($userId);
-
-        if (null === $user) {
-            throw new UserNotFoundException();
-        }
 
         return $user;
     }

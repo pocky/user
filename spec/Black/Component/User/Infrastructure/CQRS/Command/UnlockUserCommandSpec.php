@@ -2,7 +2,7 @@
 
 namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Model\User;
 use PhpSpec\ObjectBehavior;
 
 class UnlockUserCommandSpec extends ObjectBehavior
@@ -10,20 +10,15 @@ class UnlockUserCommandSpec extends ObjectBehavior
     function it_is_initializable()
     {
         $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\UnlockUserCommand');
-
     }
 
-    function let(UserId $userId)
+    function let(User $user)
     {
-        $userId->getValue()->willReturn("1234");
-
-        $this->beConstructedWith($userId);
+        $this->beConstructedWith($user);
     }
 
     function it_should_return_a_userId()
     {
-        $this->getUserId()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\UserId');
-        $this->getUserId()->getValue()->shouldBeString();
-        $this->getUserId()->getValue()->shouldReturn("1234");
+        $this->getUser()->shouldBeAnInstanceOf('Black\Component\User\Domain\Model\User');
     }
 }

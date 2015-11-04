@@ -31,4 +31,6 @@ final class UserDomainEvents
     const USER_DOMAIN_LOCKED = 'black.user.domain.locked';
 
     const USER_DOMAIN_UNLOCKED = 'black.user.domain.unlocked';
+
+    const USER_NOT_FOUND = 'black.user.domain.not_found';
 } 

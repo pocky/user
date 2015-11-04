@@ -22,7 +22,7 @@ class ReadRepository extends EntityRepository implements UserReadRepository
     public function find(UserId $id)
     {
         $query = $this->getQueryBuilder()
-            ->where('p.webPageId.value = :id')
+            ->where('p.userId.value = :id')
             ->setParameter('id', $id->getValue())
             ->getQuery();
 
@@ -56,7 +56,7 @@ class ReadRepository extends EntityRepository implements UserReadRepository
      */
     public function findAll()
     {
-        return $this->getQueryBuilder()->getQuery();
+        return $this->getQueryBuilder()->getQuery()->execute();
     }
 
     /**

@@ -60,7 +60,7 @@ class ConnectUserHandler implements CommandHandler
      */
     public function handle(ConnectUserCommand $command)
     {
-        $user = $this->service->connect($command->getUser()->getUserId());
+        $user = $this->service->connect($command->getUser());
 
         if ($user) {
             $this->repository->flush();

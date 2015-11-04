@@ -5,11 +5,11 @@ namespace spec\Black\Component\User\Infrastructure\CQRS\Command;
 use Black\Component\User\Domain\Model\User;
 use PhpSpec\ObjectBehavior;
 
-class ActiveUserCommandSpec extends ObjectBehavior
+class DeactiveUserCommandSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\ActiveUserCommand');
+        $this->shouldHaveType('Black\Component\User\Infrastructure\CQRS\Command\DeactiveUserCommand');
 
     }
 

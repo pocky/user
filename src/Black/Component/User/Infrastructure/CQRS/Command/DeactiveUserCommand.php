@@ -11,32 +11,33 @@
 
 namespace Black\Component\User\Infrastructure\CQRS\Command;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Model\User;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
  * Class DeactiveUserCommand
  */
-final class DeactiveUserCommand implements Command
+class DeactiveUserCommand implements Command
 {
     /**
-     * @var UserId
+     * @var User
      */
-    private $userId;
+    private $user;
 
     /**
-     * @param UserId $userId
+     * DeactiveUserCommand constructor.
+     * @param User $user
      */
-    public function __construct(UserId $userId)
+    public function __construct(User $user)
     {
-        $this->userId = $userId;
+        $this->user = $user;
     }
 
     /**
-     * @return UserId
+     * @return User
      */
-    public function getUserId()
+    public function getUser()
     {
-        return $this->userId;
+        return $this->user;
     }
 }

@@ -2,7 +2,8 @@
 
 namespace spec\Black\Component\User\Infrastructure\CQRS\Handler;
 
-use Black\Component\User\Domain\Model\UserId;
+use Black\Component\User\Domain\Event\UserLockedEvent;
+use Black\Component\User\Domain\Model\User;
 use Black\Component\User\Infrastructure\CQRS\Command\LockUserCommand;
 use Black\Component\User\Domain\Model\UserWriteRepository;
 use Black\Component\User\Infrastructure\Service\UserStatusService;
@@ -22,9 +23,15 @@ class LockUserHandlerSpec extends ObjectBehavior
         $this->beConstructedWith($repository, $statusService, $dispatcher);
     }
 
-    function it_should_handle_a_command()
-    {
-        $command = new LockUserCommand(new UserId("1"));
+    function it_should_handle_a_command(
+        User $user,
+        LockUserCommand $command,
+        UserStatusService $service,
+        UserLockedEvent $event
+    ) {
+        $command->getUser()->willReturn($user);
+        $service->activate($user)->willReturn($user);
+        $event->getUser()->willReturn($user);
 
         $this->handle($command);
     }

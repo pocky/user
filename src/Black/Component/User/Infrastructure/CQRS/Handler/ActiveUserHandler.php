@@ -60,13 +60,10 @@ class ActiveUserHandler implements CommandHandler
      */
     public function handle(ActiveUserCommand $command)
     {
-        $user = $this->service->activate(new UserId($command->getUserId()));
+        $user = $this->service->activate($command->getUser());
+        $this->repository->flush();
 
-        if ($user) {
-            $this->repository->flush();
-
-            $event = new UserActivatedEvent($user);
-            $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);
-        }
+        $event = new UserActivatedEvent($user);
+        $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);
     }
 }
