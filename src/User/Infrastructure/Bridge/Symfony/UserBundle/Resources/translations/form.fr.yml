@@ -1,0 +1,27 @@
+black_user:
+    form:
+
+        login:
+            username:
+                label: "Nom d'utilisateur"
+                placeholder: "Nom d'utilisateur"
+            password:
+                label: "Mot de passe"
+                placeholder: "Mot de passe"
+            rememberMe:
+                label: "Se souvenir de moi"
+            submit:
+                label: "Connexion"
+
+        account:
+            name:
+                label: "Nom d'utilisateur"
+            email:
+                label: "Addresse email"
+
+        password:
+            invalid: "Les mots de passe ne sont pas identiques"
+            password:
+                label: "Nouveau mot de passe"
+            password_repeat:
+                label: "Répéter le nouveau mot de passe"

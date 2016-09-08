@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_user.infrastructure.service.register.class">Black\User\Infrastructure\Service\RegisterService</parameter>
+        <parameter key="black_user.infrastructure.service.read.class">Black\User\Infrastructure\Service\UserReadService</parameter>
+        <parameter key="black_user.infrastructure.service.status.class">Black\User\Infrastructure\Service\UserStatusService</parameter>
+        <parameter key="black_user.infrastructure.service.write.class">Black\User\Infrastructure\Service\UserWriteService</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="black_user.infrastructure.service.register" class="%black_user.infrastructure.service.register.class%" public="false">
+            <argument type="service" id="black_user.persistence.user_write" />
+            <argument>%black_user.user.model.class%</argument>
+        </service>
+
+        <service id="black_user.infrastructure.service.read" class="%black_user.infrastructure.service.read.class%" public="false">
+            <argument type="service" id="black_user.persistence.user_read" />
+        </service>
+
+        <service id="black_user.infrastructure.service.status" class="%black_user.infrastructure.service.status.class%" public="false">
+            <argument type="service" id="black_user.persistence.user_write" />
+            <argument type="service" id="black_user.infrastructure.service.write" />
+        </service>
+
+        <service id="black_user.infrastructure.service.write" class="%black_user.infrastructure.service.write.class%" public="false">
+            <argument type="service" id="black_user.persistence.user_write" />
+        </service>
+
+    </services>
+</container>

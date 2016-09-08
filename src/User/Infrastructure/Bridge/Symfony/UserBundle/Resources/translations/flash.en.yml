@@ -1,0 +1,13 @@
+application:
+    user:
+        flash:
+            success:
+                created: "The user has been created"
+                updated: "The user has been updated"
+                registered: "The user has been registered"
+                removed: "The user has been removed"
+                activated: "The user has been activated"
+                deactivated: "The user has been deactivated"
+                locked: "The user has been locked"
+                unlocked: "The user has been unlocked"
+                not_found: "The id was not found"

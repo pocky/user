@@ -14,24 +14,33 @@
     ],
     "autoload": {
         "psr-4": {
-            "Black\\Component\\User\\": "src/Black/Component/User/"
+            "Black\\": "src/",
+            "Black\\Bundle\\UserBundle\\": "src/User/Infrastructure/Bridge/Symfony/UserBundle/"
         }
     },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./common"
+        }
+    ],
     "require": {
         "php": ">=5.5.0",
         "monolog/monolog": "~1.10",
-        "symfony/event-dispatcher": "~2.5",
-        "symfony/http-kernel": "~2.5",
-        "symfony/http-foundation": "~2.5",
-        "black/common": "~2.0.0",
+        "symfony/event-dispatcher": "~2.5|~3.1",
+        "symfony/http-kernel": "~2.5|~3.1",
+        "symfony/http-foundation": "~2.5|~3.1",
+        "black/common": "dev-master",
+        "black/cqrs-php": "dev-master",
         "black/email": "~1.0"
     },
     "require-dev": {
-        "phpspec/phpspec": "~2.0",
-        "memio/spec-gen": "~0.1"
+        "behat/behat": "~3.0",
+        "phpspec/phpspec": "^2.4",
+        "memio/spec-gen": "^0.4",
+        "rmiller/behat-spec": "^0.3.0"
     },
-    "config": {
-        "bin-dir": "bin"
+    "support": {
+        "issues": "https://github.com/pocky/user/issues"
     }
-
 }

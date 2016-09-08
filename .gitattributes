@@ -1,6 +1,5 @@
 # .gitattributes
 spec/ export-ignore
-coverage/ export-ignore
 
 # Auto detect text files and perform LF normalization
 * text=auto

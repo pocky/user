@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mongo-mapping
+        xmlns="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping
+                        http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
+
+
+    <mapped-superclass
+            name="Black\User\Domain\Entity\User"
+            repository-class="Black\Bundle\UserBundle\Infrastructure\Persistence\UserMongoDBRepository">
+
+        <field name="name" fieldName="name" type="string" unique="true" />
+
+        <field name="password" fieldName="password" type="string" />
+
+        <field name="registeredAt" fieldName="registeredAt" type="date" />
+
+        <field name="active" fieldName="active" type="boolean" />
+
+        <field name="locked" fieldName="locked" type="boolean" />
+
+        <field name="numberOfConnection" fieldName="numberOfConnection" type="int" />
+
+        <field name="lastConnection" fieldName="lastConnection" type="date" />
+
+        <field name="updatedAt" fieldName="updatedAt" type="date" />
+
+        <embed-one field="userId" target-document="Black\User\Domain\Entity\UserId" />
+
+        <embed-one field="email" target-document="Email\EmailAddress" />
+
+    </mapped-superclass>
+
+</doctrine-mongo-mapping>

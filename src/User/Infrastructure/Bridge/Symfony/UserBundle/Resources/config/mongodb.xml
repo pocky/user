@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_user.infrastructure.persistence.user_read.class">Black\User\Infrastructure\Persistence\MongoDB\ReadRepository</parameter>
+        <parameter key="black_user.infrastructure.persistence.user_write.class">Black\User\Infrastructure\Persistence\MongoDB\WriteRepository</parameter>
+    </parameters>
+
+    <services>
+
+        <service
+                id="black_user.infrastructure.persistence.user_read"
+                class="%black_user.infrastructure.persistence.user_read.class%"
+                public="false">
+            <argument type="service" id="black_user.document.manager" />
+            <argument>%black_user.user.model.class%</argument>
+        </service>
+
+        <service
+                id="black_user.infrastructure.persistence.user_write"
+                class="%black_user.infrastructure.persistence.user_write.class%"
+                public="false">
+            <argument type="service" id="black_user.document.manager" />
+            <argument>%black_user.user.model.class%</argument>
+        </service>
+
+        <service id="black_user.document.manager" alias="doctrine.odm.mongodb.document_manager" />
+
+        <service id="black_user.persistence.user_read" alias="black_user.infrastructure.persistence.user_read" />
+        <service id="black_user.persistence.user_write" alias="black_user.infrastructure.persistence.user_write" />
+    </services>

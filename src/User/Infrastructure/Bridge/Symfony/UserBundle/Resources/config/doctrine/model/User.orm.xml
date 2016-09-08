@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping
+        xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass
+            name="Black\User\Domain\Entity\User"
+            repository-class="Black\Bundle\UserBundle\Infrastructure\Persistence\UserEntityRepository">
+
+        <field name="name" type="string" unique="true" />
+
+        <field name="password" type="string" nullable="true" />
+
+        <field name="registeredAt" type="date" nullable="true" />
+
+        <field name="active" type="boolean" />
+
+        <field name="locked" type="boolean" />
+
+        <field name="lastConnection" type="date" nullable="true" />
+
+        <field name="updatedAt" type="date" nullable="true" />
+
+        <embedded class="Black\User\Domain\Entity\UserId" name="userId" />
+
+        <embedded class="Email\EmailAddress" name="email" />
+
+    </mapped-superclass>
+
+</doctrine-mapping>

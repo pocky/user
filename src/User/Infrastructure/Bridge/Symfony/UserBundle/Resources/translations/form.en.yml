@@ -1,0 +1,27 @@
+black_user:
+    form:
+
+        login:
+            username:
+                label: "Username"
+                placeholder: "Username"
+            password:
+                label: "Password"
+                placeholder: "Password"
+            rememberMe:
+                label: "Remember me"
+            submit:
+                label: "Sign in"
+
+        account:
+            name:
+                label: "Username"
+            email:
+                label: "Email address"
+
+        password:
+            invalid: "Passwords do not match"
+            password:
+                label: "New password"
+            password_repeat:
+                label: "Repeat the new password"

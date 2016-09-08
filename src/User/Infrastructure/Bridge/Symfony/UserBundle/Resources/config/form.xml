@@ -1,0 +1,98 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_user.application.form.type.login.class">Black\Bundle\UserBundle\Application\Form\Type\LoginType</parameter>
+        <parameter key="black_user.application.form.type.create_account.class">Black\Bundle\UserBundle\Application\Form\Type\CreateAccountType</parameter>
+        <parameter key="black_user.application.form.type.update_account.class">Black\Bundle\UserBundle\Application\Form\Type\UpdateAccountType</parameter>
+        <parameter key="black_user.application.form.type.update_password.class">Black\Bundle\UserBundle\Application\Form\Type\UpdatePasswordType</parameter>
+
+        <parameter key="black_user.application.form.handler.create_account.class">Black\Bundle\UserBundle\Application\Form\Handler\CreateAccountHandler</parameter>
+        <parameter key="black_user.application.form.handler.update_account.class">Black\Bundle\UserBundle\Application\Form\Handler\UpdateAccountHandler</parameter>
+        <parameter key="black_user.application.form.handler.update_password.class">Black\Bundle\UserBundle\Application\Form\Handler\UpdatePasswordHandler</parameter>
+    </parameters>
+
+    <services>
+
+        <!-- Forms -->
+        <service id="black_user.application.form.login" class="Symfony\Component\Form\Form" public="true">
+            <factory service="form.factory" method="createNamed" />
+            <argument>login</argument>
+            <argument type="service" id="black_user.application.form.type.login" />
+            <argument>null</argument>
+        </service>
+
+        <service id="black_user.application.form.create_account"
+                 class="Symfony\Component\Form\Form" public="true">
+            <factory service="form.factory" method="createNamed" />
+            <argument>black_user_create_account</argument>
+            <argument type="service" id="black_user.application.form.type.create_account" />
+            <argument>null</argument>
+        </service>
+
+        <service id="black_user.application.form.update_account"
+                 class="Symfony\Component\Form\Form" public="true">
+            <factory service="form.factory" method="createNamed" />
+            <argument>black_user_update_account</argument>
+            <argument type="service" id="black_user.application.form.type.update_account" />
+            <argument>null</argument>
+        </service>
+
+        <service id="black_user.application.form.update_password"
+                 class="Symfony\Component\Form\Form" public="true">
+            <factory service="form.factory" method="createNamed" />
+            <argument>black_user_update_password</argument>
+            <argument type="service" id="black_user.application.form.type.update_password" />
+            <argument>null</argument>
+        </service>
+
+        <!-- Form Types -->
+        <service id="black_user.application.form.type.login" class="%black_user.application.form.type.login.class%" public="true">
+            <argument>login</argument>
+            <tag name="form.type" alias="login" />
+        </service>
+
+        <service id="black_user.application.form.type.create_account"
+                 class="%black_user.application.form.type.create_account.class%">
+            <argument>%black_user.application.dto.create_account.class%</argument>
+            <argument>black_user_create_account</argument>
+            <tag name="form.type" alias="black_user_create_account" />
+        </service>
+
+        <service id="black_user.application.form.type.update_account"
+                 class="%black_user.application.form.type.update_account.class%">
+            <argument>%black_user.application.dto.update_account.class%</argument>
+            <argument>black_user_update_account</argument>
+            <tag name="form.type" alias="black_user_update_account" />
+        </service>
+
+        <service id="black_user.application.form.type.update_password"
+                 class="%black_user.application.form.type.update_password.class%">
+            <argument>%black_user.application.dto.update_password.class%</argument>
+            <argument>black_user_update_password</argument>
+            <tag name="form.type" alias="black_user_update_password" />
+        </service>
+
+        <!-- Form Handler -->
+        <service id="black_user.application.form.handler.create_account"
+                 class="%black_user.application.form.handler.create_account.class%">
+            <argument type="service" id="black_user.application.form.create_account" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="black_user.application.form.handler.update_account"
+                 class="%black_user.application.form.handler.update_account.class%">
+            <argument type="service" id="black_user.application.form.update_account" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="black_user.application.form.handler.update_password"
+                 class="%black_user.application.form.handler.update_password.class%">
+            <argument type="service" id="black_user.application.form.update_password" />
+            <argument type="service" id="request_stack" />
+        </service>
+    </services>
+</container>

@@ -1,13 +1,13 @@
 User
-====
+===
 
-User Library for Black Projects.
+A DDD/CQRS library for User Management (with his bundle for Symfony users)
 
 <!--
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eb624518-0c1e-47a6-a91b-73edf2244e2e/big.png)](https://insight.sensiolabs.com/projects/eb624518-0c1e-47a6-a91b-73edf2244e2e)
 
 Installation
-------------
+---
 
 The recommended way to install User is through [Composer][2]:
 
@@ -23,8 +23,32 @@ __Protip:__ You should browse the [`black/user`][7] user to choose a stable vers
 constraint.
 
 Usage
------
+---
 @todo
+
+Symfony
+---
+
+Crea an User class and extends the lib user class:
+
+```php
+
+```
+
+Add the bundle to your Kernel class
+
+```
+new Black\Bundle\UserBundle\BlackUserBundle(),
+```
+
+And add the configuration to your `config.yml`
+
+```yml
+# User Bundle
+black_user:
+    db_driver: orm
+    user_class: Account\Domain\Entity\User
+```
 
 License
 -------

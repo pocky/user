@@ -1,0 +1,79 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_user.application.controller.active.class">Black\User\Application\Controller\ActiveUserController</parameter>
+        <parameter key="black_user.application.controller.deactive.class">Black\User\Application\Controller\DeactiveUserController</parameter>
+        <parameter key="black_user.application.controller.lock.class">Black\User\Application\Controller\LockUserController</parameter>
+        <parameter key="black_user.application.controller.unlock.class">Black\User\Application\Controller\UnlockUserController</parameter>
+        <parameter key="black_user.application.controller.create.class">Black\User\Application\Controller\CreateUserController</parameter>
+        <parameter key="black_user.application.controller.update_account.class">Black\User\Application\Controller\UpdateAccountController</parameter>
+        <parameter key="black_user.application.controller.update_password.class">Black\User\Application\Controller\UpdatePasswordController</parameter>
+        <parameter key="black_user.application.controller.list.class">Black\User\Application\Controller\ListUsersController</parameter>
+        <parameter key="black_user.application.controller.remove.class">Black\User\Application\Controller\RemoveUserController</parameter>
+        <parameter key="black_user.application.controller.show.class">Black\User\Application\Controller\ShowUserController</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="black_user.application.controller.active" class="%black_user.application.controller.active.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.active" />
+            <argument>Black\User\Infrastructure\CQRS\Command\ActiveUserCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.deactive" class="%black_user.application.controller.deactive.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.deactive" />
+            <argument>Black\User\Infrastructure\CQRS\Command\DeactiveUserCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.lock" class="%black_user.application.controller.lock.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.lock" />
+            <argument>Black\User\Infrastructure\CQRS\Command\LockUserCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.unlock" class="%black_user.application.controller.unlock.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.unlock" />
+            <argument>Black\User\Infrastructure\CQRS\Command\UnlockUserCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.create" class="%black_user.application.controller.create.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.create" />
+            <argument>Black\User\Infrastructure\CQRS\Command\CreateUserCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.update_account" class="%black_user.application.controller.update_account.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.update_account" />
+            <argument>Black\User\Infrastructure\CQRS\Command\UpdateAccountCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.update_password" class="%black_user.application.controller.update_password.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.update_password" />
+            <argument>Black\User\Infrastructure\CQRS\Command\UpdatePasswordCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.list" class="%black_user.application.controller.list.class%">
+            <argument type="service" id="black_user.infrastructure.service.read" />
+        </service>
+
+        <service id="black_user.application.controller.remove" class="%black_user.application.controller.remove.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.remove" />
+            <argument>Black\User\Infrastructure\CQRS\Command\RemoveUserCommand</argument>
+        </service>
+
+        <service id="black_user.application.controller.show" class="%black_user.application.controller.show.class%">
+            <argument type="service" id="black_user.infrastructure.service.read" />
+        </service>
+
+    </services>
+</container>

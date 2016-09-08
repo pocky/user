@@ -1,0 +1,44 @@
+<?xml version="1.0" ?>
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping"
+                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                    xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping
+                    http://symfony.com/schema/dic/constraint-mapping/constraint-mapping-1.0.xsd">
+
+    <class name="Black\User\Application\DTO\CreateUserDTO">
+
+        <property name="name">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.name.validation.message.type</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="maxMessage">black.bundle.page.domain.dto.webPageDto.name.validation.message.length</option>
+            </constraint>
+
+            <constraint name="NotBlank">
+                <option name="message">black.bundle.page.domain.dto.webPageDto.name.validation.message.type</option>
+            </constraint>
+        </property>
+
+        <property name="email">
+            <constraint name="Type">
+                <option name="type">string</option>
+                <option name="message">black.bundle.page.domain.dto.webPageDto.name.validation.message.type</option>
+            </constraint>
+
+            <constraint name="Length">
+                <option name="max">255</option>
+                <option name="maxMessage">black.bundle.page.domain.dto.webPageDto.name.validation.message.length</option>
+            </constraint>
+
+            <constraint name="NotBlank">
+                <option name="message">black.bundle.page.domain.dto.webPageDto.name.validation.message.type</option>
+            </constraint>
+        </property>
+
+    </class>
+
+
+</constraint-mapping>

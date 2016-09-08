@@ -1,0 +1,71 @@
+<?php
+
+namespace Black\User\Infrastructure\Service;
+
+use Black\User\Domain\Exception\UserNotFoundException;
+use Black\User\Domain\Entity\User;
+use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\Entity\UserRepository;
+
+/**
+ * Class UserReadService
+ */
+class UserReadService
+{
+    /**
+     * @var
+     */
+    protected $repository;
+
+    /**
+     * @var
+     */
+    protected $class;
+
+    /**
+     * @param UserRepository $repository
+     */
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+        $this->class = $repository->getClassName();
+    }
+
+    /**
+     * @param UserId $userId
+     * @return User
+     */
+    public function find(UserId $userId) : User
+    {
+        $user = $this->repository->find($userId);
+
+        if (null === $user) {
+            throw new UserNotFoundException();
+        }
+
+        return $user;
+    }
+
+    /**
+     * @param $username
+     * @return mixed
+     */
+    public function loadUser($username) : User
+    {
+        $user = $this->repository->loadUser($username);
+
+        if (null === $user) {
+            throw new UserNotFoundException();
+        }
+
+        return $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function findAll()
+    {
+        return $this->repository->findAll();
+    }
+}

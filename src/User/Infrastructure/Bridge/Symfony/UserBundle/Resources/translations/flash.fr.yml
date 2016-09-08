@@ -1,0 +1,13 @@
+application:
+    user:
+        flash:
+
+            success:
+                created: "L'utilisateur a bien été créé"
+                updated: "L'utilisateur a bien été mis à jour"
+                registered: "L'utilisateur a bien été enregistré"
+                removed: "L'utilisateur a bien été supprimé"
+                activated: "L'utilisateur a bien été activé"
+                deactivated: "L'utilisateur a bien été désactivé"
+                locked: "Le compte de l'utilisateur a été verrouillé"
+                unlocked: "Le compte de l'utilisateur a été déverrouillé"

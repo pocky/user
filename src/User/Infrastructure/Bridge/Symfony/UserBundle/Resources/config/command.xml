@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_user.application.command.create.class">Black\Bundle\UserBundle\Application\Command\CreateUserCommand</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="black_user.application.command.create" class="%black_user.application.command.create.class%">
+            <argument type="service" id="black_cqrs.infrastructure.command.bus" />
+            <argument type="service" id="black_user.infrastructure.cqrs.handler.register" />
+            <argument>Black\User\Infrastructure\CQRS\Command\RegisterUserCommand</argument>
+            <tag name="console.command" />
+        </service>
+
+    </services>
+</container>

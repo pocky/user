@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="black_user.application.dto.active_user.class">Black\User\Application\DTO\ActiveUserDTO</parameter>
+        <parameter key="black_user.application.dto.deactive_user.class">Black\User\Application\DTO\DeactiveUserDTO</parameter>
+        <parameter key="black_user.application.dto.lock_user.class">Black\User\Application\DTO\LockUserDTO</parameter>
+        <parameter key="black_user.application.dto.unlock_user.class">Black\User\Application\DTO\UnlockUserDTO</parameter>
+        <parameter key="black_user.application.dto.create_account.class">Black\User\Application\DTO\CreateAccountDTO</parameter>
+        <parameter key="black_user.application.dto.update_account.class">Black\User\Application\DTO\UpdateAccountDTO</parameter>
+        <parameter key="black_user.application.dto.update_password.class">Black\User\Application\DTO\UpdatePasswordDTO</parameter>
+        <parameter key="black_user.application.dto.show_user.class">Black\User\Application\DTO\ShowUserDTO</parameter>
+    </parameters>
+
+    <services>
+        <service id="black_user.application.dto.active_user" class="%black_user.application.dto.active_user.class%" />
+
+        <service id="black_user.application.dto.deactive_user" class="%black_user.application.dto.deactive_user.class%" />
+
+        <service id="black_user.application.dto.lock_user" class="%black_user.application.dto.lock_user.class%" />
+
+        <service id="black_user.application.dto.unlock_user" class="%black_user.application.dto.unlock_user.class%" />
+
+        <service id="black_user.application.dto.create_account" class="%black_user.application.dto.create_account.class%" />
+
+        <service id="black_user.application.dto.update_account" class="%black_user.application.dto.update_account.class%" />
+
+        <service id="black_user.application.dto.update_password" class="%black_user.application.dto.update_password.class%" />
+
+        <service id="black_user.application.dto.show_user" class="%black_user.application.dto.show_user.class%" />
+    </services>
+</container>
