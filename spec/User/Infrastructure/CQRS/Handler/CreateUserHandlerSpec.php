@@ -4,7 +4,7 @@ namespace spec\Black\User\Infrastructure\CQRS\Handler;
 
 use Black\User\Domain\Entity\UserId;
 use Black\User\Infrastructure\CQRS\Command\CreateUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Domain\Event\UserCreatedSubscriber;
 use Black\User\Infrastructure\Service\RegisterService;
 use Email\EmailAddress;
@@ -20,7 +20,7 @@ class CreateUserHandlerSpec extends ObjectBehavior
     }
 
     function let(
-        UserWriteRepository $repository,
+        WriteRepository $repository,
         RegisterService $service,
         EventDispatcher $dispatcher
     ) {

@@ -27,9 +27,9 @@ class BlackUserExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $processor     = new Processor();
+        $processor = new Processor();
         $configuration = new Configuration($this->getAlias());
-        $config        = $processor->processConfiguration($configuration, $configs);
+        $config = $processor->processConfiguration($configuration, $configs);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../../Resources/config'));
 
@@ -54,7 +54,7 @@ class BlackUserExtension extends Extension
             ]
         ]);
 
-        foreach (['command', 'controller', 'cqrs', 'domain_event', 'dto', 'form', 'infrastructure_services'] as $basename) {
+        foreach (['action', 'command', 'cqrs', 'domain_event', 'dto', 'form', 'infrastructure_services'] as $basename) {
             $loader->load(sprintf('%s.xml', $basename));
         }
     }

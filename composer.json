@@ -15,7 +15,7 @@
     "autoload": {
         "psr-4": {
             "Black\\": "src/",
-            "Black\\Bundle\\UserBundle\\": "src/User/Infrastructure/Bridge/Symfony/UserBundle/"
+            "Black\\Bundle\\UserBundle\\": "src/User/Infrastructure/Symfony/UserBundle/"
         }
     },
     "repositories": [
@@ -25,14 +25,14 @@
         }
     ],
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=7.0",
         "monolog/monolog": "~1.10",
         "symfony/event-dispatcher": "~2.5|~3.1",
         "symfony/http-kernel": "~2.5|~3.1",
         "symfony/http-foundation": "~2.5|~3.1",
         "black/common": "dev-master",
         "black/cqrs-php": "dev-master",
-        "black/email": "~1.0"
+        "black/email": "~1.2"
     },
     "require-dev": {
         "behat/behat": "~3.0",

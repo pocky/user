@@ -1,19 +1,10 @@
 <?php
 
-/*
- * This file is part of the Black package.
- *
- * (c) Alexandre Balmes <alexandre@lablackroom.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Black\User\Infrastructure\CQRS\Handler;
 
-use Black\User\Domain\Entity\UserReadRepository;
-use Black\User\Infrastructure\CQRS\Command\RemoveUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
+use Black\User\Infrastructure\Persistence\CQRS\ReadRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Domain\Event\UserRemovedEvent;
 use Black\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -25,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class RemoveUserHandler implements CommandHandler
 {
     /**
-     * @var UserWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -35,12 +26,14 @@ class RemoveUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $userManager
+     * RemoveUserHandler constructor.
+     * @param ReadRepository $readRepository
+     * @param WriteRepository $writeRepository
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserReadRepository $readRepository,
-        UserWriteRepository $writeRepository,
+        ReadRepository $readRepository,
+        WriteRepository $writeRepository,
         EventDispatcherInterface $dispatcher
     ) {
         $this->readRepository = $readRepository;
@@ -49,15 +42,14 @@ class RemoveUserHandler implements CommandHandler
     }
 
     /**
-     * @param RemoveUserCommand $command
+     * @param Command $command
      */
-    public function handle(RemoveUserCommand $command)
+    public function handle(Command $command)
     {
         $user = $this->readRepository->find($command->getUserId());
 
         if ($user) {
             $this->writeRepository->remove($user);
-            $this->writeRepository->flush();
 
             $event = new UserRemovedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_REMOVED, $event);

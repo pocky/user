@@ -26,4 +26,9 @@ class WriteRepository
     {
         $this->repository->update($user);
     }
+
+    public function remove(User $user)
+    {
+        $this->repository->remove($user);
+    }
 }

@@ -1,8 +1,11 @@
 <?php
 
-namespace Black\Component\User\Application\Form\Type;
+namespace Black\User\Application\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,38 +16,36 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UpdatePasswordType extends AbstractType
 {
     /**
-     * @var type
+     * @var
      */
     protected $class;
 
     /**
-     * @var
-     */
-    protected $name;
-
-    /**
+     * UpdatePasswordType constructor.
      * @param $class
-     * @param $name
      */
-    public function __construct($class, $name)
+    public function __construct($class)
     {
         $this->class = $class;
-        $this->name  = $name;
     }
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'hidden')
-            ->add('password', 'repeated', [
-                    'type' => 'password',
+            ->add('id', HiddenType::class)
+            ->add('password', RepeatedType::class, [
+                    'type' => PasswordType::class,
                     'invalid_message' => 'black_user.form.password.invalid',
-                    'first_options' => ['label' => 'black_user.form.password.password.label'],
-                    'second_options' => ['label' => 'black_user.form.password.password_repeat.label'],
+                    'first_options' => [
+                        'label' => 'black_user.form.password.password.label'
+                    ],
+                    'second_options' => [
+                        'label' => 'black_user.form.password.password_repeat.label'
+                    ],
                     'options' => [
                         'required' => true,
                     ],
@@ -68,12 +69,5 @@ class UpdatePasswordType extends AbstractType
                 'translation_domain' => 'form',
             ]
         );
-    }
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 }

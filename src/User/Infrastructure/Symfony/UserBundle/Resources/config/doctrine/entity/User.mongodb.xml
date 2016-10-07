@@ -11,7 +11,7 @@
             name="Black\User\Domain\Entity\User"
             repository-class="Black\Bundle\UserBundle\Infrastructure\Persistence\UserMongoDBRepository">
 
-        <field name="name" fieldName="name" type="string" unique="true" />
+        <field name="username" fieldName="name" type="string" unique="true" />
 
         <field name="password" fieldName="password" type="string" />
 

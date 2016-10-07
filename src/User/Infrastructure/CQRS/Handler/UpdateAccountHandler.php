@@ -1,18 +1,9 @@
 <?php
 
-/*
- * This file is part of the Black package.
- *
- * (c) Alexandre Balmes <alexandre@lablackroom.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Black\User\Infrastructure\CQRS\Handler;
 
-use Black\User\Infrastructure\CQRS\Command\UpdateAccountCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Domain\Event\UserUpdatedEvent;
 use Black\User\Infrastructure\Service\RegisterService;
 use Black\User\Infrastructure\Service\UserWriteService;
@@ -26,7 +17,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class UpdateAccountHandler implements CommandHandler
 {
     /**
-     * @var UserWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -41,12 +32,13 @@ class UpdateAccountHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $repository
+     * UpdateAccountHandler constructor.
+     * @param WriteRepository $repository
      * @param UserWriteService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserWriteRepository $repository,
+        WriteRepository $repository,
         UserWriteService $service,
         EventDispatcherInterface $dispatcher
     ) {
@@ -56,12 +48,12 @@ class UpdateAccountHandler implements CommandHandler
     }
 
     /**
-     * @param UpdateAccountCommand $command
+     * @param Command $command
      */
-    public function handle(UpdateAccountCommand $command)
+    public function handle(Command $command)
     {
         $user = $this->service->updateAccount($command->getUser(), $command->getName(), $command->getEmail());
-        $this->repository->flush();
+        $this->repository->update($user);
 
         $event = new UserUpdatedEvent($user);
         $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UPDATED, $event);

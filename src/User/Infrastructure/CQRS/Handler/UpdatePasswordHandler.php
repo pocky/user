@@ -1,19 +1,10 @@
 <?php
 
-/*
- * This file is part of the Black package.
- *
- * (c) Alexandre Balmes <alexandre@lablackroom.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Black\User\Infrastructure\CQRS\Handler;
 
+use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 use Black\User\Domain\Event\UserUpdatedEvent;
-use Black\User\Infrastructure\CQRS\Command\UpdatePasswordCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Infrastructure\Service\UserWriteService;
 use Black\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -21,14 +12,11 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class UpdatePasswordHandler
- *
- * @author  Alexandre 'pocky' Balmes <alexandre@lablackroom.com>
- * @license http://opensource.org/licenses/mit-license.php MIT
  */
 class UpdatePasswordHandler implements CommandHandler
 {
     /**
-     * @var UserWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -43,12 +31,13 @@ class UpdatePasswordHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $userManager
+     * UpdatePasswordHandler constructor.
+     * @param WriteRepository $userManager
      * @param UserWriteService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserWriteRepository $userManager,
+        WriteRepository $userManager,
         UserWriteService $service,
         EventDispatcherInterface $dispatcher
     ) {
@@ -58,12 +47,12 @@ class UpdatePasswordHandler implements CommandHandler
     }
 
     /**
-     * @param UpdatePasswordCommand $command
+     * @param Command $command
      */
-    public function handle(UpdatePasswordCommand $command)
+    public function handle(Command $command)
     {
         $user = $this->service->updatePassword($command->getUser(), $command->getPassword());
-        $this->repository->flush();
+        $this->repository->update($user);
 
         $event = new UserUpdatedEvent($user);
         $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_UPDATED, $event);

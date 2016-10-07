@@ -6,9 +6,9 @@ use Black\User\Domain\Entity\User;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**
- * Class DeactiveUserCommand
+ * Class DisableUserCommand
  */
-class DeactiveUserCommand implements Command
+class DisableUserCommand implements Command
 {
     /**
      * @var User

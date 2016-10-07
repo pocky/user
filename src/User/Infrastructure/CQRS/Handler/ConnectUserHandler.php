@@ -1,20 +1,10 @@
 <?php
 
-/*
- * This file is part of the Black package.
- *
- * (c) Alexandre Balmes <alexandre@lablackroom.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Black\User\Infrastructure\CQRS\Handler;
 
+use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 use Black\User\Domain\Event\UserLockedEvent;
-use Black\User\Domain\Entity\UserId;
-use Black\User\Infrastructure\CQRS\Command\ConnectUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Infrastructure\Service\UserStatusService;
 use Black\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -26,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class ConnectUserHandler implements CommandHandler
 {
     /**
-     * @var UserWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -41,12 +31,13 @@ class ConnectUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $repository
+     * ConnectUserHandler constructor.
+     * @param WriteRepository $repository
      * @param UserStatusService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserWriteRepository $repository,
+        WriteRepository $repository,
         UserStatusService $service,
         EventDispatcherInterface $dispatcher
     ) {
@@ -56,14 +47,14 @@ class ConnectUserHandler implements CommandHandler
     }
 
     /**
-     * @param ConnectUserCommand $command
+     * @param Command $command
      */
-    public function handle(ConnectUserCommand $command)
+    public function handle(Command $command)
     {
         $user = $this->service->connect($command->getUser());
 
         if ($user) {
-            $this->repository->flush();
+            $this->repository->update($user);
 
             $event = new UserLockedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_LOGGED, $event);

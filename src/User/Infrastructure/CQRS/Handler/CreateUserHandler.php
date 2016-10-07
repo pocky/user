@@ -1,20 +1,10 @@
 <?php
 
-/*
- * This file is part of the Black package.
- *
- * (c) Alexandre Balmes <alexandre@lablackroom.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Black\User\Infrastructure\CQRS\Handler;
 
-use Black\User\Infrastructure\CQRS\Command\CreateUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Domain\Event\UserCreatedEvent;
-use Black\User\Domain\Event\UserCreatedSubscriber;
 use Black\User\Infrastructure\Service\RegisterService;
 use Black\User\UserDomainEvents;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -26,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class CreateUserHandler implements CommandHandler
 {
     /**
-     * @var UserWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -41,12 +31,13 @@ class CreateUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $repository
+     * CreateUserHandler constructor.
+     * @param WriteRepository $repository
      * @param RegisterService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserWriteRepository $repository,
+        WriteRepository $repository,
         RegisterService $service,
         EventDispatcherInterface $dispatcher
     ) {
@@ -56,14 +47,14 @@ class CreateUserHandler implements CommandHandler
     }
 
     /**
-     * @param CreateUserCommand $command
+     * @param Command $command
      */
-    public function handle(CreateUserCommand $command)
+    public function handle(Command $command)
     {
         $user = $this->service->create($command->getUserId(), $command->getName(), $command->getEmail());
 
         if ($user) {
-            $this->repository->flush();
+            $this->repository->update($user);
 
             $event = new UserCreatedEvent($user);
             $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_CREATED, $event);

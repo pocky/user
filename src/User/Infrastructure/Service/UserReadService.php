@@ -5,7 +5,7 @@ namespace Black\User\Infrastructure\Service;
 use Black\User\Domain\Exception\UserNotFoundException;
 use Black\User\Domain\Entity\User;
 use Black\User\Domain\Entity\UserId;
-use Black\User\Domain\Entity\UserRepository;
+use Black\User\Infrastructure\Persistence\CQRS\ReadRepository;
 
 /**
  * Class UserReadService
@@ -15,20 +15,15 @@ class UserReadService
     /**
      * @var
      */
-    protected $repository;
+    private $repository;
 
     /**
-     * @var
+     * UserReadService constructor.
+     * @param ReadRepository $repository
      */
-    protected $class;
-
-    /**
-     * @param UserRepository $repository
-     */
-    public function __construct(UserRepository $repository)
+    public function __construct(ReadRepository $repository)
     {
         $this->repository = $repository;
-        $this->class = $repository->getClassName();
     }
 
     /**

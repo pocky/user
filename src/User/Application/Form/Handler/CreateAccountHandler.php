@@ -1,8 +1,8 @@
 <?php
 
-namespace Black\Component\User\Application\Form\Handler;
+namespace Black\User\Application\Form\Handler;
 
-use Black\Component\Common\Application\Form\Handler\AbstractFormHandler;
+use Black\Common\Application\Form\Handler\AbstractFormHandler;
 
 /**
  * Class CreateAccountHandler

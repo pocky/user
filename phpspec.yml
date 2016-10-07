@@ -1,7 +1,3 @@
-extensions:
-    - Memio\SpecGen\MemioSpecGenExtension
-    - RMiller\BehatSpec\PhpSpecExtension
-
 suites:
     user_suite:
         namespace: Black\User

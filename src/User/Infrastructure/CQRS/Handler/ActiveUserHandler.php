@@ -2,9 +2,8 @@
 
 namespace Black\User\Infrastructure\CQRS\Handler;
 
-use Black\User\Domain\Entity\UserId;
-use Black\User\Infrastructure\CQRS\Command\ActiveUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Domain\Event\UserActivatedEvent;
 use Black\User\Infrastructure\Service\UserStatusService;
 use Black\User\UserDomainEvents;
@@ -17,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class ActiveUserHandler implements CommandHandler
 {
     /**
-     * @var UserWriteRepository
+     * @var WriteRepository
      */
     protected $repository;
 
@@ -32,12 +31,13 @@ class ActiveUserHandler implements CommandHandler
     protected $dispatcher;
 
     /**
-     * @param UserWriteRepository $repository
+     * ActiveUserHandler constructor.
+     * @param WriteRepository $repository
      * @param UserStatusService $service
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(
-        UserWriteRepository $repository,
+        WriteRepository $repository,
         UserStatusService $service,
         EventDispatcherInterface $dispatcher
     ) {
@@ -47,12 +47,12 @@ class ActiveUserHandler implements CommandHandler
     }
 
     /**
-     * @param ActiveUserCommand $command
+     * @param Command $command
      */
-    public function handle(ActiveUserCommand $command)
+    public function handle(Command $command)
     {
         $user = $this->service->activate($command->getUser());
-        $this->repository->flush();
+        $this->repository->update($user);
 
         $event = new UserActivatedEvent($user);
         $this->dispatcher->dispatch(UserDomainEvents::USER_DOMAIN_ACTIVATED, $event);

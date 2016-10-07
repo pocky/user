@@ -5,7 +5,7 @@ namespace spec\Black\User\Infrastructure\CQRS\Handler;
 use Black\User\Domain\Entity\UserId;
 use Black\User\Domain\Entity\UserReadRepository;
 use Black\User\Infrastructure\CQRS\Command\RemoveUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Domain\Event\UserRemovedSubscriber;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -20,7 +20,7 @@ class RemoveUserHandlerSpec extends ObjectBehavior
 
     function let(
         UserReadRepository $readRepository,
-        UserWriteRepository $writeRepository,
+        WriteRepository $writeRepository,
         EventDispatcher $dispatcher
     ) {
         $this->beConstructedWith($readRepository, $writeRepository, $dispatcher);

@@ -1,8 +1,10 @@
 <?php
 
-namespace Black\Component\User\Application\Form\Type;
+namespace Black\User\Application\Form\Type;
 
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,39 +15,33 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class UpdateAccountType extends AbstractType
 {
     /**
-     * @var type
+     * @var
      */
     protected $class;
 
     /**
-     * @var
-     */
-    protected $name;
-
-    /**
+     * UpdateAccountType constructor.
      * @param $class
-     * @param $name
      */
-    public function __construct($class, $name)
+    public function __construct($class)
     {
         $this->class = $class;
-        $this->name  = $name;
     }
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', 'hidden')
+            ->add('id', HiddenType::class)
             ->add('name', 'text', [
                     'label'  => 'black_user.form.account.name.label',
                     'required' => true,
                 ]
             )
-            ->add('email', 'text', [
+            ->add('email', TextType::class, [
                     'label'  => 'black_user.form.account.email.label',
                     'required' => true,
                 ]
@@ -69,12 +65,5 @@ class UpdateAccountType extends AbstractType
                 'translation_domain' => 'form',
             ]
         );
-    }
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 }

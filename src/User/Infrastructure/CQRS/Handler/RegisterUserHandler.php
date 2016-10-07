@@ -3,7 +3,6 @@
 namespace Black\User\Infrastructure\CQRS\Handler;
 
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
-use Black\User\Infrastructure\CQRS\Command\RegisterUserCommand;
 use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Infrastructure\Service\RegisterService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\CommandHandler;
@@ -46,7 +45,6 @@ class RegisterUserHandler implements CommandHandler
 
         if ($user) {
             $this->service->register($user, $command->getPassword());
-            $this->repository->flush();
         }
     }
 }

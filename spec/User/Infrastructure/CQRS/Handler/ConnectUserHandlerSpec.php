@@ -5,7 +5,7 @@ namespace spec\Black\User\Infrastructure\CQRS\Handler;
 use Black\User\Domain\Entity\User;
 use Black\User\Domain\Entity\UserId;
 use Black\User\Infrastructure\CQRS\Command\ConnectUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Infrastructure\Service\UserStatusService;
 use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
@@ -19,7 +19,7 @@ class ConnectUserHandlerSpec extends ObjectBehavior
 
     }
 
-    function let(UserWriteRepository $repository, UserStatusService $service, EventDispatcherInterface $dispatcher)
+    function let(WriteRepository $repository, UserStatusService $service, EventDispatcherInterface $dispatcher)
     {
         $this->beConstructedWith($repository, $service, $dispatcher);
     }

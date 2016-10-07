@@ -11,7 +11,7 @@
 
         <parameter key="black_user.infrastructure.cqrs.handler.connect.class">Black\User\Infrastructure\CQRS\Handler\ConnectUserHandler</parameter>
         <parameter key="black_user.infrastructure.cqrs.handler.active.class">Black\User\Infrastructure\CQRS\Handler\ActiveUserHandler</parameter>
-        <parameter key="black_user.infrastructure.cqrs.handler.deactive.class">Black\User\Infrastructure\CQRS\Handler\DeactiveUserHandler</parameter>
+        <parameter key="black_user.infrastructure.cqrs.handler.disable.class">Black\User\Infrastructure\CQRS\Handler\DisableUserHandler</parameter>
         <parameter key="black_user.infrastructure.cqrs.handler.lock.class">Black\User\Infrastructure\CQRS\Handler\LockUserHandler</parameter>
         <parameter key="black_user.infrastructure.cqrs.handler.unlock.class">Black\User\Infrastructure\CQRS\Handler\UnlockUserHandler</parameter>
         <parameter key="black_user.infrastructure.cqrs.handler.create.class">Black\User\Infrastructure\CQRS\Handler\CreateUserHandler</parameter>
@@ -52,7 +52,7 @@
             <argument type="service" id="event_dispatcher" />
         </service>
 
-        <service id="black_user.infrastructure.cqrs.handler.deactive" class="%black_user.infrastructure.cqrs.handler.deactive.class%">
+        <service id="black_user.infrastructure.cqrs.handler.disable" class="%black_user.infrastructure.cqrs.handler.disable.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.status" />
             <argument type="service" id="event_dispatcher" />

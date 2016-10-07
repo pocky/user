@@ -76,10 +76,10 @@ class CreateUserCommand extends ContainerAwareCommand
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        $dialog = $this->getHelperSet()->get('dialog');
+        $question = $this->getHelperSet()->get('question');
 
         if (!$input->getArgument('username')) {
-            $username = $dialog->askAndValidate(
+            $username = $question->askAndValidate(
                 $output,
                 'Please choose an username:',
                 function ($username) {
@@ -95,7 +95,7 @@ class CreateUserCommand extends ContainerAwareCommand
         }
 
         if (!$input->getArgument('email')) {
-            $email = $dialog->askAndValidate(
+            $email = $question->askAndValidate(
                 $output,
                 'Please choose an email:',
                 function ($email) {
@@ -111,7 +111,7 @@ class CreateUserCommand extends ContainerAwareCommand
         }
 
         if (!$input->getArgument('password')) {
-            $password = $dialog->askHiddenResponse(
+            $password = $question->askHiddenResponse(
                 $output,
                 'Please choose an password:',
                 function ($password) {
@@ -135,7 +135,7 @@ class CreateUserCommand extends ContainerAwareCommand
         $this->bus->handle(new $this->commandName(
             $userId,
             $input->getArgument('username'),
-            $input->getArgument('email'),
+            new EmailAddress($input->getArgument('email')),
             $input->getArgument('password')
         ));
     }

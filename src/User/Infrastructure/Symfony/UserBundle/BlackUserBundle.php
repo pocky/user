@@ -31,17 +31,18 @@ class BlackUserBundle extends Bundle
         parent::build($container);
 
         $mappings = array(
-            realpath($this->getPath() . '/Resources/config/doctrine/model') => 'Black\User\Domain\Model',
+            realpath($this->getPath() . '/Resources/config/doctrine/entity') => 'Black\User\Domain\Entity',
         );
 
         $ormCompilerClass = 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass';
 
         if (class_exists($ormCompilerClass)) {
+
             $container->addCompilerPass(
                 DoctrineOrmMappingsPass::createXmlMappingDriver(
                     $mappings,
                     [],
-                    'application.backend_type_orm'
+                    'black_user.backend_type_orm'
                 ));
         }
 
@@ -52,7 +53,7 @@ class BlackUserBundle extends Bundle
                 DoctrineMongoDBMappingsPass::createXmlMappingDriver(
                     $mappings,
                     [],
-                    'application.backend_type_mongodb'
+                    'black_user.backend_type_mongodb'
                 ));
         }
     }

@@ -3,9 +3,9 @@
 namespace Black\User\Application\DTO;
 
 /**
- * Class DeactiveUserDTO
+ * Class DisableUserDTO
  */
-final class DeactiveUserDTO
+final class DisableUserDTO
 {
     /**
      * @var

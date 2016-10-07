@@ -5,7 +5,7 @@ namespace spec\Black\User\Infrastructure\CQRS\Handler;
 use Black\User\Domain\Event\UserUnlockedEvent;
 use Black\User\Domain\Entity\User;
 use Black\User\Infrastructure\CQRS\Command\UnlockUserCommand;
-use Black\User\Domain\Entity\UserWriteRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Infrastructure\Service\UserStatusService;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\EventDispatcher\EventDispatcher;
@@ -19,7 +19,7 @@ class UnlockUserHandlerSpec extends ObjectBehavior
     }
 
     function let(
-        UserWriteRepository $repository,
+        WriteRepository $repository,
         UserStatusService $statusService,
         EventDispatcher $dispatcher
     ) {

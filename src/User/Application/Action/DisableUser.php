@@ -3,13 +3,13 @@
 namespace Black\User\Application\Action;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Infrastructure\CQRS\Handler\DeactiveUserHandler;
+use Black\User\Infrastructure\CQRS\Handler\DisableUserHandler;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
 
 /**
- * Class DeactiveUser
+ * Class DisableUser
  */
-class DeactiveUser
+class DisableUser
 {
     /**
      * @var
@@ -27,13 +27,14 @@ class DeactiveUser
     protected $commandName;
 
     /**
+     * DisableUser constructor.
      * @param Bus $bus
-     * @param DeactiveUserHandler $handler
+     * @param DisableUserHandler $handler
      * @param $commandName
      */
     public function __construct(
         Bus $bus,
-        DeactiveUserHandler $handler,
+        DisableUserHandler $handler,
         $commandName
     ) {
         $this->bus = $bus;

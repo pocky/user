@@ -1,8 +1,12 @@
 <?php
 
-namespace Black\Component\User\Application\Form\Type;
+namespace Black\User\Application\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,46 +17,30 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class LoginType extends AbstractType
 {
     /**
-     * @var
-     */
-    protected $name;
-
-    /**
-     * @param $name
-     */
-    public function __construct($name)
-    {
-        $this->name  = $name;
-    }
-
-    /**
      * @param FormBuilderInterface $builder
-     * @param array                $options
+     * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', [
+            ->add('_username', TextType::class, [
                 'label' => 'black_user.form.login.username.label',
                 'attr' => [
                     'placeholder' => 'black_user.form.login.username.placeholder',
                 ]
             ])
-            ->add('password', 'password', [
+            ->add('_password', PasswordType::class, [
                 'label' => 'black_user.form.login.password.label',
                 'attr' => [
                     'placeholder' => 'black_user.form.login.password.placeholder',
                 ]
             ])
-            ->add('remember_me', 'checkbox', [
+            ->add('_remember_me', CheckboxType::class, [
                 'label' => 'black_user.form.login.rememberMe.label',
                 'required' => false,
             ])
-            ->add('submit', 'submit', [
+            ->add('submit', SubmitType::class, [
                 'label' => 'black_user.form.login.submit.label',
-                'attr' => [
-                    'class' => 'btn bg-olive btn-block'
-                ]
             ]);
     }
     
@@ -61,19 +49,9 @@ class LoginType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(
-            [
-                'translation_domain' => 'form',
-                'intention' => 'admin_authentication'
-            ]
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
+        $resolver->setDefaults([
+            'translation_domain' => 'form',
+            'intention' => 'admin_authentication'
+        ]);
     }
 }

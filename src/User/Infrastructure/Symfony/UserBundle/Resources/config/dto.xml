@@ -6,7 +6,7 @@
 
     <parameters>
         <parameter key="black_user.application.dto.active_user.class">Black\User\Application\DTO\ActiveUserDTO</parameter>
-        <parameter key="black_user.application.dto.deactive_user.class">Black\User\Application\DTO\DeactiveUserDTO</parameter>
+        <parameter key="black_user.application.dto.disable_user.class">Black\User\Application\DTO\DisableUserDTO</parameter>
         <parameter key="black_user.application.dto.lock_user.class">Black\User\Application\DTO\LockUserDTO</parameter>
         <parameter key="black_user.application.dto.unlock_user.class">Black\User\Application\DTO\UnlockUserDTO</parameter>
         <parameter key="black_user.application.dto.create_account.class">Black\User\Application\DTO\CreateAccountDTO</parameter>
@@ -18,7 +18,7 @@
     <services>
         <service id="black_user.application.dto.active_user" class="%black_user.application.dto.active_user.class%" />
 
-        <service id="black_user.application.dto.deactive_user" class="%black_user.application.dto.deactive_user.class%" />
+        <service id="black_user.application.dto.disable_user" class="%black_user.application.dto.disable_user.class%" />
 
         <service id="black_user.application.dto.lock_user" class="%black_user.application.dto.lock_user.class%" />
 
