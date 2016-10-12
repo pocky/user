@@ -50,11 +50,10 @@ class BlackUserExtension extends Extension
         $this->remapParametersNamespaces($config, $container, [
             '' => [
                 'user_class' => 'black_user.user.model.class',
-                'user_manager' => 'black_user.user.manager.class',
             ]
         ]);
 
-        foreach (['action', 'command', 'cqrs', 'domain_event', 'dto', 'form', 'infrastructure_services'] as $basename) {
+        foreach (['command', 'cqrs', 'domain_event', 'dto', 'form', 'infrastructure_services'] as $basename) {
             $loader->load(sprintf('%s.xml', $basename));
         }
     }
