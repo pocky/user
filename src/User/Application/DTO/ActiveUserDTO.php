@@ -23,7 +23,7 @@ class ActiveUserDTO
     /**
      * @return mixed
      */
-    public function getId() : string
+    public function getId()
     {
         return $this->id;
     }

@@ -2,9 +2,9 @@
 
 namespace Black\User\Application\Form\Type;
 
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -36,7 +36,7 @@ class UpdateAccountType extends AbstractType
     {
         $builder
             ->add('id', HiddenType::class)
-            ->add('name', 'text', [
+            ->add('name', TextType::class, [
                     'label'  => 'black_user.form.account.name.label',
                     'required' => true,
                 ]

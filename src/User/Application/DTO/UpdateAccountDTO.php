@@ -37,7 +37,7 @@ final class UpdateAccountDTO
     /**
      * @return mixed
      */
-    public function getId() : string
+    public function getId()
     {
         return $this->id;
     }
