@@ -36,6 +36,6 @@ class UserActivatedEvent extends Event
      */
     public function message() : string
     {
-        return "The user {$this->user->getName()} ({$this->user->getUserId()}) is now activated.";
+        return "The user {$this->user->getUsername()} ({$this->user->getUserId()}) is now activated.";
     }
 }

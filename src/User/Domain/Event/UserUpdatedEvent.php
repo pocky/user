@@ -36,6 +36,6 @@ class UserUpdatedEvent extends Event
      */
     public function message() : string
     {
-        return "The user {$this->user->getName()} ({$this->user->getEmail()}) with {$this->user->getUserId()} identifier is updated.";
+        return "The user {$this->user->getUsername()} ({$this->user->getEmail()}) with {$this->user->getUserId()} identifier is updated.";
     }
 }

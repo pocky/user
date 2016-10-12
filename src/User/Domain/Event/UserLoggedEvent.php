@@ -44,6 +44,6 @@ class UserLoggedEvent extends Event
      */
     public function message()
     {
-        return "The user {$this->user->getName()} ({$this->user->getUserId()}) is now logged in.";
+        return "The user {$this->user->getUsername()} ({$this->user->getUserId()}) is now logged in.";
     }
 }

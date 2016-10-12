@@ -6,9 +6,9 @@ use Black\User\Domain\Entity\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserDeactivatedEvent
+ * Class UserDisabledEvent
  */
-class UserDeactivatedEvent extends Event
+class UserDisabledEvent extends Event
 {
     /**
      * @var
@@ -36,6 +36,6 @@ class UserDeactivatedEvent extends Event
      */
     public function message() : string
     {
-        return "The user {$this->user->getName()} ({$this->user->getUserId()}) is now deactivated.";
+        return "The user {$this->user->getUsername()} ({$this->user->getUserId()}) is now deactivated.";
     }
 }

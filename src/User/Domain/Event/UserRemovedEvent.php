@@ -37,6 +37,6 @@ class UserRemovedEvent extends Event
      */
     public function message() : string
     {
-        return "The user {$this->user->getName()} with {$this->user->getUserId()} identifier is terminated.";
+        return "The user {$this->user->getUsername()} with {$this->user->getUserId()} identifier is terminated.";
     }
 }

@@ -3,7 +3,7 @@
 namespace Black\User\Domain\Event;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
