@@ -75,13 +75,13 @@ class FlashSuccessListener implements EventSubscriberInterface
     /**
      * @param Event $event
      */
-    public function addSuccessFlash(Event $event)
+    public function addSuccessFlash(Event $event, $eventName)
     {
-        if (!isset(self::$successMessages[$event->getName()])) {
+        if (!isset(self::$successMessages[$eventName])) {
             throw new \InvalidArgumentException('This event does not correspond to a known flash message');
         }
 
-        $this->session->getFlashBag()->add('success', $this->trans(self::$successMessages[$event->getName()]));
+        $this->session->getFlashBag()->add('success', $this->trans(self::$successMessages[$eventName]));
     }
 
     /**
