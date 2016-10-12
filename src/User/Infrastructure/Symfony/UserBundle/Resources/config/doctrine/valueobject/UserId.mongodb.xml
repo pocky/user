@@ -7,7 +7,7 @@
                         http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
 
-    <embedded-document name="Black\User\Domain\Entity\UserId">
+    <embedded-document name="Black\User\Domain\ValueObject\UserId">
         <field fieldName="value" type="string" unique="true" />
     </embedded-document>
 

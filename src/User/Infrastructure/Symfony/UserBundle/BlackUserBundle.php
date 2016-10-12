@@ -32,6 +32,7 @@ class BlackUserBundle extends Bundle
 
         $mappings = array(
             realpath($this->getPath() . '/Resources/config/doctrine/entity') => 'Black\User\Domain\Entity',
+            realpath($this->getPath() . '/Resources/config/doctrine/valueobject') => 'Black\User\Domain\ValueObject',
         );
 
         $ormCompilerClass = 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass';

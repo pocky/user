@@ -3,7 +3,7 @@
 namespace Black\User\Domain\Repository;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 
 /**
  * Interface UserRepository

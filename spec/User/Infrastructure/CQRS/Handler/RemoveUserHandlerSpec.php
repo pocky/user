@@ -2,7 +2,7 @@
 
 namespace spec\Black\User\Infrastructure\CQRS\Handler;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Domain\Entity\UserReadRepository;
 use Black\User\Infrastructure\CQRS\Command\RemoveUserCommand;
 use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;

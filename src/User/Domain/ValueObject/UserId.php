@@ -1,6 +1,6 @@
 <?php
 
-namespace Black\User\Domain\Entity;
+namespace Black\User\Domain\ValueObject;
 
 /**
  * Class UserId

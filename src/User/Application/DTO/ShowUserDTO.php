@@ -2,7 +2,6 @@
 
 namespace Black\User\Application\DTO;
 
-use Black\User\Domain\Entity\UserId;
 use Email\EmailAddress;
 
 /**
@@ -11,7 +10,7 @@ use Email\EmailAddress;
 class ShowUserDTO
 {
     /**
-     * @var UserId
+     * @var
      */
     protected $id;
 
@@ -40,7 +39,7 @@ class ShowUserDTO
     /**
      * @return string
      */
-    public function getId() : string
+    public function getId()
     {
         return $this->id;
     }

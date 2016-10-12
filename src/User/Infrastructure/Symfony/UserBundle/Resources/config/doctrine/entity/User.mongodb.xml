@@ -15,19 +15,19 @@
 
         <field name="password" fieldName="password" type="string" />
 
-        <field name="registeredAt" fieldName="registeredAt" type="date" />
+        <field name="registeredAt" fieldName="registeredAt" type="datetime" />
 
         <field name="active" fieldName="active" type="boolean" />
 
         <field name="locked" fieldName="locked" type="boolean" />
 
-        <field name="numberOfConnection" fieldName="numberOfConnection" type="int" />
+        <field name="numberOfConnection" fieldName="numberOfConnection" type="integer" />
 
-        <field name="lastConnection" fieldName="lastConnection" type="date" />
+        <field name="lastConnection" fieldName="lastConnection" type="datetime" />
 
-        <field name="updatedAt" fieldName="updatedAt" type="date" />
+        <field name="updatedAt" fieldName="updatedAt" type="datetime" />
 
-        <embed-one field="userId" target-document="Black\User\Domain\Entity\UserId" />
+        <embed-one field="userId" target-document="Black\User\Domain\ValueObject\UserId" />
 
         <embed-one field="email" target-document="Email\EmailAddress" />
 

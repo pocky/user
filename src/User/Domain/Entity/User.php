@@ -2,7 +2,7 @@
 
 namespace Black\User\Domain\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Black\User\Domain\ValueObject\UserId;
 use Email\EmailAddress;
 
 /**
@@ -148,7 +148,7 @@ class User
     /**
      * @return string
      */
-    public function getPassword() : string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -200,7 +200,7 @@ class User
     /**
      * @return Int
      */
-    public function getNumberOfConnection() : Int
+    public function getNumberOfConnection() : int
     {
         return (int) $this->numberOfConnection;
     }

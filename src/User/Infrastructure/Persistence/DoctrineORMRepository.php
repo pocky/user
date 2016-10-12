@@ -11,7 +11,7 @@ namespace Black\User\Infrastructure\Persistence;
 
 use Black\Bridge\Doctrine\Common\Persistence\ORMRepository;
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Domain\Repository\UserRepository;
 use Doctrine\ORM\NoResultException;
 
@@ -75,7 +75,7 @@ class DoctrineORMRepository extends ORMRepository implements UserRepository
     public function loadUser($username)
     {
         $query = $this->getQueryBuilder()
-            ->where('p.name = :name AND p.locked = false')
+            ->where('p.username = :name AND p.locked = false')
             ->setParameter('name', $username)
             ->getQuery();
 
@@ -92,6 +92,14 @@ class DoctrineORMRepository extends ORMRepository implements UserRepository
     public function add(User $user)
     {
         $this->manager->persist($user);
+        $this->manager->flush();
+    }
+
+    /**
+     * @param User $user
+     */
+    public function update(User $user)
+    {
         $this->manager->flush();
     }
 

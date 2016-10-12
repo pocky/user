@@ -2,8 +2,6 @@
 
 namespace Black\User\Application\DTO;
 
-use Black\User\Domain\Entity\UserId;
-
 /**
  * Class UpdatePasswordDTO
  */
@@ -32,7 +30,7 @@ final class UpdatePasswordDTO
     /**
      * @return string
      */
-    public function getId() : string
+    public function getId()
     {
         return $this->id;
     }
@@ -40,7 +38,7 @@ final class UpdatePasswordDTO
     /**
      * @return string
      */
-    public function getPassword() : string
+    public function getPassword()
     {
         return $this->password;
     }

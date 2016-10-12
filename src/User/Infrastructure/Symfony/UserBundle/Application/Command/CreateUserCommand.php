@@ -9,7 +9,7 @@
  */
 namespace Black\Bundle\UserBundle\Application\Command;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Infrastructure\CQRS\Handler\RegisterUserHandler;
 use Black\User\Infrastructure\Service\RegisterService;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Bus;
@@ -113,7 +113,7 @@ class CreateUserCommand extends ContainerAwareCommand
         if (!$input->getArgument('password')) {
             $password = $question->askHiddenResponse(
                 $output,
-                'Please choose an password:',
+                'Please choose a password:',
                 function ($password) {
                     if (empty($password)) {
                         throw new \InvalidArgumentException('Password can not be empty!');

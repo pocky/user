@@ -3,7 +3,6 @@
 namespace Black\User\Infrastructure\CQRS\Command;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 
 /**

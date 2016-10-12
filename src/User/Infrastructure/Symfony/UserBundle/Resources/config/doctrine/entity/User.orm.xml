@@ -14,17 +14,19 @@
 
         <field name="password" type="string" nullable="true" />
 
-        <field name="registeredAt" type="date" nullable="true" />
+        <field name="registeredAt" type="datetime" nullable="true" />
 
         <field name="active" type="boolean" />
 
         <field name="locked" type="boolean" />
 
-        <field name="lastConnection" type="date" nullable="true" />
+        <field name="numberOfConnection" type="integer" nullable="true" />
 
-        <field name="updatedAt" type="date" nullable="true" />
+        <field name="lastConnection" type="datetime" nullable="true" />
 
-        <embedded class="Black\User\Domain\Entity\UserId" name="userId" />
+        <field name="updatedAt" type="datetime" nullable="true" />
+
+        <embedded class="Black\User\Domain\ValueObject\UserId" name="userId" />
 
         <embedded class="Email\EmailAddress" name="email" />
 

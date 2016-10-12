@@ -2,14 +2,14 @@
 
 namespace spec\Black\User\Domain\Model;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use PhpSpec\ObjectBehavior;
 
 class UserIdSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-        $this->shouldHaveType('Black\User\Domain\Entity\UserId');
+        $this->shouldHaveType('Black\User\Domain\ValueObject\UserId');
     }
 
     function let()

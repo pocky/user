@@ -2,7 +2,7 @@
 
 namespace spec\Black\User\Infrastructure\CQRS\Command;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 
@@ -24,7 +24,7 @@ class CreateUserCommandSpec extends ObjectBehavior
 
     function it_should_have_a_userId()
     {
-        $this->getUserId()->shouldBeAnInstanceOf('Black\User\Domain\Entity\UserId');
+        $this->getUserId()->shouldBeAnInstanceOf('Black\User\Domain\ValueObject\UserId');
         $this->getUserId()->getValue()->shouldBeString();
         $this->getUserId()->getValue()->shouldReturn('1234');
     }

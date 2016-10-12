@@ -3,7 +3,7 @@
 namespace Black\User\Infrastructure\Service;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Infrastructure\Password\Encoder;
 use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Email\EmailAddress;

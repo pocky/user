@@ -2,7 +2,7 @@
 
 namespace Black\User\Infrastructure\CQRS\Command;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\DDD\CQRSinPHP\Infrastructure\CQRS\Command;
 use Email\EmailAddress;
 use Symfony\Component\Validator\Constraints\Email;

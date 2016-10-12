@@ -2,7 +2,7 @@
 
 namespace spec\Black\User\Application\DTO;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

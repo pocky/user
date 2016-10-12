@@ -3,7 +3,7 @@
 namespace spec\Black\User\Infrastructure\CQRS\Handler;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Infrastructure\CQRS\Command\ConnectUserCommand;
 use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 use Black\User\Infrastructure\Service\UserStatusService;

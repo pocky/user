@@ -11,7 +11,7 @@ namespace Black\User\Infrastructure\Persistence;
 
 use Black\Bridge\Doctrine\Common\Persistence\MongoDB\MongoDBRepository;
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Domain\Repository\UserRepository;
 use Doctrine\ORM\NoResultException;
 

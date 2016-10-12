@@ -2,7 +2,7 @@
 
 namespace spec\Black\User\Infrastructure\CQRS\Command;
 
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use PhpSpec\ObjectBehavior;
 
 class RemoveUserCommandSpec extends ObjectBehavior
@@ -22,7 +22,7 @@ class RemoveUserCommandSpec extends ObjectBehavior
 
     function it_should_return_a_userId()
     {
-        $this->getUserId()->shouldBeAnInstanceOf('Black\User\Domain\Entity\UserId');
+        $this->getUserId()->shouldBeAnInstanceOf('Black\User\Domain\ValueObject\UserId');
         $this->getUserId()->getValue()->shouldBeString();
         $this->getUserId()->getValue()->shouldReturn("1234");
     }

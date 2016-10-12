@@ -3,7 +3,7 @@
 namespace spec\Black\User\Application\Specification;
 
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Email\EmailAddress;
 use PhpSpec\ObjectBehavior;
 

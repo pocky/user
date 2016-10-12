@@ -2,7 +2,7 @@
 
 namespace Black\User\Infrastructure\Persistence\CQRS;
 
-use Black\User\Domain\Model\UserId;
+use Black\User\Domain\ValueObject\UserId;
 use Black\User\Domain\Repository\UserRepository;
 
 /**
@@ -25,5 +25,10 @@ class ReadRepository
     public function findAll()
     {
         return $this->repository->findAll();
+    }
+
+    public function loadUser($username)
+    {
+        return $this->repository->loadUser($username);
     }
 }
