@@ -44,59 +44,79 @@
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.status" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\ConnectUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.active" class="%black_user.infrastructure.cqrs.handler.active.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.status" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\ActiveUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.disable" class="%black_user.infrastructure.cqrs.handler.disable.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.status" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\DisableUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.lock" class="%black_user.infrastructure.cqrs.handler.lock.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.status" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\LockUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.unlock" class="%black_user.infrastructure.cqrs.handler.unlock.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.status" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\UnlockUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.create" class="%black_user.infrastructure.cqrs.handler.create.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.register" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\CreateUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.update_account" class="%black_user.infrastructure.cqrs.handler.update_account.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.write" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\UpdateAccountCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.update_password" class="%black_user.infrastructure.cqrs.handler.update_password.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.write" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\UpdatePasswordCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.register" class="%black_user.infrastructure.cqrs.handler.register.class%">
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="black_user.infrastructure.service.register" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\RegisterUserCommand" />
         </service>
 
         <service id="black_user.infrastructure.cqrs.handler.remove" class="%black_user.infrastructure.cqrs.handler.remove.class%">
             <argument type="service" id="black_user.persistence.user_read" />
             <argument type="service" id="black_user.persistence.user_write" />
             <argument type="service" id="event_dispatcher" />
+
+            <tag name="black_cqrs.handler" command="Black\User\Infrastructure\CQRS\Command\RemoveUserCommand" />
         </service>
 
     </services>
