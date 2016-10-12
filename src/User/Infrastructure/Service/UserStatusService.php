@@ -2,10 +2,9 @@
 
 namespace Black\User\Infrastructure\Service;
 
-use Black\User\Domain\Exception\UserNotFoundException;
 use Black\User\Domain\Entity\User;
-use Black\User\Domain\Entity\UserId;
 use Black\User\Domain\Entity\UserRepository;
+use Black\User\Infrastructure\Persistence\CQRS\WriteRepository;
 
 /**
  * Class UserStatusService
@@ -18,17 +17,12 @@ class UserStatusService
     protected $repository;
 
     /**
-     * @var
+     * UserStatusService constructor.
+     * @param WriteRepository $repository
      */
-    protected $class;
-
-    /**
-     * @param UserRepository $repository
-     */
-    public function __construct(UserRepository $repository)
+    public function __construct(WriteRepository $repository)
     {
         $this->repository = $repository;
-        $this->class = $repository->getClassName();
     }
 
     /**
