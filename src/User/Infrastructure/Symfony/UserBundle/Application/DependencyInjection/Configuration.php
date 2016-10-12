@@ -47,7 +47,6 @@ class Configuration implements ConfigurationInterface
                 ->end()
 
                 ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('user_manager')->defaultValue('Black\\Component\\User\\Infrastructure\\Doctrine\\UserManager')->end()
 
 
             ->end();
